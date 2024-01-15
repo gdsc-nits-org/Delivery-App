@@ -3,12 +3,16 @@ package com.example.deliveryapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.example.deliveryapp.adapters.ImageAdapter
 import com.example.deliveryapp.databinding.ActivityMainBinding
 import com.example.deliveryapp.homepage_fragments.CartFragment
 import com.example.deliveryapp.homepage_fragments.HomeFragment
 import com.example.deliveryapp.homepage_fragments.ProfileFragment
 import com.example.deliveryapp.homepage_fragments.SearchFragment
+import com.example.deliveryapp.models.CarouselImageItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.UUID
 
 
 class MainActivity : AppCompatActivity() {
