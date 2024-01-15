@@ -7,11 +7,19 @@
     tools:context=".UserProfileActivity">
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/bvNavBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
     </androidx.fragment.app.FragmentContainerView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bvNavBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_menue"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
     
 </androidx.constraintlayout.widget.ConstraintLayout>
