@@ -2,4 +2,46 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorSecondary" >#FF000000</color>
+    <color name="colorPrimary" >#FFFFFF</color>
+    <!-- Red Shades -->
+    <color name="darkRed">#D32F2F</color>
+    <color name="mediumRed">#F44336</color>
+    <color name="lightRed">#EF5350</color>
+
+    <!-- Blue Shades -->
+    <color name="darkBlue">#01579B</color>
+    <color name="mediumBlue">#2196F3</color>
+    <color name="lightBlue">#03A9F4</color>
+
+    <!-- Green Shades -->
+    <color name="darkGreen">#388E3C</color>
+    <color name="mediumGreen">#4CAF50</color>
+    <color name="lightGreen">#81C784</color>
+
+    <!-- Yellow Shades -->
+    <color name="darkYellow">#FBC02D</color>
+    <color name="mediumYellow">#FFEB3B</color>
+    <color name="lightYellow">#FFF176</color>
+
+    <!-- Purple Shades -->
+    <color name="darkPurple">#512DA8</color>
+    <color name="mediumPurple">#673AB7</color>
+    <color name="lightPurple">#9575CD</color>
+
+    <!-- Orange Shades -->
+    <color name="darkOrange">#E64A19</color>
+    <color name="mediumOrange">#F17A2E</color>
+    <color name="lightOrange">#FFB74D</color>
+
+    <!-- Grey Shades -->
+    <color name="darkGrey">#424242</color>
+    <color name="mediumGrey">#757575</color>
+    <color name="lightGrey">#BDBDBD</color>
+
+    <!-- Brown Shades -->
+    <color name="darkBrown">#5D4037</color>
+    <color name="mediumBrown">#795548</color>
+    <color name="lightBrown">#A1887F</color>
+    <color name="silver">#C0C0C0</color>
 </resources>
