@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.deliveryapp.models.CarouselImageItem
 import com.example.deliveryapp.R
 
-class ImageAdapter : ListAdapter<CarouselImageItem,ImageAdapter.ViewHolder>(DiffCallback()){
+class CarouselImageAdapter : ListAdapter<CarouselImageItem,CarouselImageAdapter.ViewHolder>(DiffCallback()){
 
     class DiffCallback : DiffUtil.ItemCallback<CarouselImageItem>(){
         override fun areItemsTheSame(oldItem: CarouselImageItem, newItem: CarouselImageItem): Boolean {

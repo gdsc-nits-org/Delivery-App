@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.R
-import com.example.deliveryapp.adapters.ImageAdapter
-import com.example.deliveryapp.databinding.FragmentHomeBinding
+import com.example.deliveryapp.adapters.CarouselImageAdapter
+import com.example.deliveryapp.adapters.NestedRecyclerAdapter
 import com.example.deliveryapp.models.CarouselImageItem
+import com.example.deliveryapp.utils.SampleData
 import java.util.UUID
 
 class HomeFragment : Fragment() {
@@ -50,9 +51,13 @@ class HomeFragment : Fragment() {
                 "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
             )
         )
-        val imageAdapter = ImageAdapter()
-        imageRV.adapter = imageAdapter
-        imageAdapter.submitList(imageList)
+        val carouselImageAdapter = CarouselImageAdapter()
+        imageRV.adapter = carouselImageAdapter
+        carouselImageAdapter.submitList(imageList)
+
+        val nestedRecyclerAdapter = NestedRecyclerAdapter(SampleData.collections)
+        val rvMain = rootView.findViewById<RecyclerView>(R.id.rvMain)
+        rvMain.adapter = nestedRecyclerAdapter
 
 
         return rootView

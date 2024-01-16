@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.example.deliveryapp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.deliveryapp"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -57,4 +57,6 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     // Glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    // Coil
+    implementation("io.coil-kt:coil:2.5.0")
 }
