@@ -27,6 +27,11 @@ android {
             )
         }
     }
+
+    // View Binding
+    buildFeatures {
+        viewBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -51,6 +56,12 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-analytics")
 
+    // Card View
+    implementation("androidx.cardview:cardview:1.0.0")
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    // Coil
+    implementation("io.coil-kt:coil:2.5.0")
     implementation("com.airbnb.android:lottie:6.0.0")
 
     val nav_version = "2.7.6"
