@@ -11,15 +11,15 @@
     android:layout_height="match_parent"
     android:id="@+id/frame_container" />
 
-<com.google.android.material.bottomnavigation.BottomNavigationView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/bottom_navigation"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:menu="@menu/bottom_menu"
-    app:itemIconSize="30dp" />
+<!--<com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:id="@+id/bottom_navigation"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--    app:menu="@menu/bottom_menue"-->
+<!--    app:itemIconSize="30dp" />-->
 
 <fragment
     android:id="@+id/nav_host_fragment"
