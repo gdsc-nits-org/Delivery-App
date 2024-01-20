@@ -59,7 +59,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/border"
                     android:hint="Name"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:paddingLeft="16dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -113,7 +113,7 @@
                 app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassLoginPage"
+                    android:id="@+id/etPassSignUpPage"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:textColor="#000000"
@@ -144,7 +144,7 @@
                 app:boxStrokeWidthFocused="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etRePassLoginPage"
+                    android:id="@+id/etRePassSignUpPage"
                     android:layout_width="match_parent"
                     android:textColorHint="#000000"
                     android:textColor="#000000"
