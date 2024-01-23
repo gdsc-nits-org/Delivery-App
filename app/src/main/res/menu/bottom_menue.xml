@@ -5,7 +5,6 @@
         android:title="Home"
         android:icon="@drawable/home_navbar_icon"
         />
-
     <item
         android:id="@+id/bottom_search"
         android:title="Search"

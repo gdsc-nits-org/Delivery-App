@@ -6,137 +6,192 @@
     android:layout_height="match_parent"
     android:background="@color/mediumOrange"
     tools:context=".userprofile.ProfileListFragment">
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="30dp"
-        app:cardElevation="30dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginHorizontal="1dp">
-       <ScrollView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="vertical">
-               <TextView
-                   android:id="@+id/HelloUser"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:textStyle="bold"
-                   android:padding="4dp"
-                   android:layout_margin="8dp"
-                   android:textSize="24sp"
-                   android:text = "Hello User"
-                   android:gravity = "center"/>
-               <TextView
-                   android:id="@+id/tvProfile"
-                   android:layout_width="195dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="16sp"
-                   android:layout_marginHorizontal="30dp"
-                   android:layout_marginBottom="16dp"
-                   android:gravity="center"
-                   android:padding="16dp"
-                   android:text="Your Profile"
-                   android:elegantTextHeight= "true"
-                   app:drawableTint="@color/mediumOrange"
-                   app:drawableStartCompat="@drawable/user" />
-               <TextView
-                   android:id="@+id/tvRatings"
-                   android:layout_width="200dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="16sp"
-                   android:layout_marginHorizontal="30dp"
-                   android:layout_marginBottom="16dp"
-                   android:gravity="center"
-                   android:padding="16dp"
-                   android:text="Your Ratings"
-                   android:elegantTextHeight= "true"
-                   app:drawableTint="@color/mediumOrange"
-                   app:drawableStartCompat="@drawable/ic_ratings" />
-               <TextView
-                   android:id="@+id/tvOrders"
-                   android:layout_width="200dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="16sp"
-                   android:layout_marginHorizontal="30dp"
-                   android:layout_marginBottom="16dp"
-                   android:gravity="center"
-                   android:padding="16dp"
-                   android:text="Your Orders"
-                   android:elegantTextHeight= "true"
-                   app:drawableTint="@color/mediumOrange"
-                   app:drawableStartCompat="@drawable/ic_orders" />
-               <TextView
-                   android:id="@+id/tvAddress"
-                   android:layout_width="175dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="16sp"
-                   android:layout_marginHorizontal="30dp"
-                   android:layout_marginBottom="16dp"
-                   android:gravity="center"
-                   android:padding="16dp"
-                   android:text="Address"
-                   android:elegantTextHeight="true"
-                   app:drawableTint="@color/mediumOrange"
-                   android:drawableStart="@drawable/location" />
-               <TextView
-                   android:id="@+id/tvPayment"
-                   android:layout_width="245dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="16sp"
-                   android:layout_marginHorizontal="30dp"
-                   android:layout_marginBottom="16dp"
-                   android:gravity="center"
-                   android:padding="16dp"
-                   android:text="Payments History"
-                   android:elegantTextHeight= "true"
-                   app:drawableTint="@color/mediumOrange"
-                   android:drawableStart="@drawable/wallet"/>
-               <TextView
-                   android:id="@+id/tvAboutUs"
-                   android:layout_width="180dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="16sp"
-                   android:layout_marginHorizontal="30dp"
-                   android:layout_marginBottom="16dp"
-                   android:gravity="center"
-                   android:padding="16dp"
-                   android:text="About Us"
-                   android:elegantTextHeight= "true"
-                   app:drawableTint="@color/mediumOrange"
-                   android:drawableStart="@drawable/info" />
-               <TextView
-                   android:id="@+id/tvFeedback"
-                   android:layout_width="220dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="16sp"
-                   android:layout_marginHorizontal="30dp"
-                   android:layout_marginBottom="16dp"
-                   android:gravity="center"
-                   android:padding="16dp"
-                   android:text="Send Feedback"
-                   android:elegantTextHeight= "true"
-                   app:drawableTint="@color/mediumOrange"
-                   android:drawableStart="@drawable/feedback" />
-               <TextView
-                   android:id="@+id/tvSettings"
-                   android:layout_width="170dp"
-                   android:layout_height="wrap_content"
-                   android:textSize="16sp"
-                   android:layout_marginHorizontal="30dp"
-                   android:layout_marginBottom="16dp"
-                   android:gravity="center"
-                   android:padding="16dp"
-                   android:text="Settings"
-                   android:elegantTextHeight= "true"
-                   app:drawableTint="@color/mediumOrange"
-                   android:drawableStart="@drawable/settings" />
-           </LinearLayout>
-       </ScrollView>
+        app:cardElevation="30000dp"
+        android:layout_marginTop="120dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/HelloUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="Hello User"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/tvProfile"
+                    android:layout_width="195dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Your Profile"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/user"
+                    app:drawableTint="@color/mediumOrange" />
+
+                <TextView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/tvRatings"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Your Ratings"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_ratings"
+                    app:drawableTint="@color/mediumOrange" />
+
+                <TextView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/tvOrders"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Your Orders"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/ic_orders"
+                    app:drawableTint="@color/mediumOrange" />
+
+                <TextView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/tvAddress"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_width="175dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Address"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/location"
+                    app:drawableTint="@color/mediumOrange" />
+
+                <TextView
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:id="@+id/tvPayment"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_width="245dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Payments History"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/wallet"
+                    app:drawableTint="@color/mediumOrange" />
+
+                <TextView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/tvAboutUs"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="About Us"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/info"
+                    app:drawableTint="@color/mediumOrange" />
+
+                <TextView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/tvFeedback"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Send Feedback"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/feedback"
+                    app:drawableTint="@color/mediumOrange" />
+
+                <TextView
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:id="@+id/tvSettings"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:elegantTextHeight="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Settings"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/settings"
+                    app:drawableTint="@color/mediumOrange" />
+
+                <TextView
+                    android:id="@+id/tvLogOut"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="Log Out"
+                    android:textSize="16sp"
+                    app:drawableStartCompat="@drawable/logout_icon"
+                    app:drawableTint="@color/mediumOrange"
+                    android:focusable="true" />
+
+            </LinearLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 </FrameLayout>
