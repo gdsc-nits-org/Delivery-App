@@ -18,7 +18,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bvNavBar"
         android:layout_width="match_parent"
-        android:elevation="8000dp"
+        android:elevation="800dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_nav_bar_layout"
         app:itemTextColor="@color/navbar_color"
