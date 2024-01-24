@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splashScreen_to_accessLocation"
             app:destination="@id/accessLocation" />
+        <action
+            android:id="@+id/action_splashScreen_to_emptyActivity"
+            app:destination="@id/emptyActivity" />
     </fragment>
     <fragment
         android:id="@+id/accessLocation"
@@ -55,6 +58,9 @@
         <action
             android:id="@+id/action_loginPage_to_signIn"
             app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_loginPage_to_emptyActivity"
+            app:destination="@id/emptyActivity" />
     </fragment>
     <fragment
         android:id="@+id/signUpPage"
@@ -63,5 +69,13 @@
         <action
             android:id="@+id/action_signUpPage_to_signIn"
             app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_signUpPage_to_emptyActivity"
+            app:destination="@id/emptyActivity" />
     </fragment>
+    <activity
+        android:id="@+id/emptyActivity"
+        android:name="com.example.deliveryapp.EmptyActivity"
+        android:label="activity_empty"
+        tools:layout="@layout/activity_empty" />
 </navigation>

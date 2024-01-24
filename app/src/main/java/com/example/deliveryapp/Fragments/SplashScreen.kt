@@ -12,10 +12,12 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSplashScreenBinding
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SplashScreen : Fragment() {
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentSplashScreenBinding
     private lateinit var navController: NavController
 
@@ -35,10 +37,15 @@ class SplashScreen : Fragment() {
         val sideAnimation=android.view.animation.AnimationUtils.loadAnimation(parentFragment?.context,R.anim.slide)
         binding.ivIcon.startAnimation(sideAnimation)
 
-
+        auth=FirebaseAuth.getInstance()
         navController = Navigation.findNavController(view)
+
         Handler(Looper.myLooper()!!).postDelayed(Runnable{
-            navController.navigate(R.id.action_splashScreen_to_accessLocation)
+            if (auth.currentUser!=null){
+                navController.navigate(R.id.action_splashScreen_to_emptyActivity)
+            }else{
+                navController.navigate(R.id.action_splashScreen_to_accessLocation)
+            }
         },3000)
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

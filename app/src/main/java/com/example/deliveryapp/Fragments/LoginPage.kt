@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentLoginPageBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
 
 
 class LoginPage : Fragment() {
 
+    private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentLoginPageBinding
     private lateinit var navController: NavController
 
@@ -29,10 +33,9 @@ class LoginPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController= Navigation.findNavController(view)
-        binding.backBtnLoginPage.setOnClickListener {
-            navController.navigate(R.id.action_loginPage_to_signIn)
-        }
+        init(view)
+        registerEvents()
+
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -44,5 +47,50 @@ class LoginPage : Fragment() {
 
     }
 
+    private fun init(view: View) {
+
+        navController=Navigation.findNavController(view)
+        auth=FirebaseAuth.getInstance()
+    }
+
+    private fun registerEvents() {
+        binding.tvLoginPage.setOnClickListener {
+            navController.navigate(R.id.action_loginPage_to_signUpPage)
+        }
+        binding.backBtnLoginPage.setOnClickListener {
+            navController.navigate(R.id.action_loginPage_to_signIn)
+        }
+        binding.btnLogin.setOnClickListener {
+            val email=binding.etEmailLoginPage.text.toString().trim()
+            val pass=binding.etPassLoginPage.text.toString().trim()
+
+
+            val pattern=Regex("nits.ac.in")
+            val check=pattern.containsMatchIn(email)
+
+            if ( email.isNotEmpty() && pass.isNotEmpty() && check==true){
+
+                auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(
+                    OnCompleteListener {
+                        if (it.isSuccessful){
+                            Toast.makeText(context,"Login Successfully", Toast.LENGTH_SHORT).show()
+                            navController.navigate(R.id.action_loginPage_to_emptyActivity)
+
+                        }else{
+                            Toast.makeText(context,it.exception?.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+
+            }
+
+        }
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Log.d("TAG", "Pressed...")
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
 
 }
