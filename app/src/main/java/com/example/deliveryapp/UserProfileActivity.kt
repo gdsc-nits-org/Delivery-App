@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.deliveryapp.userprofile.EditProfileFragment
 import com.example.deliveryapp.userprofile.ProfileListFragment
 
 
@@ -16,6 +17,5 @@ class UserProfileActivity : AppCompatActivity() {
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fvFragment, ProfileListFragment())
         fragmentTransaction.commit()
-
     }
 }
