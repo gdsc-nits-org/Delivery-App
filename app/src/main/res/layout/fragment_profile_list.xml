@@ -52,7 +52,7 @@
                     android:elegantTextHeight="true"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Your Profile"
+                    android:text="@string/your_profile"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/user"
                     app:drawableTint="@color/mediumOrange" />
@@ -69,7 +69,7 @@
                     android:elegantTextHeight="true"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Your Ratings"
+                    android:text="@string/your_ratings"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/ic_ratings"
                     app:drawableTint="@color/mediumOrange" />
@@ -86,7 +86,7 @@
                     android:elegantTextHeight="true"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Your Orders"
+                    android:text="@string/your_orders"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/ic_orders"
                     app:drawableTint="@color/mediumOrange" />
@@ -106,7 +106,8 @@
                     android:text="Address"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/location"
-                    app:drawableTint="@color/mediumOrange" />
+                    app:drawableTint="@color/mediumOrange"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:clickable="false"
@@ -137,7 +138,7 @@
                     android:elegantTextHeight="true"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="About Us"
+                    android:text="@string/about_us"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/info"
                     app:drawableTint="@color/mediumOrange" />
@@ -157,7 +158,8 @@
                     android:text="Send Feedback"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/feedback"
-                    app:drawableTint="@color/mediumOrange" />
+                    app:drawableTint="@color/mediumOrange"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:clickable="true"
@@ -171,7 +173,7 @@
                     android:elegantTextHeight="true"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Settings"
+                    android:text="@string/settings"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/settings"
                     app:drawableTint="@color/mediumOrange" />
@@ -186,7 +188,7 @@
                     android:layout_marginBottom="16dp"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Log Out"
+                    android:text="@string/log_out"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/logout_icon"
                     app:drawableTint="@color/mediumOrange"

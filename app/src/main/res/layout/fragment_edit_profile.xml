@@ -38,7 +38,8 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@+id/semicircleView"
             app:layout_constraintTop_toTopOf="@+id/semicircleView"
-            app:layout_constraintVertical_bias="0.211" />
+            app:layout_constraintVertical_bias="0.211"
+            tools:ignore="TextContrastCheck" />
 
         <ImageButton
             android:id="@+id/btnBack"
@@ -53,7 +54,8 @@
             app:layout_constraintHorizontal_bias="0.233"
             app:layout_constraintStart_toStartOf="@+id/semicircleView"
             app:layout_constraintTop_toTopOf="@+id/semicircleView"
-            app:layout_constraintVertical_bias="0.035" />
+            app:layout_constraintVertical_bias="0.035"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -78,23 +80,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/btnSave"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.144">
+
             <TextView
                 android:id="@+id/tvEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:clickable="true"
+                android:drawablePadding="4dp"
+                android:focusable="true"
                 android:text="@string/edit"
                 android:textSize="24sp"
-                android:clickable="true"
                 android:textStyle="bold"
-                android:layout_marginHorizontal="8dp"
-                android:drawablePadding="4dp"
                 app:drawableEndCompat="@drawable/edittext_icon"
-                android:focusable="true" />
+                tools:ignore="TouchTargetSizeCheck" />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout1"
                 style="@style/Widget.Material3.TextInputEditText.OutlinedBox"

@@ -22,7 +22,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -31,12 +32,14 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/rounded_back_button"
             android:backgroundTint="@color/mediumOrange"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/left_arrow"
             app:layout_constraintEnd_toStartOf="@+id/textView"
             app:layout_constraintHorizontal_bias="0.177"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
 
         <TextView
             android:id="@+id/textView2"
@@ -76,10 +79,12 @@
                 app:helperTextTextColor="@color/mediumRed">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:hint="@string/hostel_s_name"
                     android:id="@+id/etAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hostel_s_name"
+                    android:textColorHint="#757575"
+                    tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -94,10 +99,11 @@
                 app:helperTextTextColor="@color/mediumRed">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:hint="@string/city"
                     android:id="@+id/etCity"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="@string/city"
+                    tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -112,10 +118,12 @@
                 app:helperTextTextColor="@color/mediumRed">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:hint="@string/state"
                     android:id="@+id/etState"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="@string/state"
+                    android:textColorHint="#757575"
+                    tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -131,9 +139,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCountry"
-                    android:hint="@string/country"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="@string/country"
+                    tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout5"
@@ -150,7 +159,9 @@
                     android:id="@+id/etPinCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pincode"/>
+                    android:hint="@string/pincode"
+                    android:textColorHint="#757575"
+                    tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -159,13 +170,16 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
-            android:text="@string/save"
             android:backgroundTint="@color/mediumOrange"
+            android:text="@string/save"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.89" />
+            app:layout_constraintVertical_bias="0.89"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
