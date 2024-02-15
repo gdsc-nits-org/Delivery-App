@@ -2,24 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottom_home"
-        android:title="Home"
+        android:title="@string/home"
         android:icon="@drawable/home_navbar_icon"
         />
     <item
         android:id="@+id/bottom_search"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/search_navbar_icon"
         />
 
     <item
         android:id="@+id/bottom_cart"
-        android:title="Cart"
+        android:title="@string/cart"
         android:icon="@drawable/cart_navbar_icon"
         />
 
     <item
         android:id="@+id/bottom_profile"
-        android:title="Profile"
+        android:title="@string/profile"
         android:icon="@drawable/profile_navbar_icon"
         />
 </menu>

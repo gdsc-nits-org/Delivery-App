@@ -8,4 +8,18 @@
     <string name="bio">Bio</string>
     <string name="e_mail">E-Mail</string>
     <string name="save">Save</string>
+    <string name="todo">TODO</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="cart">Cart</string>
+    <string name="payments_history">Payments History</string>
+    <string name="hello_user">Hello User</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="address">ADDRESS</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="pincode">Pincode</string>
+    <string name="hostel_s_name">Hostel\'s Name</string>
+    <string name="edit">Edit</string>
 </resources>

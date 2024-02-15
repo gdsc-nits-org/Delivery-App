@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import com.example.deliveryapp.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +39,15 @@ class AddressFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_address, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val backButton = view.findViewById<ImageButton>(R.id.imageButton)
+        backButton.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

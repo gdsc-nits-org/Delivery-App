@@ -27,22 +27,23 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:clickable="true"
-                    android:focusable="true"
                     android:id="@+id/HelloUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
+                    android:minHeight="48dp"
                     android:padding="4dp"
-                    android:text="Hello User"
+                    android:text="@string/hello_user"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:clickable="true"
                     android:focusable="true"
-                    android:id="@+id/tvProfile"
+                    android:id="@+id/tvProfile1"
                     android:layout_width="195dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:layout_height="wrap_content"
@@ -119,7 +120,7 @@
                     android:elegantTextHeight="true"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Payments History"
+                    android:text="@string/payments_history"
                     android:textSize="16sp"
                     app:drawableStartCompat="@drawable/wallet"
                     app:drawableTint="@color/mediumOrange" />
