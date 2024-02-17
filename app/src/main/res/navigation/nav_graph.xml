@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_loginPage_to_emptyActivity"
             app:destination="@id/emptyActivity" />
+        <action
+            android:id="@+id/action_loginPage_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpPage"
@@ -72,10 +75,40 @@
         <action
             android:id="@+id/action_signUpPage_to_emptyActivity"
             app:destination="@id/emptyActivity" />
+        <action
+            android:id="@+id/action_signUpPage_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
     <activity
         android:id="@+id/emptyActivity"
         android:name="com.example.deliveryapp.EmptyActivity"
         android:label="activity_empty"
         tools:layout="@layout/activity_empty" />
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.deliveryapp.Fragments.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/action_locationFragment_to_signIn"
+            app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.deliveryapp.Fragments.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address" >
+        <action
+            android:id="@+id/action_addressFragment_to_emptyActivity"
+            app:destination="@id/emptyActivity" />
+        <action
+            android:id="@+id/action_addressFragment_to_signIn"
+            app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_addressFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
 </navigation>

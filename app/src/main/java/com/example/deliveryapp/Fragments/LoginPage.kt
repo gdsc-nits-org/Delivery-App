@@ -68,13 +68,13 @@ class LoginPage : Fragment() {
             val pattern=Regex("nits.ac.in")
             val check=pattern.containsMatchIn(email)
 
-            if ( email.isNotEmpty() && pass.isNotEmpty() && check==true){
+            if (email.isNotEmpty() && pass.isNotEmpty() && check){
 
                 auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(
                     OnCompleteListener {
                         if (it.isSuccessful){
                             Toast.makeText(context,"Login Successfully", Toast.LENGTH_SHORT).show()
-                            navController.navigate(R.id.action_loginPage_to_emptyActivity)
+                            navController.navigate(R.id.action_loginPage_to_locationFragment)
 
                         }else{
                             Toast.makeText(context,it.exception?.message, Toast.LENGTH_SHORT).show()

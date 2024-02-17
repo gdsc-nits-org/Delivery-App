@@ -61,12 +61,16 @@ dependencies {
 
     // Card View
     implementation("androidx.cardview:cardview:1.0.0")
+
     // Glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
+
     // Coil
     implementation("io.coil-kt:coil:2.5.0")
     implementation("com.airbnb.android:lottie:6.0.0")
-
+    
+    //Navigation dependency
     val nav_version = "2.7.6"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
