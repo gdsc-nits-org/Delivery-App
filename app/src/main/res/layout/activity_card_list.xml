@@ -10,14 +10,12 @@
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/baseline_arrow_back_24"
         android:background="@android:color/transparent"
+        android:drawableStart="@drawable/baseline_arrow_back_24"
+        android:paddingStart="10dp"
         android:textColor="#FF7F00"
-        android:layout_marginLeft="15dp"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="50dp"
 
-       />
+        tools:ignore="MissingConstraints,RtlSymmetry,SpeakableTextPresentCheck" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="My Cart"
+                android:text="@string/my_cart2"
                 android:textAlignment="center"
                 android:textColor="#FF7F00"
                 android:textSize="30sp"
@@ -51,10 +49,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-              android:layout_marginLeft="20dp"
-   android:drawableLeft="@drawable/baseline_add_24"
+              android:layout_marginStart="20dp"
+   android:drawableStart="@drawable/baseline_add_24"
                 android:background="@android:color/transparent"
-                android:text="Add More"
+                android:text="@string/add_more"
                 android:textColor="#FF7F00"/>
 <LinearLayout
     android:layout_width="match_parent"
@@ -79,26 +77,29 @@
                     android:id="@+id/editTextText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textColor="#0C0A0A"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="7dp"
                     android:background="@drawable/promo"
-                    android:hint="Promo Code"
-                  android:layout_marginBottom="7dp"
-                    android:layout_marginLeft="10dp"
-                    android:padding="7.5dp"/>
+                    android:ems="10"
+                    android:hint="@string/promo_code"
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:padding="7.5dp"
+                    android:textColor="#0C0A0A"
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:importantForAutofill="no" />
 
                 <Button
                     android:id="@+id/button3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/white"
                     android:background="@drawable/colourbutton"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="7.5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="Apply Code" />
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/apply_code" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -117,11 +118,11 @@
 
                 <TextView
                     android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1"
-                    android:text="Order Details"
+                    android:text="@string/order_details"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_marginTop="20dp"
@@ -136,12 +137,12 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Price"
+                    android:text="@string/price"
 
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:textColor="#808080"
                     android:textSize="20sp"
                     android:layout_marginTop="15dp"
@@ -153,8 +154,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="#808080"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="20dp"
-                    android:text="    $10"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/_10"
                     android:textSize="20sp"/>
 
             </LinearLayout>
@@ -166,11 +167,11 @@
 
                 <TextView
                     android:id="@+id/textView7"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginLeft="20dp"
-                    android:text="Delivery Charge"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/delivery_charge"
                     android:textColor="#808080"
                     android:layout_marginTop="10dp"
                     android:textSize="20sp"
@@ -182,9 +183,9 @@
                     android:layout_height="wrap_content"
                     android:textColor="#808080"
                     android:layout_marginTop="10dp"
-                    android:text="    $22"
+                    android:text="@string/_22"
                     android:textSize="20sp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
 
                     />
 
@@ -209,18 +210,18 @@
 
                 <TextView
                     android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Total"
+                    android:text="@string/total"
                     android:layout_marginTop="15dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="22sp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
 
 
-                    />
+                    tools:ignore="NestedWeights" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -228,9 +229,9 @@
                     android:layout_height="wrap_content"
 android:textColor="@color/black"
                     android:layout_marginTop="15dp"
-                    android:text="    $32"
+                    android:text="@string/_32"
                     android:textSize="20sp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     />
             </LinearLayout>
 
@@ -238,7 +239,7 @@ android:textColor="@color/black"
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Checkout"
+                android:text="@string/checkout"
 
                 android:layout_margin="20dp"
                 android:gravity="center"
