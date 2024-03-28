@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
-    tools:context=".MainActivity">
+    tools:context=".HomeActivity">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -25,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#FFFFFF"
+
             >
 
             <LinearLayout
@@ -50,33 +49,34 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="143dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_marginLeft="10sp"
-                        android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10sp"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:text="Delivery in 15 mins"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:text="Delivery in 15 mins" />
+
                         <ImageView
-                            android:src="@drawable/arrow_drop_down_24px"
                             android:layout_width="20sp"
-                            android:layout_height="20sp"/>
+                            android:layout_height="20sp"
+                            android:src="@drawable/arrow_drop_down_24px" />
 
                     </LinearLayout>
+
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10sp"
                         android:text="NIT SILCHAR"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
                 <LinearLayout
