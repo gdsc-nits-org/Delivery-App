@@ -6,8 +6,8 @@
         android:icon="@drawable/home_navbar_icon"
         />
     <item
-        android:id="@+id/bottom_search"
-        android:title="@string/search"
+        android:id="@+id/bottom_explore"
+        android:title="@string/explore"
         android:icon="@drawable/search_navbar_icon"
         />
 

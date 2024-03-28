@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import com.example.deliveryapp.R
+import com.google.android.material.textfield.TextInputEditText
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +48,23 @@ class AddressFragment : Fragment() {
         backButton.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
+        var etHostel = view.findViewById<TextInputEditText>(R.id.etHostel)
+        var etCity = view.findViewById<TextInputEditText>(R.id.etCity)
+        var etState = view.findViewById<TextInputEditText>(R.id.etState)
+        var etCountry = view.findViewById<TextInputEditText>(R.id.etCountry)
+        var etPinCode = view.findViewById<TextInputEditText>(R.id.etPinCode)
 
+        var address = AddressData(etHostel.text.toString(), etCity.text.toString(), etState.text.toString(),
+            etCountry.text.toString(), etPinCode.text.toString())
+
+        val btnSave = view.findViewById<Button>(R.id.btnAddressSave)
+        btnSave.setOnClickListener {
+            etHostel.setText(address.hostel)
+            etCountry.setText(address.city)
+            etState.setText(address.state)
+            etCountry.setText(address.country)
+            etPinCode.setText(address.pinCode)
+        }
     }
     companion object {
         /**
@@ -66,5 +84,7 @@ class AddressFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+
     }
 }

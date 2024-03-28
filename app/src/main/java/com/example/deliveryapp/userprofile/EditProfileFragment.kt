@@ -1,6 +1,8 @@
 package com.example.deliveryapp.userprofile
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +11,11 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.deliveryapp.R
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,12 +32,54 @@ class EditProfileFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var databaseReference: DatabaseReference
+    private var userData = UserData()
+    private lateinit var etName : TextInputEditText
+    private lateinit var etEmail : TextInputEditText
+    private lateinit var etBio : TextInputEditText
+    private lateinit var etContact : TextInputEditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        userData = UserData(
+//            etName.text.toString(),
+//            etEmail.text.toString(),
+//            etContact.text.toString(),
+//            etBio.text.toString()
+//        )
+////        Log.d("Ankit", "Saved Instance")
+//        outState.putParcelable("userData", userData)
+//    }
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_edit_profile, container, false)
+        etName = view.findViewById(R.id.etName)
+        etEmail = view.findViewById(R.id.etEmail)
+        etContact = view.findViewById(R.id.etContact)
+        etBio = view.findViewById(R.id.etBio)
+
+        if (savedInstanceState != null) {
+            val userdata = savedInstanceState.getParcelable("userData", UserData::class.java)
+            userdata?.let {
+                userData = userdata
+                etName.setText(userData.name)
+                etEmail.setText(userData.email)
+                etContact.setText(userData.contact)
+                etBio.setText(userData.bio)
+            }
+            Log.d("Ankit", "Saved Instance")
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,30 +91,39 @@ class EditProfileFragment : Fragment() {
             requireActivity().supportFragmentManager.popBackStack()
         }
         val tvEdit = view.findViewById<TextView>(R.id.tvEdit)
-        val etName = view.findViewById<TextInputEditText>(R.id.etName)
-        val etEmail = view.findViewById<TextInputEditText>(R.id.etEmail)
-        val etContact = view.findViewById<TextInputEditText>(R.id.etContact)
-        val etBio = view.findViewById<TextInputEditText>(R.id.etBio)
+
         val btnSave = view.findViewById<Button>(R.id.btnSave)
         tvEdit.setOnClickListener {
             Toast.makeText(context, "Edit Your Profile", Toast.LENGTH_SHORT).show()
-            etName.isEnabled = true
-            etEmail.isEnabled = true
-            etContact.isEnabled = true
-            etBio.isEnabled = true
+            setEditTextEnabled(true)
             btnSave.isEnabled = true
             btnSave.setOnClickListener {
+                val name = etName.text.toString()
+                val email = etEmail.text.toString()
+                val contact = etContact.text.toString()
+                val bio = etBio.text.toString()
+
+                userData = UserData(name, email, contact, bio)
+
+                databaseReference = FirebaseDatabase.getInstance().getReference("UserData")
+                databaseReference.child(contact).setValue(userData).addOnSuccessListener {
+
+                    Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener{
+                    Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show()
+                }
 
             }
         }
     }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
+    private fun setEditTextEnabled(state : Boolean)
+    {
+        etName.isEnabled = state
+        etEmail.isEnabled = state
+        etContact.isEnabled = state
+        etBio.isEnabled = state
     }
+
 
     companion object {
         /**
