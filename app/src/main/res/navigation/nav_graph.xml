@@ -60,7 +60,7 @@
             app:destination="@id/signIn" />
         <action
             android:id="@+id/action_loginPage_to_emptyActivity"
-            app:destination="@id/emptyActivity" />
+            app:destination="@id/homeActivity" />
     </fragment>
     <fragment
         android:id="@+id/signUpPage"
@@ -71,13 +71,8 @@
             app:destination="@id/signIn" />
         <action
             android:id="@+id/action_signUpPage_to_emptyActivity"
-            app:destination="@id/emptyActivity" />
+            app:destination="@id/homeActivity" />
     </fragment>
-    <activity
-        android:id="@+id/emptyActivity"
-        android:name="com.example.deliveryapp.EmptyActivity"
-        android:label="activity_empty"
-        tools:layout="@layout/activity_empty" />
     <activity
         android:id="@+id/homeActivity"
         android:name="com.example.deliveryapp.HomeActivity"
