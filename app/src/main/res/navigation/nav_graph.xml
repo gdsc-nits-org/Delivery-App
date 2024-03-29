@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_accessLocation_to_animatedScreen"
             app:destination="@id/animatedScreen" />
+        <action
+            android:id="@+id/action_accessLocation_to_animatedScreen2"
+            app:destination="@id/animatedScreen" />
     </fragment>
     <fragment
         android:id="@+id/signIn"

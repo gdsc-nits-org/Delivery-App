@@ -1,12 +1,13 @@
 package com.example.deliveryapp.Fragments
 
+import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -34,7 +35,7 @@ class SplashScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sideAnimation=android.view.animation.AnimationUtils.loadAnimation(parentFragment?.context,R.anim.slide)
+        val sideAnimation= AnimationUtils.loadAnimation(parentFragment?.context,R.anim.slide)
         binding.ivIcon.startAnimation(sideAnimation)
 
         auth=FirebaseAuth.getInstance()
@@ -47,14 +48,14 @@ class SplashScreen : Fragment() {
                 navController.navigate(R.id.action_splashScreen_to_accessLocation)
             }
         },3000)
+
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Log.d("TAG", "Pressed...")
+                // Do nothing or handle as needed
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-
 
     }
 

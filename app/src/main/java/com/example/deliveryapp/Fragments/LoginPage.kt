@@ -13,6 +13,8 @@ import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentLoginPageBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class LoginPage : Fragment() {
@@ -20,6 +22,7 @@ class LoginPage : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: FragmentLoginPageBinding
     private lateinit var navController: NavController
+    private lateinit var databaseRef: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +54,10 @@ class LoginPage : Fragment() {
 
         navController=Navigation.findNavController(view)
         auth=FirebaseAuth.getInstance()
+        databaseRef=FirebaseDatabase.getInstance()
+            .reference.child("Users")
+            .child(auth.currentUser?.uid.toString())
+
     }
 
     private fun registerEvents() {
@@ -70,17 +77,24 @@ class LoginPage : Fragment() {
 
             if (email.isNotEmpty() && pass.isNotEmpty() && check){
 
-                auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(
+                auth.signInWithEmailAndPassword(email,pass)
+                    .addOnCompleteListener(
+
                     OnCompleteListener {
                         if (it.isSuccessful){
                             Toast.makeText(context,"Login Successfully", Toast.LENGTH_SHORT).show()
                             navController.navigate(R.id.action_loginPage_to_locationFragment)
 
                         }else{
-                            Toast.makeText(context,it.exception?.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context,"Kindly Sign Up By Clicking SignUp button", Toast.LENGTH_SHORT).show()
                         }
                     }
+
                 )
+
+            }else{
+
+                Toast.makeText(context,"Please fill up all the necessary details",Toast.LENGTH_SHORT).show()
 
             }
 

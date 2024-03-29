@@ -1,7 +1,7 @@
 package com.example.deliveryapp.Fragments
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,14 +34,14 @@ class SignIn : Fragment() {
         binding.btnSignUp.setOnClickListener {
             navController.navigate(R.id.action_signIn_to_signUpPage)
         }
+
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Log.d("TAG", "Pressed...")
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-
 
     }
 

@@ -2,15 +2,12 @@ package com.example.deliveryapp.Fragments
 
 import android.Manifest
 import android.app.AlertDialog
-import android.content.Context
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -21,6 +18,7 @@ import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAccessLocationBinding
 
 class AccessLocation : Fragment() {
+
     private lateinit var binding: FragmentAccessLocationBinding
     private lateinit var navController: NavController
 
@@ -34,14 +32,13 @@ class AccessLocation : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         navController = Navigation.findNavController(view)
         binding.btnAccessLocation.setOnClickListener {
             if (checkLocationPermission()) {
                 // Permission granted, navigate to the next screen
-
-                navController.navigate(R.id.action_accessLocation_to_animatedScreen)
+                navController.navigate(R.id.animatedScreen)
             }
-
         }
 
         val callback = object : OnBackPressedCallback(true) {
@@ -52,7 +49,6 @@ class AccessLocation : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         // Check for permission on fragment start
-
     }
 
     private fun checkLocationPermission(): Boolean {
@@ -105,4 +101,5 @@ class AccessLocation : Fragment() {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1001
     }
+    
 }
