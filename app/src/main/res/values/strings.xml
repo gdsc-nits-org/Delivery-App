@@ -5,4 +5,31 @@
     <string name="welcome_to_">
 Welcome to\nOur App
 </string>
+    <string name="profile">Profile</string>
+    <string name="contact_no">Contact No.</string>
+    <string name="name">Name</string>
+    <string name="bio">Bio</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="save">Save</string>
+    <string name="todo">TODO</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="cart">Cart</string>
+    <string name="payments_history">Payments History</string>
+    <string name="hello_user">Hello User</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="address">ADDRESS</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="pincode">Pincode</string>
+    <string name="hostel_s_name">Hostel\'s Name</string>
+    <string name="edit">Edit</string>
+    <string name="about_us">About Us</string>
+    <string name="log_out">Log Out</string>
+    <string name="your_orders">Your Orders</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="settings">Settings</string>
+    <string name="your_ratings">Your Ratings</string>
+    <string name="explore">Explore</string>
 </resources>
