@@ -29,9 +29,6 @@ android {
     }
 
     // View Binding
-    buildFeatures {
-        viewBinding = true
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -72,7 +69,9 @@ dependencies {
     
     //Navigation dependency
     val nav_version = "2.7.6"
+    //noinspection GradleDependency
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    //noinspection GradleDependency
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
 }

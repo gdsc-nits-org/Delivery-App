@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/addressFragment"
-        android:name="com.example.deliveryapp.Fragments.AddressFragment"
+        android:name="com.example.deliveryapp.userprofile.AddressFragment"
         android:label="fragment_address"
         tools:layout="@layout/fragment_address" >
         <action

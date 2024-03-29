@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.deliveryapp.R
+import com.example.deliveryapp.databinding.FragmentAddressBinding
 import com.google.android.material.textfield.TextInputEditText
 
 // TODO: Rename parameter arguments, choose names that match
@@ -15,77 +19,56 @@ import com.google.android.material.textfield.TextInputEditText
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddressFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddressFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var binding: FragmentAddressBinding
+    private lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_address, container, false)
+        binding= FragmentAddressBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val backButton = view.findViewById<ImageButton>(R.id.imageButton)
-        backButton.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+        navController= Navigation.findNavController(view)
+
+        binding.backBtnAddressPage.setOnClickListener {
+            navController.navigate(R.id.action_addressFragment_to_locationFragment)
         }
 
-        var etHostel = view.findViewById<TextInputEditText>(R.id.etHostel)
-        var etCity = view.findViewById<TextInputEditText>(R.id.etCity)
-        var etState = view.findViewById<TextInputEditText>(R.id.etState)
-        var etCountry = view.findViewById<TextInputEditText>(R.id.etCountry)
-        var etPinCode = view.findViewById<TextInputEditText>(R.id.etPinCode)
+        var etHostel = view.findViewById<TextInputEditText>(R.id.etHostelNameAddressPage)
+        var etCity = view.findViewById<TextInputEditText>(R.id.etCityAddressPage)
+        var etState = view.findViewById<TextInputEditText>(R.id.etStateNameAddressPage)
+        var etCountry = view.findViewById<TextInputEditText>(R.id.etCountryNameAddressPage)
+        var etPinCode = view.findViewById<TextInputEditText>(R.id.etPostalCodeAddressPage)
 
-        var address = AddressData(etHostel.text.toString(), etCity.text.toString(), etState.text.toString(),
-            etCountry.text.toString(), etPinCode.text.toString())
+        var address = AddressData(
+            etHostel.text.toString(), etCity.text.toString(), etState.text.toString(),
+            etCountry.text.toString(), etPinCode.text.toString()
+        )
 
-        val btnSave = view.findViewById<Button>(R.id.btnAddressSave)
+        val btnSave=view.findViewById<Button>(R.id.btnSaveAddress)
         btnSave.setOnClickListener {
             etHostel.setText(address.hostel)
             etCountry.setText(address.city)
             etState.setText(address.state)
             etCountry.setText(address.country)
             etPinCode.setText(address.pinCode)
+            navController.navigate(R.id.action_addressFragment_to_homeActivity2)
         }
-    }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddressFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddressFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
 
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Log.d("TAG", "Pressed...")
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
     }
 }
