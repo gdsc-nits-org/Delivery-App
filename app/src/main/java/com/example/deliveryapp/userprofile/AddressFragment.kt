@@ -48,6 +48,7 @@ class AddressFragment : Fragment() {
         backButton.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
+
         var etHostel = view.findViewById<TextInputEditText>(R.id.etHostel)
         var etCity = view.findViewById<TextInputEditText>(R.id.etCity)
         var etState = view.findViewById<TextInputEditText>(R.id.etState)

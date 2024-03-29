@@ -16,6 +16,7 @@
         <action
             android:id="@+id/action_splashScreen_to_emptyActivity"
             app:destination="@id/homeActivity" />
+
     </fragment>
     <fragment
         android:id="@+id/accessLocation"
@@ -62,16 +63,10 @@
             android:id="@+id/action_loginPage_to_signIn"
             app:destination="@id/signIn" />
         <action
-            android:id="@+id/action_loginPage_to_emptyActivity"
-<<<<<<< HEAD
-            app:destination="@id/emptyActivity" />
-        <action
             android:id="@+id/action_loginPage_to_locationFragment"
             app:destination="@id/locationFragment" />
-=======
-            app:destination="@id/homeActivity" />
->>>>>>> e310296f13fca5483cd5f16c82711c2cb33be578
     </fragment>
+
     <fragment
         android:id="@+id/signUpPage"
         android:name="com.example.deliveryapp.Fragments.SignUpPage"
@@ -80,18 +75,10 @@
             android:id="@+id/action_signUpPage_to_signIn"
             app:destination="@id/signIn" />
         <action
-            android:id="@+id/action_signUpPage_to_emptyActivity"
-<<<<<<< HEAD
-            app:destination="@id/emptyActivity" />
-        <action
             android:id="@+id/action_signUpPage_to_locationFragment"
             app:destination="@id/locationFragment" />
     </fragment>
-    <activity
-        android:id="@+id/emptyActivity"
-        android:name="com.example.deliveryapp.EmptyActivity"
-        android:label="activity_empty"
-        tools:layout="@layout/activity_empty" />
+
     <fragment
         android:id="@+id/locationFragment"
         android:name="com.example.deliveryapp.Fragments.LocationFragment"
@@ -110,22 +97,21 @@
         android:label="fragment_address"
         tools:layout="@layout/fragment_address" >
         <action
-            android:id="@+id/action_addressFragment_to_emptyActivity"
-            app:destination="@id/emptyActivity" />
-        <action
             android:id="@+id/action_addressFragment_to_signIn"
             app:destination="@id/signIn" />
         <action
             android:id="@+id/action_addressFragment_to_locationFragment"
             app:destination="@id/locationFragment" />
-    </fragment>
-=======
+        <action
+            android:id="@+id/action_addressFragment_to_homeActivity2"
             app:destination="@id/homeActivity" />
+
     </fragment>
+
     <activity
         android:id="@+id/homeActivity"
         android:name="com.example.deliveryapp.HomeActivity"
         android:label="homepage"
         tools:layout="@layout/homepage" />
->>>>>>> e310296f13fca5483cd5f16c82711c2cb33be578
+
 </navigation>

@@ -31,7 +31,7 @@ class AddressFragment : Fragment() {
         navController=Navigation.findNavController(view)
 
         binding.btnSaveAddress.setOnClickListener {
-            navController.navigate(R.id.action_addressFragment_to_emptyActivity)
+            navController.navigate(R.id.action_addressFragment_to_homeActivity2)
         }
 
         binding.backBtnAddressPage.setOnClickListener {
