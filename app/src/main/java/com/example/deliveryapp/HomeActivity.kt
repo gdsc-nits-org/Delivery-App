@@ -7,6 +7,7 @@ import com.example.deliveryapp.homepage_fragments.CartFragment
 import com.example.deliveryapp.homepage_fragments.HomeFragment
 import com.example.deliveryapp.homepage_fragments.ProfileFragment
 import com.example.deliveryapp.homepage_fragments.SearchFragment
+import com.example.deliveryapp.userprofile.ProfileListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.bottom_profile -> {
                     // Replace fragment with HomeFragment
-                    replaceFragment(ProfileFragment())
+                    replaceFragment(ProfileListFragment())
                     true
                 }
                 else -> false
