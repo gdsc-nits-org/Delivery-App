@@ -5,17 +5,17 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.deliveryapp.homepage_fragments.CartFragment
 import com.example.deliveryapp.homepage_fragments.HomeFragment
+import com.example.deliveryapp.homepage_fragments.HomepageNavigation
 import com.example.deliveryapp.homepage_fragments.ProfileFragment
 import com.example.deliveryapp.homepage_fragments.SearchFragment
 import com.example.deliveryapp.userprofile.ProfileListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), HomepageNavigation {
     private lateinit var bottomNavigationView: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage)
-
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
@@ -26,17 +26,17 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.bottom_cart -> {
-                    // Replace fragment with HomeFragment
+                    // Replace fragment with CartFragment
                     replaceFragment(CartFragment())
                     true
                 }
                 R.id.bottom_search -> {
-                    // Replace fragment with HomeFragment
+                    // Replace fragment with SearchFragment
                     replaceFragment(SearchFragment())
                     true
                 }
                 R.id.bottom_profile -> {
-                    // Replace fragment with HomeFragment
+                    // Replace fragment with ProfileFragment
                     replaceFragment(ProfileListFragment())
                     true
                 }
@@ -44,9 +44,9 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         replaceFragment(HomeFragment())
-
     }
-    private fun replaceFragment(fragment: Fragment) {
+
+    override fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
     }
 }

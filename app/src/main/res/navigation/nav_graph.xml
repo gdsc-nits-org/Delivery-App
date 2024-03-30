@@ -113,5 +113,18 @@
         android:name="com.example.deliveryapp.HomeActivity"
         android:label="homepage"
         tools:layout="@layout/homepage" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.deliveryapp.homepage_fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_emptyActivity"
+            app:destination="@id/emptyActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/emptyActivity"
+        android:name="com.example.deliveryapp.EmptyActivity"
+        android:label="activity_empty"
+        tools:layout="@layout/activity_empty" />
 
 </navigation>

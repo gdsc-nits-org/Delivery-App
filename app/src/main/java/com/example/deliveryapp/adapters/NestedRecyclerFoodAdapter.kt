@@ -3,6 +3,8 @@ package com.example.deliveryapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.deliveryapp.models.NestedRecyclerModelFood
@@ -24,6 +26,10 @@ class NestedRecyclerFoodAdapter (private val movieModel: List<NestedRecyclerMode
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.binding.apply {
             imageFoodPoster.load(movieModel[position].imageUrl)
+        }
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            Toast.makeText(context, "Image URL: ${movieModel[position].imageUrl}", Toast.LENGTH_SHORT).show()
         }
     }
 
