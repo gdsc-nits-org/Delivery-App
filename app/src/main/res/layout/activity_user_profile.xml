@@ -9,12 +9,13 @@
         android:id="@+id/fvFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:defaultnavhost = "true"
+        app:navGraph = ""
         app:layout_constraintBottom_toTopOf="@id/bvNavBar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout="@layout/fragment_profile_list">
-    </androidx.fragment.app.FragmentContainerView>
+        tools:layout="@layout/fragment_profile_list"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bvNavBar"
         android:layout_width="match_parent"
