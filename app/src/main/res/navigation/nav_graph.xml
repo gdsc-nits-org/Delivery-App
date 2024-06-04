@@ -3,30 +3,128 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/profileListFragment">
+    app:startDestination="@id/splashScreen">
 
     <fragment
-        android:id="@+id/profileListFragment"
-        android:name="com.example.deliveryapp.userprofile.ProfileListFragment"
-        android:label="fragment_profile_list"
-        tools:layout="@layout/fragment_profile_list" >
+        android:id="@+id/splashScreen"
+        android:name="com.example.deliveryapp.Fragments.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
         <action
-            android:id="@+id/action_profileListFragment_to_addressFragment"
+            android:id="@+id/action_splashScreen_to_accessLocation"
+            app:destination="@id/accessLocation" />
+        <action
+            android:id="@+id/action_splashScreen_to_emptyActivity"
+            app:destination="@id/homeActivity" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/accessLocation"
+        android:name="com.example.deliveryapp.Fragments.AccessLocation"
+        android:label="fragment_access_location"
+        tools:layout="@layout/fragment_access_location" >
+        <action
+            android:id="@+id/action_accessLocation_to_animatedScreen"
+            app:destination="@id/animatedScreen" />
+        <action
+            android:id="@+id/action_accessLocation_to_animatedScreen2"
+            app:destination="@id/animatedScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/signIn"
+        android:name="com.example.deliveryapp.Fragments.SignIn"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signIn_to_loginPage"
+            app:destination="@id/loginPage" />
+        <action
+            android:id="@+id/action_signIn_to_signUpPage"
+            app:destination="@id/signUpPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/animatedScreen"
+        android:name="com.example.deliveryapp.Fragments.AnimatedScreen"
+        android:label="fragment_animated_screen"
+        tools:layout="@layout/fragment_animated_screen" >
+        <action
+            android:id="@+id/action_animatedScreen_to_signIn"
+            app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginPage"
+        android:name="com.example.deliveryapp.Fragments.LoginPage"
+        android:label="fragment_sign_up_page"
+        tools:layout="@layout/fragment_sign_up_page" >
+        <action
+            android:id="@+id/action_loginPage_to_signUpPage"
+            app:destination="@id/signUpPage" />
+        <action
+            android:id="@+id/action_loginPage_to_signIn"
+            app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_loginPage_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpPage"
+        android:name="com.example.deliveryapp.Fragments.SignUpPage"
+        android:label="SignUpPage" >
+        <action
+            android:id="@+id/action_signUpPage_to_signIn"
+            app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_signUpPage_to_locationFragment"
+            app:destination="@id/locationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.deliveryapp.Fragments.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_addressFragment"
             app:destination="@id/addressFragment" />
         <action
-            android:id="@+id/action_profileListFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
+            android:id="@+id/action_locationFragment_to_signIn"
+            app:destination="@id/signIn" />
     </fragment>
     <fragment
         android:id="@+id/addressFragment"
         android:name="com.example.deliveryapp.userprofile.AddressFragment"
         android:label="fragment_address"
         tools:layout="@layout/fragment_address" >
+        <action
+            android:id="@+id/action_addressFragment_to_signIn"
+            app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_addressFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+        <action
+            android:id="@+id/action_addressFragment_to_homeActivity2"
+            app:destination="@id/homeActivity" />
+
     </fragment>
+
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.example.deliveryapp.HomeActivity"
+        android:label="homepage"
+        tools:layout="@layout/homepage" />
     <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="com.example.deliveryapp.userprofile.EditProfileFragment"
-        android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" >
+        android:id="@+id/homeFragment"
+        android:name="com.example.deliveryapp.homepage_fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_emptyActivity"
+            app:destination="@id/emptyActivity" />
     </fragment>
+    <activity
+        android:id="@+id/emptyActivity"
+        android:name="com.example.deliveryapp.EmptyActivity"
+        android:label="activity_empty"
+        tools:layout="@layout/activity_empty" />
+
 </navigation>
