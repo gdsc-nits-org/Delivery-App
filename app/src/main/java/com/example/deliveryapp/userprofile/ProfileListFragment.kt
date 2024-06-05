@@ -74,7 +74,10 @@ class ProfileListFragment : Fragment() {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
-
+        val tvLogOut = view.findViewById<TextView>(R.id.tvLogOut)
+        tvLogOut.setOnClickListener{
+            logout()
+        }
     }
     private fun logout() {
         val auth = FirebaseAuth.getInstance()
