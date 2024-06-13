@@ -67,7 +67,6 @@ class AddressFragment : Fragment() {
                 navController.navigate(R.id.action_addressFragment_to_loginPage)
             }
         }
-
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Log.d("TAG", "Pressed...")
