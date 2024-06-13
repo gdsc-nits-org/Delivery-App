@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -40,13 +41,16 @@ class SplashScreen : Fragment() {
 
         auth=FirebaseAuth.getInstance()
         navController = Navigation.findNavController(view)
-
-        Handler(Looper.myLooper()!!).postDelayed(Runnable{
-            if (auth.currentUser!=null){
-                navController.navigate(R.id.action_splashScreen_to_emptyActivity)
-            }else{
-                navController.navigate(R.id.action_splashScreen_to_accessLocation)
+        val verification = auth.currentUser?.isEmailVerified
+        Handler(Looper.myLooper()!!).postDelayed({
+            if (auth.currentUser!=null && verification == true){
+                navController.navigate(R.id.action_splashScreen_to_homeActivity)
+            }else if(auth.currentUser != null && verification == false){
+                Toast.makeText(requireContext(), "Please Verify Your email", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.action_splashScreen_to_signIn)
             }
+            else navController.navigate(R.id.action_splashScreen_to_accessLocation)
+
         },3000)
 
 

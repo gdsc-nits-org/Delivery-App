@@ -14,8 +14,11 @@
             android:id="@+id/action_splashScreen_to_accessLocation"
             app:destination="@id/accessLocation" />
         <action
-            android:id="@+id/action_splashScreen_to_emptyActivity"
+            android:id="@+id/action_splashScreen_to_homeActivity"
             app:destination="@id/homeActivity" />
+        <action
+            android:id="@+id/action_splashScreen_to_signIn"
+            app:destination="@id/signIn" />
 
     </fragment>
     <fragment
@@ -81,6 +84,12 @@
             app:destination="@id/locationFragment" />
         <action
             android:id="@+id/action_signUpPage_to_loginPage"
+            app:destination="@id/loginPage" />
+        <action
+            android:id="@+id/action_signUpPage_to_loginPage2"
+            app:destination="@id/loginPage" />
+        <action
+            android:id="@+id/action_signUpPage_to_loginPage3"
             app:destination="@id/loginPage" />
     </fragment>
 

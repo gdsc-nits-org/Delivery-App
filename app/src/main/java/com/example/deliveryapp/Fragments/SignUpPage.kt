@@ -1,5 +1,6 @@
 package com.example.deliveryapp.Fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -52,6 +53,7 @@ class SignUpPage : Fragment() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun registerEvents() {
         binding.backBtnSignUpPage.setOnClickListener {
             navController.navigate(R.id.action_signUpPage_to_signIn)
@@ -87,7 +89,6 @@ class SignUpPage : Fragment() {
                                                 }
                                             Handler(Looper.getMainLooper()).postDelayed({
                                                 navController.navigate(R.id.action_signUpPage_to_loginPage)
-                                                navController.popBackStack()
                                             }, 1000)
                                         } else {
                                             Toast.makeText(context, "User could not be added", Toast.LENGTH_SHORT).show()

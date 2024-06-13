@@ -53,10 +53,6 @@ class AccessLocation : Fragment() {
 
     private fun checkLocationPermission(): Boolean {
         val context = requireContext()
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            // Runtime permissions not required below Android M
-            return true
-        }
         if (ContextCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
