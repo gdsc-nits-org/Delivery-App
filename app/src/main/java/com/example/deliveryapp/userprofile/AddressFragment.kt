@@ -32,7 +32,6 @@ class AddressFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController= Navigation.findNavController(view)
-
         binding.backBtnAddressPage.setOnClickListener {
             navController.navigate(R.id.action_addressFragment_to_locationFragment)
         }
