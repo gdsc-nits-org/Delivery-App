@@ -6,14 +6,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+        android:id="@+id/Genere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Genere"
-        android:text="Title"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
+        android:text="Title"
+        android:textSize="16dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"   />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovieChild"

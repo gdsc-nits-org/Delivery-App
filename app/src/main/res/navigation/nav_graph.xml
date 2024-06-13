@@ -16,6 +16,7 @@
         <action
             android:id="@+id/action_splashScreen_to_emptyActivity"
             app:destination="@id/homeActivity" />
+
     </fragment>
     <fragment
         android:id="@+id/accessLocation"
@@ -24,6 +25,9 @@
         tools:layout="@layout/fragment_access_location" >
         <action
             android:id="@+id/action_accessLocation_to_animatedScreen"
+            app:destination="@id/animatedScreen" />
+        <action
+            android:id="@+id/action_accessLocation_to_animatedScreen2"
             app:destination="@id/animatedScreen" />
     </fragment>
     <fragment
@@ -59,9 +63,10 @@
             android:id="@+id/action_loginPage_to_signIn"
             app:destination="@id/signIn" />
         <action
-            android:id="@+id/action_loginPage_to_emptyActivity"
-            app:destination="@id/homeActivity" />
+            android:id="@+id/action_loginPage_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/signUpPage"
         android:name="com.example.deliveryapp.Fragments.SignUpPage"
@@ -70,12 +75,56 @@
             android:id="@+id/action_signUpPage_to_signIn"
             app:destination="@id/signIn" />
         <action
-            android:id="@+id/action_signUpPage_to_emptyActivity"
-            app:destination="@id/homeActivity" />
+            android:id="@+id/action_signUpPage_to_locationFragment"
+            app:destination="@id/locationFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.example.deliveryapp.Fragments.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/action_locationFragment_to_signIn"
+            app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.deliveryapp.userprofile.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address" >
+        <action
+            android:id="@+id/action_addressFragment_to_signIn"
+            app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_addressFragment_to_locationFragment"
+            app:destination="@id/locationFragment" />
+        <action
+            android:id="@+id/action_addressFragment_to_homeActivity2"
+            app:destination="@id/homeActivity" />
+
+    </fragment>
+
     <activity
         android:id="@+id/homeActivity"
         android:name="com.example.deliveryapp.HomeActivity"
         android:label="homepage"
         tools:layout="@layout/homepage" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.deliveryapp.homepage_fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_emptyActivity"
+            app:destination="@id/emptyActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/emptyActivity"
+        android:name="com.example.deliveryapp.EmptyActivity"
+        android:label="activity_empty"
+        tools:layout="@layout/activity_empty" />
+
 </navigation>

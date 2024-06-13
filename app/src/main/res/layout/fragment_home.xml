@@ -67,7 +67,7 @@
                         <ImageView
                             android:layout_width="20sp"
                             android:layout_height="20sp"
-                            android:src="@drawable/arrow_drop_down_24px" />
+                            android:src="@drawable/drop_down_arrow" />
 
                     </LinearLayout>
 
@@ -87,7 +87,9 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="40sp"
                         app:cardCornerRadius="20sp"
-                        android:layout_height="40sp">
+                        android:layout_height="40sp"
+                        android:clickable="true"
+                        android:id="@+id/home_profile">
 
                         <ImageView
                             android:layout_gravity="center"
