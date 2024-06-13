@@ -8,9 +8,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fvFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultnavhost = "true"
-        app:navGraph = ""
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/bvNavBar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"

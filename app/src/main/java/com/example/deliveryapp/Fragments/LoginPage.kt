@@ -1,17 +1,18 @@
 package com.example.deliveryapp.Fragments
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentLoginPageBinding
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -78,19 +79,24 @@ class LoginPage : Fragment() {
             if (email.isNotEmpty() && pass.isNotEmpty() && check){
 
                 auth.signInWithEmailAndPassword(email,pass)
-                    .addOnCompleteListener(
-
-                    OnCompleteListener {
-                        if (it.isSuccessful){
-                            Toast.makeText(context,"Login Successfully", Toast.LENGTH_SHORT).show()
-                            navController.navigate(R.id.action_loginPage_to_locationFragment)
-
-                        }else{
-                            Toast.makeText(context,"Kindly Sign Up By Clicking SignUp button", Toast.LENGTH_SHORT).show()
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            val verification = auth.currentUser?.isEmailVerified
+                            when(verification){
+                                true -> {
+                                    Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()
+                                    findNavController().navigate(R.id.action_loginPage_to_locationFragment)
+                                }
+                                else -> Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Kindly Sign Up By Clicking SignUp button",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
-
-                )
 
             }else{
 

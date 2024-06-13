@@ -1,21 +1,21 @@
 package com.example.deliveryapp.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSignUpPageBinding
 import com.example.deliveryapp.utils.User
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -79,14 +79,26 @@ class SignUpPage : Fragment() {
                                 databaseRef.child(it).setValue(userModel)
                                     .addOnCompleteListener { dbTask ->
                                         if (dbTask.isSuccessful) {
-                                            Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
-                                            navController.navigate(R.id.action_signUpPage_to_locationFragment)
+                                            auth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
+                                                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
+                                            }
+                                                ?.addOnFailureListener {
+                                                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+                                                }
+                                            Handler(Looper.getMainLooper()).postDelayed({
+                                                navController.navigate(R.id.action_signUpPage_to_loginPage)
+                                                navController.popBackStack()
+                                            }, 1000)
                                         } else {
                                             Toast.makeText(context, "User could not be added", Toast.LENGTH_SHORT).show()
                                         }
                                     }
                             }
                         } else {
+                            val verification = auth.currentUser?.isEmailVerified
+                            if(verification == false)
+                                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
+                            else
                             Toast.makeText(context, authTask.exception?.message, Toast.LENGTH_SHORT).show()
                         }
                     }

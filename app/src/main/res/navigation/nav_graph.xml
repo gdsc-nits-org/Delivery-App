@@ -40,7 +40,8 @@
             app:destination="@id/loginPage" />
         <action
             android:id="@+id/action_signIn_to_signUpPage"
-            app:destination="@id/signUpPage" />
+            app:destination="@id/signUpPage"
+            app:popUpTo="@id/loginPage" />
     </fragment>
     <fragment
         android:id="@+id/animatedScreen"
@@ -54,8 +55,8 @@
     <fragment
         android:id="@+id/loginPage"
         android:name="com.example.deliveryapp.Fragments.LoginPage"
-        android:label="fragment_sign_up_page"
-        tools:layout="@layout/fragment_sign_up_page" >
+        android:label="fragment_login_page"
+        tools:layout="@layout/fragment_login_page">
         <action
             android:id="@+id/action_loginPage_to_signUpPage"
             app:destination="@id/signUpPage" />
@@ -70,13 +71,17 @@
     <fragment
         android:id="@+id/signUpPage"
         android:name="com.example.deliveryapp.Fragments.SignUpPage"
-        android:label="SignUpPage" >
+        android:label="SignUpPage"
+        tools:layout="@layout/fragment_sign_up_page">
         <action
             android:id="@+id/action_signUpPage_to_signIn"
             app:destination="@id/signIn" />
         <action
             android:id="@+id/action_signUpPage_to_locationFragment"
             app:destination="@id/locationFragment" />
+        <action
+            android:id="@+id/action_signUpPage_to_loginPage"
+            app:destination="@id/loginPage" />
     </fragment>
 
     <fragment
@@ -105,6 +110,9 @@
         <action
             android:id="@+id/action_addressFragment_to_homeActivity2"
             app:destination="@id/homeActivity" />
+        <action
+            android:id="@+id/action_addressFragment_to_loginPage"
+            app:destination="@id/loginPage" />
 
     </fragment>
 
