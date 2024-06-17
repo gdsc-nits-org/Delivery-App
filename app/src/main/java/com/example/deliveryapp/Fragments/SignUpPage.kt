@@ -12,7 +12,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSignUpPageBinding
 import com.example.deliveryapp.utils.User
@@ -31,7 +30,7 @@ class SignUpPage : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSignUpPageBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -81,15 +80,15 @@ class SignUpPage : Fragment() {
                                 databaseRef.child(it).setValue(userModel)
                                     .addOnCompleteListener { dbTask ->
                                         if (dbTask.isSuccessful) {
-                                            auth.currentUser?.sendEmailVerification()?.addOnSuccessListener {
+                                            currentUser.sendEmailVerification().addOnSuccessListener {
                                                 Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
+                                                Handler(Looper.getMainLooper()).postDelayed({
+                                                    navController.navigate(R.id.action_signUpPage_to_loginPage)
+                                                }, 1000)
                                             }
-                                                ?.addOnFailureListener {
-                                                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+                                                .addOnFailureListener {error->
+                                                    Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
                                                 }
-                                            Handler(Looper.getMainLooper()).postDelayed({
-                                                navController.navigate(R.id.action_signUpPage_to_loginPage)
-                                            }, 1000)
                                         } else {
                                             Toast.makeText(context, "User could not be added", Toast.LENGTH_SHORT).show()
                                         }
@@ -116,7 +115,6 @@ class SignUpPage : Fragment() {
                 // Log.d("TAG", "Pressed...")
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 }

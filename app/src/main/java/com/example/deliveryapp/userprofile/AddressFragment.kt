@@ -55,15 +55,17 @@ class AddressFragment : Fragment() {
             etCountry.setText(address.country)
             etPinCode.setText(address.pinCode)
             val verification = FirebaseAuth.getInstance().currentUser?.isEmailVerified
-            if (verification == true) {
+            if (verification == true)
+            {
                 navController.navigate(R.id.action_addressFragment_to_homeActivity2)
                 requireActivity().finish()
-            } else {
-                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT)
-                    .show()
+            }
+            else {
+                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
                 navController.navigate(R.id.action_addressFragment_to_loginPage)
             }
         }
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Log.d("TAG", "Pressed...")

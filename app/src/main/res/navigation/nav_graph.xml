@@ -85,12 +85,6 @@
         <action
             android:id="@+id/action_signUpPage_to_loginPage"
             app:destination="@id/loginPage" />
-        <action
-            android:id="@+id/action_signUpPage_to_loginPage2"
-            app:destination="@id/loginPage" />
-        <action
-            android:id="@+id/action_signUpPage_to_loginPage3"
-            app:destination="@id/loginPage" />
     </fragment>
 
     <fragment

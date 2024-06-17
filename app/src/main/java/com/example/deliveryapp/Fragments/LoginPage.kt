@@ -1,6 +1,5 @@
 package com.example.deliveryapp.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentLoginPageBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -85,7 +83,7 @@ class LoginPage : Fragment() {
                             when(verification){
                                 true -> {
                                     Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()
-                                    findNavController().navigate(R.id.action_loginPage_to_locationFragment)
+                                    navController.navigate(R.id.action_loginPage_to_locationFragment)
                                 }
                                 else -> Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
                             }
@@ -103,7 +101,6 @@ class LoginPage : Fragment() {
                 Toast.makeText(context,"Please fill up all the necessary details",Toast.LENGTH_SHORT).show()
 
             }
-
         }
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

@@ -15,17 +15,9 @@ import com.example.deliveryapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileListFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,7 +59,6 @@ class ProfileListFragment : Fragment() {
             logout()
         }
     }
-
     private fun logout() {
         val auth = FirebaseAuth.getInstance()
         auth.signOut()

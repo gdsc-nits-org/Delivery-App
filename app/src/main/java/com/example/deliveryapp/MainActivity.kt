@@ -2,6 +2,7 @@ package com.example.deliveryapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.deliveryapp.databinding.ActivityMainBinding
 import com.example.deliveryapp.homepage_fragments.CartFragment
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 //        bottomNavigationView = findViewById(R.id.bottom_navigation)
 
