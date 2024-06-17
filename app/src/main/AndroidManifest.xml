@@ -47,6 +47,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ExploreActivity"
+            android:exported="true">
+        </activity>
+
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

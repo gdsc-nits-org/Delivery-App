@@ -76,4 +76,6 @@ dependencies {
     //noinspection GradleDependency
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 }
