@@ -47,7 +47,7 @@ class AddressFragment : Fragment() {
             etCountry.text.toString(), etPinCode.text.toString()
         )
 
-        val btnSave=view.findViewById<Button>(R.id.btnSaveAddress)
+        val btnSave = view.findViewById<Button>(R.id.btnSaveAddress)
         btnSave.setOnClickListener {
             etHostel.setText(address.hostel)
             etCountry.setText(address.city)
@@ -55,13 +55,12 @@ class AddressFragment : Fragment() {
             etCountry.setText(address.country)
             etPinCode.setText(address.pinCode)
             val verification = FirebaseAuth.getInstance().currentUser?.isEmailVerified
-            if (verification == true)
-            {
+            if (verification == true) {
                 navController.navigate(R.id.action_addressFragment_to_homeActivity2)
                 requireActivity().finish()
-            }
-            else {
-                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT)
+                    .show()
                 navController.navigate(R.id.action_addressFragment_to_loginPage)
             }
         }
