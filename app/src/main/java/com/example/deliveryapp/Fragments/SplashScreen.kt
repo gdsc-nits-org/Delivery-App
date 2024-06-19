@@ -38,21 +38,16 @@ class SplashScreen : Fragment() {
 
         val sideAnimation= AnimationUtils.loadAnimation(parentFragment?.context,R.anim.slide)
         binding.ivIcon.startAnimation(sideAnimation)
-
-        auth=FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
         navController = Navigation.findNavController(view)
-        val verification = auth.currentUser?.isEmailVerified
-        Handler(Looper.myLooper()!!).postDelayed({
-            if (auth.currentUser!=null && verification == true){
-                navController.navigate(R.id.action_splashScreen_to_homeActivity)
-            }else if(auth.currentUser != null && verification == false){
-                Toast.makeText(requireContext(), "Please Verify Your email", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.action_splashScreen_to_signIn)
-            }
-            else navController.navigate(R.id.action_splashScreen_to_accessLocation)
 
+        val verification = auth.currentUser?.isEmailVerified
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            execute(verification)
         },3000)
 
+//            Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -63,5 +58,15 @@ class SplashScreen : Fragment() {
 
     }
 
-
+    private fun execute(verification: Boolean?) {
+        if (auth.currentUser !=null && verification == true){
+            navController.navigate(R.id.action_splashScreen_to_homeActivity)
+            this.requireActivity().finish()
+        }else if(auth.currentUser != null && verification == false){
+                navController.navigate(R.id.action_splashScreen_to_signIn)
+        }
+        else {
+            navController.navigate(R.id.action_splashScreen_to_accessLocation)
+        }
+    }
 }

@@ -112,7 +112,7 @@ class SignUpPage : Fragment() {
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Log.d("TAG", "Pressed...")
+                navController.navigateUp()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)

@@ -18,7 +18,8 @@
             app:destination="@id/homeActivity" />
         <action
             android:id="@+id/action_splashScreen_to_signIn"
-            app:destination="@id/signIn" />
+            app:destination="@id/signIn"
+            app:popUpTo="@id/signIn" />
 
     </fragment>
     <fragment
@@ -40,11 +41,12 @@
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signIn_to_loginPage"
-            app:destination="@id/loginPage" />
+            app:destination="@id/loginPage"
+            app:popUpTo="@id/signIn" />
         <action
             android:id="@+id/action_signIn_to_signUpPage"
             app:destination="@id/signUpPage"
-            app:popUpTo="@id/loginPage" />
+            app:popUpTo="@id/signIn" />
     </fragment>
     <fragment
         android:id="@+id/animatedScreen"

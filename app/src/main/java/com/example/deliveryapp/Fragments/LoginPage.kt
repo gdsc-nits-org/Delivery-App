@@ -64,7 +64,7 @@ class LoginPage : Fragment() {
             navController.navigate(R.id.action_loginPage_to_signUpPage)
         }
         binding.backBtnLoginPage.setOnClickListener {
-            navController.navigate(R.id.action_loginPage_to_signIn)
+            navController.navigateUp()
         }
         binding.btnLogin.setOnClickListener {
             val email=binding.etEmailLoginPage.text.toString().trim()
@@ -104,7 +104,7 @@ class LoginPage : Fragment() {
         }
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Log.d("TAG", "Pressed...")
+                navController.navigateUp()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
