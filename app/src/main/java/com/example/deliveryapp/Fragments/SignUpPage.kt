@@ -1,21 +1,21 @@
 package com.example.deliveryapp.Fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSignUpPageBinding
 import com.example.deliveryapp.utils.User
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -30,7 +30,7 @@ class SignUpPage : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSignUpPageBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -52,6 +52,7 @@ class SignUpPage : Fragment() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun registerEvents() {
         binding.backBtnSignUpPage.setOnClickListener {
             navController.navigate(R.id.action_signUpPage_to_signIn)
@@ -79,14 +80,25 @@ class SignUpPage : Fragment() {
                                 databaseRef.child(it).setValue(userModel)
                                     .addOnCompleteListener { dbTask ->
                                         if (dbTask.isSuccessful) {
-                                            Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
-                                            navController.navigate(R.id.action_signUpPage_to_locationFragment)
+                                            currentUser.sendEmailVerification().addOnSuccessListener {
+                                                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
+                                                Handler(Looper.getMainLooper()).postDelayed({
+                                                    navController.navigate(R.id.action_signUpPage_to_loginPage)
+                                                }, 1000)
+                                            }
+                                                .addOnFailureListener {error->
+                                                    Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show()
+                                                }
                                         } else {
                                             Toast.makeText(context, "User could not be added", Toast.LENGTH_SHORT).show()
                                         }
                                     }
                             }
                         } else {
+                            val verification = auth.currentUser?.isEmailVerified
+                            if(verification == false)
+                                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
+                            else
                             Toast.makeText(context, authTask.exception?.message, Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -100,10 +112,9 @@ class SignUpPage : Fragment() {
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Log.d("TAG", "Pressed...")
+                navController.navigateUp()
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 }

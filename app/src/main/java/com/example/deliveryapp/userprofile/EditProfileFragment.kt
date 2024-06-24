@@ -12,6 +12,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.database.DatabaseReference
@@ -88,7 +89,7 @@ class EditProfileFragment : Fragment() {
         val backBtn = view.findViewById<ImageButton>(R.id.btnBack)
         backBtn.setOnClickListener{
             Toast.makeText(context, "Pressed back button", Toast.LENGTH_SHORT).show()
-            requireActivity().supportFragmentManager.popBackStack()
+            findNavController().popBackStack()
         }
         val tvEdit = view.findViewById<TextView>(R.id.tvEdit)
 

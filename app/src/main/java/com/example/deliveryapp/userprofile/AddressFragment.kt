@@ -1,23 +1,19 @@
 package com.example.deliveryapp.userprofile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAddressBinding
 import com.google.android.material.textfield.TextInputEditText
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.google.firebase.auth.FirebaseAuth
 
 class AddressFragment : Fragment() {
 
@@ -36,7 +32,6 @@ class AddressFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController= Navigation.findNavController(view)
-
         binding.backBtnAddressPage.setOnClickListener {
             navController.navigate(R.id.action_addressFragment_to_locationFragment)
         }
@@ -52,16 +47,24 @@ class AddressFragment : Fragment() {
             etCountry.text.toString(), etPinCode.text.toString()
         )
 
-        val btnSave=view.findViewById<Button>(R.id.btnSaveAddress)
+        val btnSave = view.findViewById<Button>(R.id.btnSaveAddress)
         btnSave.setOnClickListener {
             etHostel.setText(address.hostel)
             etCountry.setText(address.city)
             etState.setText(address.state)
             etCountry.setText(address.country)
             etPinCode.setText(address.pinCode)
-            navController.navigate(R.id.action_addressFragment_to_homeActivity2)
+            val verification = FirebaseAuth.getInstance().currentUser?.isEmailVerified
+            if (verification == true)
+            {
+                navController.navigate(R.id.action_addressFragment_to_homeActivity2)
+                requireActivity().finish()
+            }
+            else {
+                Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.action_addressFragment_to_loginPage)
+            }
         }
-
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -69,6 +72,6 @@ class AddressFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-
     }
+
 }
