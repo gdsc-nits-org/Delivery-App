@@ -12,13 +12,16 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAddressBinding
+import com.example.deliveryapp.utils.FirebaseManager
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AddressFragment : Fragment() {
 
     private lateinit var binding: FragmentAddressBinding
     private lateinit var navController: NavController
+    private lateinit var db : FirebaseFirestore
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,24 +39,21 @@ class AddressFragment : Fragment() {
             navController.navigate(R.id.action_addressFragment_to_locationFragment)
         }
 
-        var etHostel = view.findViewById<TextInputEditText>(R.id.etHostelNameAddressPage)
-        var etCity = view.findViewById<TextInputEditText>(R.id.etCityAddressPage)
-        var etState = view.findViewById<TextInputEditText>(R.id.etStateNameAddressPage)
-        var etCountry = view.findViewById<TextInputEditText>(R.id.etCountryNameAddressPage)
-        var etPinCode = view.findViewById<TextInputEditText>(R.id.etPostalCodeAddressPage)
+        val etHostel = view.findViewById<TextInputEditText>(R.id.etHostelNameAddressPage)
+        val etCity = view.findViewById<TextInputEditText>(R.id.etCityAddressPage)
+        val etState = view.findViewById<TextInputEditText>(R.id.etStateNameAddressPage)
+        val etCountry = view.findViewById<TextInputEditText>(R.id.etCountryNameAddressPage)
+        val etPinCode = view.findViewById<TextInputEditText>(R.id.etPostalCodeAddressPage)
 
-        var address = AddressData(
+        val address = AddressData(
             etHostel.text.toString(), etCity.text.toString(), etState.text.toString(),
             etCountry.text.toString(), etPinCode.text.toString()
         )
 
         val btnSave = view.findViewById<Button>(R.id.btnSaveAddress)
         btnSave.setOnClickListener {
-            etHostel.setText(address.hostel)
-            etCountry.setText(address.city)
-            etState.setText(address.state)
-            etCountry.setText(address.country)
-            etPinCode.setText(address.pinCode)
+
+            saveData(address)
             val verification = FirebaseAuth.getInstance().currentUser?.isEmailVerified
             if (verification == true)
             {
@@ -72,6 +72,21 @@ class AddressFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    private fun saveData(address: AddressData) {
+
+        db = FirebaseManager.getFirebaseFirestore()
+
+        val data = mapOf(
+            "HostelName" to address.hostel,
+            "State" to address.state,
+            "Postal Code" to address.pinCode,
+            "City" to address.city,
+            "Country" to address.country
+        )
+
+        db.collection("Users").document()
     }
 
 }

@@ -86,6 +86,7 @@ class EditProfileFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        showLoading()
         setText(userData)
     }
 
@@ -204,7 +205,6 @@ class EditProfileFragment : Fragment() {
                 withContext(Dispatchers.Main) {
                     userData = updatedUserData
                     updateUI()
-                    hideLoading()
                     Toast.makeText(requireContext(), "Saved Successfully", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
@@ -218,7 +218,6 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun updateUI() {
-
         showLoading()
         firestore.getDocumentById(
             collection = "Users",
@@ -253,5 +252,6 @@ class EditProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error fetching user data: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
         )
+        hideLoading()
     }
 }
