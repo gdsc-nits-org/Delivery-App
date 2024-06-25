@@ -34,8 +34,8 @@
 
         <TextView
             android:layout_gravity="center"
-            android:text="Edit Address"
-            android:layout_marginStart="65sp"
+            android:text="Add Your Address"
+            android:layout_marginStart="50sp"
             android:textStyle="bold"
             android:textSize="20sp"
             android:textColor="#ED5D00"

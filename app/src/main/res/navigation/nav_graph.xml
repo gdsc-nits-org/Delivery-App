@@ -123,7 +123,7 @@
 
     <activity
         android:id="@+id/homeActivity"
-        android:name="com.example.deliveryapp.HomeActivity"
+        android:name="com.example.deliveryapp.activities.HomeActivity"
         android:label="homepage"
         tools:layout="@layout/homepage" />
     <fragment
@@ -136,7 +136,7 @@
     </fragment>
     <activity
         android:id="@+id/emptyActivity"
-        android:name="com.example.deliveryapp.EmptyActivity"
+        android:name="com.example.deliveryapp.activities.EmptyActivity"
         android:label="activity_empty"
         tools:layout="@layout/activity_empty" />
 

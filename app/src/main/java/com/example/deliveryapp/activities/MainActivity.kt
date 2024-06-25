@@ -1,14 +1,11 @@
-package com.example.deliveryapp
+package com.example.deliveryapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ActivityMainBinding
-import com.example.deliveryapp.homepage_fragments.CartFragment
-import com.example.deliveryapp.homepage_fragments.HomeFragment
-import com.example.deliveryapp.homepage_fragments.ProfileFragment
-import com.example.deliveryapp.homepage_fragments.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -51,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 //        replaceFragment(HomeFragment())
 
     }
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
-    }
+//    private fun replaceFragment(fragment: Fragment) {
+//        supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
+//    }
 }

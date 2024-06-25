@@ -1,6 +1,5 @@
 package com.example.deliveryapp.Fragments
 
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
@@ -61,9 +60,11 @@ class SplashScreen : Fragment() {
     private fun execute(verification: Boolean?) {
         if (auth.currentUser !=null && verification == true){
             navController.navigate(R.id.action_splashScreen_to_homeActivity)
+            if(isAdded)
             this.requireActivity().finish()
         }else if(auth.currentUser != null && verification == false){
                 navController.navigate(R.id.action_splashScreen_to_signIn)
+            navController.popBackStack()
         }
         else {
             navController.navigate(R.id.action_splashScreen_to_accessLocation)

@@ -1,4 +1,4 @@
-package com.example.explorepage
+package com.example.deliveryapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
