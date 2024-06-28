@@ -4,6 +4,7 @@
     <color name="LoginBtnColour">#370617</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_white">#FFF0F0F0</color>
     <color name="colorSecondary" >#FF000000</color>
     <color name="colorPrimary" >#FFFFFF</color>
     <color name="transparent">#00000000</color>

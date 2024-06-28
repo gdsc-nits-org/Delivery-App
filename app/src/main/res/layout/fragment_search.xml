@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".homepage_fragments.SearchFragment">
 
     <RelativeLayout
@@ -55,8 +56,10 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         app:tabTextColor="@color/black"
-        app:tabSelectedTextColor="@color/ButtonColour">
+        app:tabSelectedTextColor="@color/ButtonColour"
+        app:tabIndicatorColor="@color/mediumOrange">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -69,11 +72,6 @@
             android:text="@string/dishes" />
     </com.google.android.material.tabs.TabLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/ViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
 
 
 </LinearLayout>
