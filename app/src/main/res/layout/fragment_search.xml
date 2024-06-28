@@ -7,27 +7,34 @@
     android:orientation="vertical"
     tools:context=".homepage_fragments.SearchFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:paddingTop="16dp"
         android:paddingStart="16dp"
         android:paddingEnd="28dp">
 
-        <ImageView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/leftarrow"
-            android:contentDescription="@string/todo13" />
+            android:backgroundTint="#EDECEB"
+            app:cardCornerRadius="80dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="16dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_back_24px" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="16dp"
+            android:layout_centerInParent="true"
             android:text="@string/explore"
             android:textColor="#FF8000"
             android:textSize="22sp"
@@ -35,16 +42,21 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/search"
-            android:contentDescription="@string/todo14" />
-    </LinearLayout>
+            android:contentDescription="@string/todo14"
+            />
+    </RelativeLayout>
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:tabTextColor="@color/black"
+        app:tabSelectedTextColor="@color/ButtonColour">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -62,5 +74,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
 
 </LinearLayout>
