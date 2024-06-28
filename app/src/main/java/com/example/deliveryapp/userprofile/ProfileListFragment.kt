@@ -32,25 +32,25 @@ class ProfileListFragment : Fragment() {
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
             fragmentTransaction.replace(R.id.frame_container, EditProfileFragment())
-            val navBar = activity?.findViewById<BottomNavigationView>(R.id.bvNavBar)
-            if (navBar != null) {
-                navBar.visibility = View.INVISIBLE
-            }
+//            val navBar = activity?.findViewById<BottomNavigationView>(R.id.bvNavBar)
+//            if (navBar != null) {
+//                navBar.visibility = View.INVISIBLE
+//            }
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
         val tvAddress = view.findViewById<TextView>(R.id.tvAddress)
-        val navBar = activity?.findViewById<BottomNavigationView>(R.id.bvNavBar)
-        if (navBar != null) {
-            navBar.visibility = View.VISIBLE
-        }
+//        val navBar = activity?.findViewById<BottomNavigationView>(R.id.bvNavBar)
+//        if (navBar != null) {
+//            navBar.visibility = View.VISIBLE
+//        }
         tvAddress.setOnClickListener{
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.frame_container, AddressFragment())
-            if (navBar != null) {
-                navBar.visibility = View.INVISIBLE
-            }
+//            if (navBar != null) {
+//                navBar.visibility = View.INVISIBLE
+//            }
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }

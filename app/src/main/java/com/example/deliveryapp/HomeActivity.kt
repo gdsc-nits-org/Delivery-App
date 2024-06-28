@@ -2,7 +2,6 @@ package com.example.deliveryapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.deliveryapp.homepage_fragments.CartFragment
 import com.example.deliveryapp.homepage_fragments.HomeFragment
@@ -16,6 +15,7 @@ class HomeActivity : AppCompatActivity(), HomepageNavigation {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage)
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { menuItem ->

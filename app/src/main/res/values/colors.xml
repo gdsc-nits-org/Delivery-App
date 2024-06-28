@@ -6,6 +6,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorSecondary" >#FF000000</color>
     <color name="colorPrimary" >#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
     <!-- Red Shades -->
     <color name="darkRed">#D32F2F</color>
     <color name="mediumRed">#F44336</color>
