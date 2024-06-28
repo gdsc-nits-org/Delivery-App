@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
         val cardView = rootView.findViewById<MaterialCardView>(R.id.home_profile)
         cardView.setOnClickListener {
             // Your onClick logic here
-            Toast.makeText(context, "Card clicked", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Card clicked", Toast.LENGTH_SHORT).show()
             fragmentNavigation?.replaceFragment(ProfileListFragment())
             bottomNavigationView.selectedItemId = R.id.bottom_profile
         }

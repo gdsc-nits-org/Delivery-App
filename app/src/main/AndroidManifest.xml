@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DeliveryApp"
+        android:theme="@style/Base.Theme.DeliveryApp"
         tools:targetApi="31">
 
         <meta-data
@@ -31,9 +31,7 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/ButtonColour" />
-        <activity
-            android:name=".EmptyActivity"
-            android:exported="false" />
+
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
