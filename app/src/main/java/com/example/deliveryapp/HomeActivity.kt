@@ -2,12 +2,10 @@ package com.example.deliveryapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.deliveryapp.homepage_fragments.CartFragment
 import com.example.deliveryapp.homepage_fragments.HomeFragment
 import com.example.deliveryapp.homepage_fragments.HomepageNavigation
-import com.example.deliveryapp.homepage_fragments.ProfileFragment
 import com.example.deliveryapp.homepage_fragments.SearchFragment
 import com.example.deliveryapp.userprofile.ProfileListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,7 +15,7 @@ class HomeActivity : AppCompatActivity(), HomepageNavigation {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { menuItem ->

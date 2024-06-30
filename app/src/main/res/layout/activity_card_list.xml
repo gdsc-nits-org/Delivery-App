@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CardList">
+    >
 
     <Button
         android:id="@+id/button6"
@@ -95,7 +95,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="@color/white"
-                    android:background="@drawable/colourbutton"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="7.5dp"
                     android:layout_marginEnd="5dp"
@@ -246,7 +245,6 @@ android:textColor="@color/black"
                 android:textStyle="bold"
 
                 android:layout_marginTop="40dp"
-                android:background="@drawable/colourbutton"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 />
