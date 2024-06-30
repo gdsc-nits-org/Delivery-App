@@ -5,28 +5,33 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.R
 import com.example.deliveryapp.adapters.CarouselImageAdapter
 import com.example.deliveryapp.adapters.NestedRecyclerAdapter
 import com.example.deliveryapp.models.CarouselImageItem
+import com.example.deliveryapp.models.NestedRecyclerModelMain
+import com.example.deliveryapp.models.NestedRecyclerModelFood
 import com.example.deliveryapp.userprofile.ProfileListFragment
-import com.example.deliveryapp.utils.SampleData
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.UUID
 
 class HomeFragment : Fragment() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private var fragmentNavigation: HomepageNavigation? = null
+    private lateinit var rvMain: RecyclerView
+    private lateinit var nestedRecyclerAdapter: NestedRecyclerAdapter
 
     companion object {
         private const val REQUEST_CODE_POST_NOTIFICATIONS = 1
@@ -43,15 +48,20 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
         bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation)
 
-        // Carousel
-        val imageRV = rootView.findViewById<RecyclerView>(R.id.imageRV)
+        setupCarousel(rootView)
+        setupNestedRecyclerView(rootView)
+        setupProfileCard(rootView)
+        checkNotificationPermission()
 
-        // Data
+        return rootView
+    }
+
+    private fun setupCarousel(rootView: View) {
+        val imageRV = rootView.findViewById<RecyclerView>(R.id.imageRV)
         val imageList = arrayListOf(
             CarouselImageItem(
                 UUID.randomUUID().toString(),
@@ -81,23 +91,48 @@ class HomeFragment : Fragment() {
         val carouselImageAdapter = CarouselImageAdapter()
         imageRV.adapter = carouselImageAdapter
         carouselImageAdapter.submitList(imageList)
+    }
 
-        val nestedRecyclerAdapter = NestedRecyclerAdapter(SampleData.collections)
-        val rvMain = rootView.findViewById<RecyclerView>(R.id.rvMain)
+    private fun setupNestedRecyclerView(rootView: View) {
+        rvMain = rootView.findViewById(R.id.rvMain)
+        nestedRecyclerAdapter = NestedRecyclerAdapter(emptyList())
         rvMain.adapter = nestedRecyclerAdapter
 
-        // set onClick to profile
+        fetchShopData()
+    }
+
+    private fun setupProfileCard(rootView: View) {
         val cardView = rootView.findViewById<MaterialCardView>(R.id.home_profile)
         cardView.setOnClickListener {
-            // Your onClick logic here
-//            Toast.makeText(context, "Card clicked", Toast.LENGTH_SHORT).show()
             fragmentNavigation?.replaceFragment(ProfileListFragment())
             bottomNavigationView.selectedItemId = R.id.bottom_profile
         }
+    }
 
-        checkNotificationPermission()
+    private fun fetchShopData() {
+        val db = Firebase.firestore
+        db.collection("Shops")
+            .get()
+            .addOnSuccessListener { result ->
+                val shopList = result.documents.mapNotNull { document ->
+                    document.getString("ShopImg")?.let { NestedRecyclerModelFood(it) }
+                }
 
-        return rootView
+                if (shopList.isNotEmpty()) {
+                    val collections = listOf(
+                        NestedRecyclerModelMain("At Your DoorStep", shopList),
+                        NestedRecyclerModelMain("Shop By Shop", shopList.reversed()),
+                        NestedRecyclerModelMain("Treat Yourself", shopList.shuffled()),
+                        NestedRecyclerModelMain("Shops and Restaurant", shopList)
+                    )
+                    nestedRecyclerAdapter.updateData(collections)
+                } else {
+                    Toast.makeText(context, "No shops found", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(context, "Error fetching shop data: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun checkNotificationPermission() {
