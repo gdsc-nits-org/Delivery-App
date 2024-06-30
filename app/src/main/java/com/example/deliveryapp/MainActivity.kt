@@ -2,6 +2,7 @@ package com.example.deliveryapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.example.deliveryapp.databinding.ActivityMainBinding
 
 
@@ -13,4 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
     }
+    fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
+    }
+
 }
