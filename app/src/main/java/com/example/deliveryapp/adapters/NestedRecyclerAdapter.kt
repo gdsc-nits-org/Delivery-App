@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ParentItemBinding
+import android.widget.Toast
 
 class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMain>) :
     RecyclerView.Adapter<NestedRecyclerAdapter.CollectionViewHolder>() {
@@ -22,7 +23,13 @@ class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMai
         val collection = collections[position]
         holder.binding.apply {
             Genere.text = collection.title
-            rvMovieChild.adapter = NestedRecyclerFoodAdapter(collection.movieModel)
+            rvMovieChild.adapter = NestedRecyclerFoodAdapter(collection.movieModel) { shop ->
+                val message = "Shop: ${shop.shopName}\n" +
+                        "Total Orders: ${shop.totalOrders}\n" +
+                        "Phone: ${shop.phoneNo}\n" +
+                        "Location: ${shop.location}"
+                Toast.makeText(holder.itemView.context, message, Toast.LENGTH_LONG).show()
+            }
         }
     }
 

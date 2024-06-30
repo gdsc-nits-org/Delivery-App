@@ -10,8 +10,10 @@ import com.example.deliveryapp.models.NestedRecyclerModelFood
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FoodItemBinding
 
-class NestedRecyclerFoodAdapter(private val foodItems: List<NestedRecyclerModelFood>) :
-    RecyclerView.Adapter<NestedRecyclerFoodAdapter.FoodViewHolder>() {
+class NestedRecyclerFoodAdapter(
+    private val foodItems: List<NestedRecyclerModelFood>,
+    private val onItemClick: (NestedRecyclerModelFood) -> Unit
+) : RecyclerView.Adapter<NestedRecyclerFoodAdapter.FoodViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.food_item, parent, false)
@@ -21,8 +23,11 @@ class NestedRecyclerFoodAdapter(private val foodItems: List<NestedRecyclerModelF
     override fun getItemCount(): Int = foodItems.size
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
+        val shop = foodItems[position]
         holder.binding.apply {
-            imageFoodPoster.load(foodItems[position].imageUrl)
+            imageFoodPoster.load(shop.imageUrl)
+            // You can add more UI elements here if needed, e.g., shop name
+            root.setOnClickListener { onItemClick(shop) }
         }
     }
 
