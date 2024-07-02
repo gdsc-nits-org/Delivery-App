@@ -88,7 +88,7 @@ class HomeFragment : Fragment() {
                 val name = banner.get("Name").toString().trim()
                 val url = banner.get("url").toString().trim()
 
-                items.add(CarouselImageItem(name, url));
+                items.add(CarouselImageItem(name, url))
             }
             imageList = items
         }
