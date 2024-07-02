@@ -122,15 +122,16 @@
 
                     <com.google.android.material.textfield.TextInputEditText
 
+                        android:id="@+id/searchbox"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:textColorHint="#000000"
                         android:drawableStart="@drawable/icon"
                         android:drawableEnd="@drawable/icon__1_"
                         android:hint="     Search Box"
-                        android:textColor="#000000"
                         android:inputType="text"
-                        android:paddingLeft="16dp" />
+                        android:paddingLeft="16dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
