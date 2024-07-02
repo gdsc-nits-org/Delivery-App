@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ParentItemBinding
+import android.widget.Toast
 
-class NestedRecyclerAdapter(private val collection : List<NestedRecyclerModelMain>) :
+class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMain>) :
     RecyclerView.Adapter<NestedRecyclerAdapter.CollectionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
@@ -16,20 +17,28 @@ class NestedRecyclerAdapter(private val collection : List<NestedRecyclerModelMai
         return CollectionViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return collection.size
-    }
+    override fun getItemCount(): Int = collections.size
 
     override fun onBindViewHolder(holder: CollectionViewHolder, position: Int) {
+        val collection = collections[position]
         holder.binding.apply {
-            val collection = collection[position]
             Genere.text = collection.title
-            val foodAdapter = NestedRecyclerFoodAdapter(collection.movieModel)
-            rvMovieChild.adapter = foodAdapter
+            rvMovieChild.adapter = NestedRecyclerFoodAdapter(collection.movieModel) { shop ->
+                val message = "Shop: ${shop.shopName}\n" +
+                        "Total Orders: ${shop.totalOrders}\n" +
+                        "Phone: ${shop.phoneNo}\n" +
+                        "Location: ${shop.location}"
+                Toast.makeText(holder.itemView.context, message, Toast.LENGTH_LONG).show()
+            }
         }
     }
 
-    inner class CollectionViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+    fun updateData(newCollections: List<NestedRecyclerModelMain>) {
+        collections = newCollections
+        notifyDataSetChanged()
+    }
+
+    inner class CollectionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ParentItemBinding.bind(itemView)
     }
 }
