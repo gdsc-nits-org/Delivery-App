@@ -5,9 +5,12 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -23,11 +26,14 @@ import com.example.deliveryapp.models.NestedRecyclerModelFood
 import com.example.deliveryapp.userprofile.ProfileListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.UUID
 
 class HomeFragment : Fragment() {
+    private lateinit var searchEditText: TextInputEditText
+    private var allShops: List<NestedRecyclerModelFood> = emptyList()
     private lateinit var bottomNavigationView: BottomNavigationView
     private var fragmentNavigation: HomepageNavigation? = null
     private lateinit var rvMain: RecyclerView
@@ -56,9 +62,47 @@ class HomeFragment : Fragment() {
         setupNestedRecyclerView(rootView)
         setupProfileCard(rootView)
         checkNotificationPermission()
+        setupSearchView(rootView)
 
         return rootView
     }
+    private fun setupSearchView(rootView: View) {
+        searchEditText = rootView.findViewById(R.id.searchbox)
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                filterShops(s.toString())
+            }
+        })
+    }
+
+    private fun filterShops(query: String?) {
+        if (query.isNullOrBlank()) {
+            showAllCategories()
+        } else {
+            val filteredShops = allShops.filter { shop ->
+                shop.shopName.contains(query, ignoreCase = true)
+            }
+            updateRecyclerView(listOf(NestedRecyclerModelMain("Search Results", filteredShops)))
+        }
+    }
+    private fun showAllCategories() {
+        val collections = listOf(
+            NestedRecyclerModelMain("At Your DoorStep", allShops),
+            NestedRecyclerModelMain("Shop By Shop", allShops.reversed()),
+            NestedRecyclerModelMain("Treat Yourself", allShops.shuffled()),
+            NestedRecyclerModelMain("Shops and Restaurant", allShops)
+        )
+        nestedRecyclerAdapter.updateData(collections)
+    }
+
+    private fun updateRecyclerView(collections: List<NestedRecyclerModelMain>) {
+        nestedRecyclerAdapter.updateData(collections)
+    }
+
 
     private fun setupCarousel(rootView: View) {
         val imageRV = rootView.findViewById<RecyclerView>(R.id.imageRV)
@@ -114,7 +158,7 @@ class HomeFragment : Fragment() {
         db.collection("Shops")
             .get()
             .addOnSuccessListener { result ->
-                val shopList = result.documents.mapNotNull { document ->
+                allShops = result.documents.mapNotNull { document ->
                     val imageUrl = document.getString("ShopImg") ?: return@mapNotNull null
                     val shopName = document.getString("ShopName") ?: "Unknown Shop"
                     val totalOrders = document.getLong("TotalOrders")?.toInt() ?: 0
@@ -124,14 +168,8 @@ class HomeFragment : Fragment() {
                     NestedRecyclerModelFood(imageUrl, shopName, totalOrders, phoneNo, location)
                 }
 
-                if (shopList.isNotEmpty()) {
-                    val collections = listOf(
-                        NestedRecyclerModelMain("At Your DoorStep", shopList),
-                        NestedRecyclerModelMain("Shop By Shop", shopList.reversed()),
-                        NestedRecyclerModelMain("Treat Yourself", shopList.shuffled()),
-                        NestedRecyclerModelMain("Shops and Restaurant", shopList)
-                    )
-                    nestedRecyclerAdapter.updateData(collections)
+                if (allShops.isNotEmpty()) {
+                    showAllCategories()
                 } else {
                     Toast.makeText(context, "No shops found", Toast.LENGTH_SHORT).show()
                 }

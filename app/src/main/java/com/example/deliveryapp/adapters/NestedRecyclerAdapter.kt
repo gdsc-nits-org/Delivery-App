@@ -33,6 +33,10 @@ class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMai
         }
     }
 
+//    fun updateData(newCollections: List<NestedRecyclerModelMain>) {
+//        collections = newCollections
+//        notifyDataSetChanged()
+//    }
     fun updateData(newCollections: List<NestedRecyclerModelMain>) {
         collections = newCollections
         notifyDataSetChanged()
