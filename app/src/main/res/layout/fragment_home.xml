@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <LinearLayout
             android:id="@+id/locationUser"
             android:layout_width="match_parent"
@@ -147,7 +148,17 @@
         android:layout_marginHorizontal="16dp"
         android:layout_height="194dp"
         app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager" />
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageRV"
+            android:layout_marginTop="30dp"
+            android:visibility="gone">
 
+            <include layout="@layout/shimmer_content_placeholder" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMain"
         android:layout_width="wrap_content"

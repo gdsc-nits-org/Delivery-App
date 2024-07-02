@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.facebook.shimmer:shimmer:0.5.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
 
     // Firebase dependencies (no version numbers needed)
@@ -78,4 +79,5 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
+
 }

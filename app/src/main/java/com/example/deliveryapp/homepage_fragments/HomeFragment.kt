@@ -24,6 +24,7 @@ import com.example.deliveryapp.models.CarouselImageItem
 import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.models.NestedRecyclerModelFood
 import com.example.deliveryapp.userprofile.ProfileListFragment
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
@@ -32,6 +33,7 @@ import com.google.firebase.ktx.Firebase
 import java.util.UUID
 
 class HomeFragment : Fragment() {
+    private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var searchEditText: TextInputEditText
     private var allShops: List<NestedRecyclerModelFood> = emptyList()
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -57,6 +59,10 @@ class HomeFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
         bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation)
+        shimmerFrameLayout = rootView.findViewById(R.id.shimmerFrameLayout)
+        rvMain = rootView.findViewById(R.id.rvMain)
+
+        showShimmerEffect()
 
         setupCarousel(rootView)
         setupNestedRecyclerView(rootView)
@@ -65,6 +71,17 @@ class HomeFragment : Fragment() {
         setupSearchView(rootView)
 
         return rootView
+    }
+    private fun showShimmerEffect() {
+        shimmerFrameLayout.visibility = View.VISIBLE
+        rvMain.visibility = View.GONE
+        shimmerFrameLayout.startShimmer()
+    }
+
+    private fun hideShimmerEffect() {
+        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout.visibility = View.GONE
+        rvMain.visibility = View.VISIBLE
     }
     private fun setupSearchView(rootView: View) {
         searchEditText = rootView.findViewById(R.id.searchbox)
@@ -170,8 +187,10 @@ class HomeFragment : Fragment() {
 
                 if (allShops.isNotEmpty()) {
                     showAllCategories()
+                    hideShimmerEffect()
                 } else {
                     Toast.makeText(context, "No shops found", Toast.LENGTH_SHORT).show()
+                    hideShimmerEffect()
                 }
             }
             .addOnFailureListener { exception ->
