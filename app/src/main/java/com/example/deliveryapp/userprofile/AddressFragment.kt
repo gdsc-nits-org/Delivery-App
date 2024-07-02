@@ -16,19 +16,29 @@ import com.example.deliveryapp.utils.FirebaseManager
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 class AddressFragment : Fragment() {
 
     private lateinit var binding: FragmentAddressBinding
     private lateinit var navController: NavController
-    private lateinit var db : FirebaseFirestore
+    private lateinit var firestoreDB : FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
+    private lateinit var userID: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding= FragmentAddressBinding.inflate(inflater, container, false)
+        binding = FragmentAddressBinding.inflate(inflater, container, false)
+        init()
         return binding.root
+    }
+
+    private fun init() {
+        auth = FirebaseManager.getFirebaseAuth()
+        firestoreDB = FirebaseManager.getFirebaseFirestore()
+        userID = auth.currentUser?.email.toString()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,20 +55,18 @@ class AddressFragment : Fragment() {
         val etCountry = view.findViewById<TextInputEditText>(R.id.etCountryNameAddressPage)
         val etPinCode = view.findViewById<TextInputEditText>(R.id.etPostalCodeAddressPage)
 
-        val address = AddressData(
-            etHostel.text.toString(), etCity.text.toString(), etState.text.toString(),
-            etCountry.text.toString(), etPinCode.text.toString()
-        )
-
         val btnSave = view.findViewById<Button>(R.id.btnSaveAddress)
         btnSave.setOnClickListener {
-
-            saveData(address)
+            val address = AddressData(
+                etHostel.text.toString().trim(), etCity.text.toString().trim(), etState.text.toString().trim(),
+                etCountry.text.toString().trim(), etPinCode.text.toString().trim()
+            )
             val verification = FirebaseAuth.getInstance().currentUser?.isEmailVerified
             if (verification == true)
             {
-                navController.navigate(R.id.action_addressFragment_to_homeActivity2)
-                requireActivity().finish()
+                if(isAdded) {
+                    saveData(address)
+                }
             }
             else {
                 Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
@@ -68,25 +76,33 @@ class AddressFragment : Fragment() {
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Log.d("TAG", "Pressed...")
+                navController.navigateUp()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
+        private fun saveData(address: AddressData) {
 
-    private fun saveData(address: AddressData) {
-
-        db = FirebaseManager.getFirebaseFirestore()
-
-        val data = mapOf(
-            "HostelName" to address.hostel,
-            "State" to address.state,
-            "Postal Code" to address.pinCode,
-            "City" to address.city,
-            "Country" to address.country
-        )
-
-        db.collection("Users").document()
+            val data = mapOf(
+                "HostelName" to address.hostel,
+                "State" to address.state,
+                "Postal Code" to address.pinCode,
+                "City" to address.city,
+                "Country" to address.country
+            )
+            firestoreDB.collection("Users").document(userID)
+                .set(mapOf("Address" to data), SetOptions.merge()).addOnSuccessListener {
+                Toast.makeText(requireContext(), "Address saved successfully", Toast.LENGTH_SHORT)
+                    .show()
+                    navController.navigate(R.id.action_addressFragment_to_homeActivity2)
+                    requireActivity().finish()
+            }
+                .addOnFailureListener {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error saving address: ${it.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
     }
-
-}

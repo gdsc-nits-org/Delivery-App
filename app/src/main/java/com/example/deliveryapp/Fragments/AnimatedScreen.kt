@@ -4,12 +4,12 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
@@ -24,7 +24,7 @@ class AnimatedScreen : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentAnimatedScreenBinding.inflate(inflater, container, false)
         return binding.root
@@ -74,6 +74,9 @@ class AnimatedScreen : Fragment() {
 
             override fun onAnimationEnd(animation: android.animation.Animator) {
                 // Animation ended, you can perform any additional actions here
+                Handler(Looper.myLooper()!!).postDelayed({
+                    navControl.navigate(R.id.action_animatedScreen_to_signIn)
+                },3000)
             }
 
             override fun onAnimationCancel(animation: android.animation.Animator) {}
@@ -85,13 +88,6 @@ class AnimatedScreen : Fragment() {
         translateY.start()
 
         // Set up a click listener for the button
-        binding.myButton.setOnClickListener {
-            binding.ltAnimation.resumeAnimation()
-            binding.myButton.visibility=View.GONE
-            Handler(Looper.myLooper()!!).postDelayed(Runnable {
-                navControl.navigate(R.id.action_animatedScreen_to_signIn)
-            },1000)
-        }
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Log.d("TAG", "Pressed...")

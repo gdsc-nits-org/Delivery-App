@@ -15,8 +15,10 @@
             android:id="@+id/semicircleView"
             android:layout_width="match_parent"
             android:layout_height="150sp"
+            android:layout_marginBottom="580dp"
             android:background="@drawable/circle"
             android:elevation="10dp"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -61,29 +63,29 @@
             android:id="@+id/imageView"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:layout_marginTop="84dp"
             android:background="@drawable/rounded_back_button"
             android:contentDescription="@string/todo"
             android:elevation="10dp"
             android:padding="10dp"
             android:src="@drawable/user"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/semicircleView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@+id/semicircleView"
-            app:layout_constraintTop_toTopOf="@+id/semicircleView"
-            app:layout_constraintVertical_bias="0.133"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/mediumGrey" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="175dp"
             android:orientation="vertical"
             android:padding="8dp"
             app:layout_constraintBottom_toTopOf="@+id/btnSave"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.144">
 
             <TextView
@@ -99,6 +101,7 @@
                 android:textStyle="bold"
                 app:drawableEndCompat="@drawable/edittext_icon"
                 tools:ignore="TouchTargetSizeCheck" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout1"
                 style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
@@ -115,8 +118,13 @@
                     android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ems="10"
                     android:enabled="false"
-                    android:hint="@string/name"/>
+                    android:gravity="start"
+                    android:hint="@string/name"
+                    android:isScrollContainer="true"
+                    android:maxLines="2"
+                    android:minLines="0" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -155,8 +163,8 @@
                     android:id="@+id/etContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/contact_no"
                     android:enabled="false"
+                    android:hint="@string/contact_no"
                     android:inputType="phone"
                     android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -179,23 +187,18 @@
                     android:enabled="false"
                     android:hint="@string/bio" />
             </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnSave"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="92dp"
-            android:backgroundTint="@color/mediumOrange"
-            android:text="@string/save"
-            android:enabled="false"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="1.0"/>
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/mediumOrange"
+                android:enabled="false"
+                android:text="@string/save"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <FrameLayout

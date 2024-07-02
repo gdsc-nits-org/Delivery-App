@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.R
 import com.example.deliveryapp.utils.FirebaseManager
 import com.example.deliveryapp.utils.FirestoreManager
@@ -29,7 +28,7 @@ import kotlinx.coroutines.withContext
 
 class EditProfileFragment : Fragment() {
     private lateinit var firestore: FirestoreManager
-    private var userID : String = ""
+    private lateinit var userID : String
     private lateinit var auth : FirebaseAuth
     private lateinit var etName : TextInputEditText
     private lateinit var etEmail : TextInputEditText
@@ -40,30 +39,11 @@ class EditProfileFragment : Fragment() {
     private lateinit var loadingOverlay: FrameLayout
     private lateinit var userData: UserData
 
-    private fun init() {
 
-       firestore = FirestoreManager()
-       database = FirebaseManager.getFirebaseDatabase()
-        auth = FirebaseManager.getFirebaseAuth()
-        userData = UserData("", "", "", "")
-        //getting userEmail
-        auth.currentUser?.uid?.let {
-            showLoading()
-            database.reference
-                .child("Users")
-                .child(it)
-                .child("email")
-                .get().addOnSuccessListener {dataSnapshot->
-                    userID = dataSnapshot.getValue(String::class.java).toString()
-                    userData.email = userID
-                    updateUI()
-                    hideLoading()
-                }
-                .addOnFailureListener{
-                    hideLoading()
-                    Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show()
-                }
-        }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        init()
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -75,19 +55,16 @@ class EditProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_edit_profile, container, false)
 
         loadingOverlay = view.findViewById(R.id.loadingOverlay)
-        init()
         return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        lifecycleScope.coroutineContext.cancel()
     }
 
     override fun onResume() {
         super.onResume()
-        showLoading()
-        setText(userData)
+        updateUI()
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        lifecycleScope.coroutineContext.cancel()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -103,7 +80,9 @@ class EditProfileFragment : Fragment() {
 
         backBtn.setOnClickListener{
             Toast.makeText(context, "Pressed back button", Toast.LENGTH_SHORT).show()
-            findNavController().navigateUp()
+            val fragmentTransaction = parentFragmentManager.beginTransaction().replace(R.id.frame_container, ProfileListFragment())
+            fragmentTransaction.commit()
+            parentFragmentManager.popBackStack()
         }
 
         tvEdit.setOnClickListener {
@@ -116,16 +95,16 @@ class EditProfileFragment : Fragment() {
                 val bio = etBio.text.toString().trim()
 
                 if(name != ""){
-                    userData.name = name.trim()
+                    userData.name = name
                 }
                 if(contact != ""){
-                    userData.contact = contact.trim()
+                    userData.contact = contact
                 }
                 if(email != ""){
-                    userData.email = email.trim()
+                    userData.email = email
                 }
                 if(bio != ""){
-                    userData.bio = bio.trim()
+                    userData.bio = bio
                 }
                 if(name.isEmpty() or name.isBlank()){
                     Toast.makeText(requireContext(),
@@ -140,7 +119,14 @@ class EditProfileFragment : Fragment() {
             }
         }
     }
-
+    private fun init() {
+        firestore = FirestoreManager()
+        database = FirebaseManager.getFirebaseDatabase()
+        auth = FirebaseManager.getFirebaseAuth()
+        userData = UserData("", "", "", "")
+        userID = auth.currentUser?.email.toString()
+        userData.email = userID
+    }
     private fun setUpViews(view: View) {
         etName = view.findViewById(R.id.etName)
         etEmail = view.findViewById(R.id.etEmail)
@@ -181,12 +167,11 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun setText(data: UserData) {
-        enableViews(true)
         etName.setText(data.name)
         etContact.setText(data.contact)
         etEmail.setText(data.email)
         etBio.setText(data.bio)
-        enableViews(false)
+        hideLoading()
     }
 
     private fun saveData(updatedUserData: UserData) {
@@ -252,6 +237,5 @@ class EditProfileFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error fetching user data: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
         )
-        hideLoading()
     }
 }

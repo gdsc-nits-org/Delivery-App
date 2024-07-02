@@ -5,27 +5,26 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.example.deliveryapp.R
-import com.example.deliveryapp.adapters.CarouselImageAdapter
-import com.example.deliveryapp.adapters.NestedRecyclerAdapter
 import com.example.deliveryapp.models.CarouselImageItem
 import com.example.deliveryapp.userprofile.ProfileListFragment
-import com.example.deliveryapp.utils.SampleData
+import com.example.deliveryapp.utils.FirebaseManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
-import java.util.UUID
+import com.google.firebase.firestore.FirebaseFirestore
 
 class HomeFragment : Fragment() {
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var imageList : ArrayList<CarouselImageItem>
+    private lateinit var firestore: FirebaseFirestore
     private var fragmentNavigation: HomepageNavigation? = null
 
     companion object {
@@ -39,6 +38,17 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        init()
+    }
+
+    private fun init() {
+        firestore = FirebaseManager.getFirebaseFirestore()
+        imageList = arrayListOf()
+        fetchBanners()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,42 +59,7 @@ class HomeFragment : Fragment() {
         bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation)
 
         // Carousel
-        val imageRV = rootView.findViewById<RecyclerView>(R.id.imageRV)
 
-        // Data
-        val imageList = arrayListOf(
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/866/500/500.jpg?hmac=FOptChXpmOmfR5SpiL2pp74Yadf1T_bRhBF1wJZa9hg"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/270/500/500.jpg?hmac=MK7XNrBrZ73QsthvGaAkiNoTl65ZDlUhEO-6fnd-ZnY"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
-            )
-        )
-        val carouselImageAdapter = CarouselImageAdapter()
-        imageRV.adapter = carouselImageAdapter
-        carouselImageAdapter.submitList(imageList)
-
-        val nestedRecyclerAdapter = NestedRecyclerAdapter(SampleData.collections)
-        val rvMain = rootView.findViewById<RecyclerView>(R.id.rvMain)
-        rvMain.adapter = nestedRecyclerAdapter
 
         // set onClick to profile
         val cardView = rootView.findViewById<MaterialCardView>(R.id.home_profile)
@@ -98,6 +73,28 @@ class HomeFragment : Fragment() {
         checkNotificationPermission()
 
         return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+    }
+    private fun fetchBanners() {
+
+        val items = arrayListOf<CarouselImageItem>()
+        firestore.collection("Banners").get().addOnSuccessListener {Banners->
+
+            for(banner in Banners){
+                val name = banner.get("Name").toString().trim()
+                val url = banner.get("url").toString().trim()
+
+                items.add(CarouselImageItem(name, url));
+            }
+            imageList = items
+        }
+            .addOnFailureListener{
+                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun checkNotificationPermission() {

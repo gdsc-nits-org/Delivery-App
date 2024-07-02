@@ -96,7 +96,8 @@
         tools:layout="@layout/fragment_location" >
         <action
             android:id="@+id/action_locationFragment_to_addressFragment"
-            app:destination="@id/addressFragment" />
+            app:destination="@id/addressFragment"
+            app:popUpTo="@id/loginPage" />
         <action
             android:id="@+id/action_locationFragment_to_signIn"
             app:destination="@id/signIn" />

@@ -6,3 +6,6 @@ data class UserData(
     var contact: String = "",
     var bio: String = ""
 )
+{
+    constructor() : this("", "", "", "")
+}
