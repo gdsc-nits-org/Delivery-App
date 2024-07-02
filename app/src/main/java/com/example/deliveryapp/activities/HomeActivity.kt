@@ -1,8 +1,9 @@
-package com.example.deliveryapp
+package com.example.deliveryapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.deliveryapp.R
 import com.example.deliveryapp.homepage_fragments.CartFragment
 import com.example.deliveryapp.homepage_fragments.HomeFragment
 import com.example.deliveryapp.homepage_fragments.HomepageNavigation

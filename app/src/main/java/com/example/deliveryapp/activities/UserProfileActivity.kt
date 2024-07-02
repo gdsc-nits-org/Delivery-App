@@ -1,10 +1,11 @@
-package com.example.deliveryapp
+package com.example.deliveryapp.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.deliveryapp.R
 import com.example.deliveryapp.userprofile.ProfileListFragment
 
 class UserProfileActivity : AppCompatActivity() {

@@ -10,15 +10,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSignUpPageBinding
+import com.example.deliveryapp.utils.FirebaseManager
+import com.example.deliveryapp.utils.FirestoreManager
 import com.example.deliveryapp.utils.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 
 class SignUpPage : Fragment() {
 
@@ -26,7 +29,12 @@ class SignUpPage : Fragment() {
     private lateinit var binding: FragmentSignUpPageBinding
     private lateinit var navController: NavController
     private lateinit var databaseRef: DatabaseReference
+    private lateinit var firestore : FirebaseFirestore
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        init()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,16 +46,16 @@ class SignUpPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init(view)
+        navController = Navigation.findNavController(view)
         registerEvents()
-
     }
 
-    private fun init(view: View) {
+    private fun init() {
+        auth = FirebaseManager.getFirebaseAuth()
 
-        navController = Navigation.findNavController(view)
-        auth = FirebaseAuth.getInstance()
-        databaseRef = FirebaseDatabase.getInstance()
+        firestore = FirebaseManager.getFirebaseFirestore()
+
+        databaseRef = FirebaseManager.getFirebaseDatabase()
             .reference.child("Users")
 
     }
@@ -76,6 +84,7 @@ class SignUpPage : Fragment() {
                             val userId = currentUser?.uid
 
                             val userModel = User(name, email)
+                            uploadFirestore(userModel, userModel.email)
                             userId?.let {
                                 databaseRef.child(it).setValue(userModel)
                                     .addOnCompleteListener { dbTask ->
@@ -116,5 +125,16 @@ class SignUpPage : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    private fun uploadFirestore(userModel: User, userId: String) {
+        val firestoreManager = FirestoreManager()
+
+        val newData = mapOf(
+            "Name" to userModel.name,
+            "Email" to userModel.email,
+        )
+        firestoreManager.addDocument("Users", newData, userId)
+        Toast.makeText(requireContext(), "Added Successfully", Toast.LENGTH_SHORT).show()
     }
 }

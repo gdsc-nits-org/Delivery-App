@@ -14,7 +14,7 @@
 
 
     <application
-        android:name=".FirebaseOffline"
+        android:name=".utils.FirebaseOffline"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -33,13 +33,16 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/ButtonColour" />
-
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.EmptyActivity"
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.HomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +51,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".utils.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

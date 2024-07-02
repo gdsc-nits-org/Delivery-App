@@ -1,6 +1,7 @@
 package com.example.deliveryapp.homepage_fragments
 
 import android.Manifest
+import com.google.android.material.textfield.TextInputEditText
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -21,13 +22,13 @@ import com.example.deliveryapp.R
 import com.example.deliveryapp.adapters.CarouselImageAdapter
 import com.example.deliveryapp.adapters.NestedRecyclerAdapter
 import com.example.deliveryapp.models.CarouselImageItem
-import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.models.NestedRecyclerModelFood
+import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.userprofile.ProfileListFragment
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.UUID
@@ -37,9 +38,11 @@ class HomeFragment : Fragment() {
     private lateinit var searchEditText: TextInputEditText
     private var allShops: List<NestedRecyclerModelFood> = emptyList()
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var imageList : ArrayList<CarouselImageItem>
+    private lateinit var firestore: FirebaseFirestore
     private var fragmentNavigation: HomepageNavigation? = null
-    private lateinit var rvMain: RecyclerView
     private lateinit var nestedRecyclerAdapter: NestedRecyclerAdapter
+    private lateinit var rvMain: RecyclerView
 
     companion object {
         private const val REQUEST_CODE_POST_NOTIFICATIONS = 1
@@ -194,7 +197,29 @@ class HomeFragment : Fragment() {
                 }
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(context, "Error fetching shop data: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "Error fetching shop data: ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
+
+    private fun fetchBanners() {
+
+        val items = arrayListOf<CarouselImageItem>()
+        firestore.collection("Banners").get().addOnSuccessListener {banners->
+
+            for(banner in banners){
+                val name = banner.get("Name").toString().trim()
+                val url = banner.get("url").toString().trim()
+
+                items.add(CarouselImageItem(name, url))
+            }
+            imageList = items
+        }
+            .addOnFailureListener{
+                Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
     }
 

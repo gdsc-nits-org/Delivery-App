@@ -1,4 +1,4 @@
-package com.example.deliveryapp
+package com.example.deliveryapp.utils
 
 import android.app.Application
 import com.google.firebase.database.ktx.database

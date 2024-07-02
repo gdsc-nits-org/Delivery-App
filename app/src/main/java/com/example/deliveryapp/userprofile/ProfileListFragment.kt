@@ -10,8 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.deliveryapp.MainActivity
 import com.example.deliveryapp.R
+import com.example.deliveryapp.activities.MainActivity
+import com.example.deliveryapp.utils.FirebaseManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -31,6 +32,7 @@ class ProfileListFragment : Fragment() {
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
+
             fragmentTransaction.replace(R.id.frame_container, EditProfileFragment())
 //            val navBar = activity?.findViewById<BottomNavigationView>(R.id.bvNavBar)
 //            if (navBar != null) {
@@ -47,7 +49,7 @@ class ProfileListFragment : Fragment() {
         tvAddress.setOnClickListener{
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frame_container, AddressFragment())
+            fragmentTransaction.replace(R.id.frame_container, EditAddressFragment())
 //            if (navBar != null) {
 //                navBar.visibility = View.INVISIBLE
 //            }
@@ -60,7 +62,7 @@ class ProfileListFragment : Fragment() {
         }
     }
     private fun logout() {
-        val auth = FirebaseAuth.getInstance()
+        val auth = FirebaseManager.getFirebaseAuth()
         auth.signOut()
         Toast.makeText(requireContext(), "Logged Out Successfully", Toast.LENGTH_SHORT).show()
         val it = Intent(requireContext(), MainActivity::class.java)
