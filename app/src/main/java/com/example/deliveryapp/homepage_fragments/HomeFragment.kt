@@ -8,12 +8,14 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.R
+import com.example.deliveryapp.adapters.CarouselImageAdapter
 import com.example.deliveryapp.adapters.NestedRecyclerAdapter
 import com.example.deliveryapp.models.CarouselImageItem
 import com.example.deliveryapp.models.NestedRecyclerModelFood
@@ -110,9 +112,9 @@ class HomeFragment : Fragment() {
             fragmentNavigation?.replaceFragment(ProfileListFragment())
             bottomNavigationView.selectedItemId = R.id.bottom_profile
         }
-        }
+    }
 
-    fun fetchShopData() {
+    private fun fetchShopData() {
         val db = Firebase.firestore
         db.collection("Shops")
             .get()
@@ -140,20 +142,20 @@ class HomeFragment : Fragment() {
                 }
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(context, "Error fetching shop data: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "Error fetching shop data: ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        
-    }
     private fun fetchBanners() {
 
         val items = arrayListOf<CarouselImageItem>()
-        firestore.collection("Banners").get().addOnSuccessListener {Banners->
+        firestore.collection("Banners").get().addOnSuccessListener {banners->
 
-            for(banner in Banners){
+            for(banner in banners){
                 val name = banner.get("Name").toString().trim()
                 val url = banner.get("url").toString().trim()
 
