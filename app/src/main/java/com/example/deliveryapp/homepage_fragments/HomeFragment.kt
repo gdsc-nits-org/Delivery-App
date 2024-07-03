@@ -2,7 +2,6 @@ package com.example.deliveryapp.homepage_fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import com.facebook.shimmer.ShimmerFrameLayout
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -26,6 +25,7 @@ import com.example.deliveryapp.models.NestedRecyclerModelFood
 import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.userprofile.ProfileListFragment
 import com.example.deliveryapp.utils.FirebaseManager
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
