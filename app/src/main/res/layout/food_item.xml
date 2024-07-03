@@ -19,23 +19,24 @@
         <ImageView
             android:id="@+id/imageFoodPoster"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:contentDescription="Food poster image" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-             />
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_gravity="bottom"-->
+<!--             />-->
 
         <TextView
-            android:id="@+id/textFoodName"
-            android:layout_width="wrap_content"
+            android:id="@+id/textShopName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:layout_margin="12dp"
-            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             android:maxLines="2"
