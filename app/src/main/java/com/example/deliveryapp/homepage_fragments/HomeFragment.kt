@@ -2,6 +2,7 @@ package com.example.deliveryapp.homepage_fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
+import com.facebook.shimmer.ShimmerFrameLayout
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -32,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.UUID
 
 class HomeFragment : Fragment() {
+    private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var searchEditText: TextInputEditText
     private lateinit var rootView: View
     private var allShops: List<NestedRecyclerModelFood> = emptyList()
@@ -91,6 +93,11 @@ class HomeFragment : Fragment() {
                 "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
             )
         )
+        shimmerFrameLayout = rootView.findViewById(R.id.shimmerFrameLayout)
+        rvMain = rootView.findViewById(R.id.rvMain)
+
+        showShimmerEffect()
+
         setupCarousel(rootView)
         setupNestedRecyclerView(rootView)
         setupProfileCard(rootView)
@@ -98,6 +105,17 @@ class HomeFragment : Fragment() {
         setupSearchView(rootView)
 
         return rootView
+    }
+    private fun showShimmerEffect() {
+        shimmerFrameLayout.visibility = View.VISIBLE
+        rvMain.visibility = View.GONE
+        shimmerFrameLayout.startShimmer()
+    }
+
+    private fun hideShimmerEffect() {
+        shimmerFrameLayout.stopShimmer()
+        shimmerFrameLayout.visibility = View.GONE
+        rvMain.visibility = View.VISIBLE
     }
     private fun setupSearchView(rootView: View) {
         searchEditText = rootView.findViewById(R.id.searchbox)
@@ -176,8 +194,10 @@ class HomeFragment : Fragment() {
 
                 if (allShops.isNotEmpty()) {
                     showAllCategories()
+                    hideShimmerEffect()
                 } else {
                     Toast.makeText(context, "No shops found", Toast.LENGTH_SHORT).show()
+                    hideShimmerEffect()
                 }
             }
             .addOnFailureListener { exception ->
@@ -207,6 +227,7 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
     }
+    @SuppressLint("NotifyDataSetChanged")
     private fun refreshCarousel(imageList: ArrayList<CarouselImageItem>) {
         val imageRV = rootView.findViewById<RecyclerView>(R.id.imageRV)
         val carouselImageAdapter = imageRV.adapter as? CarouselImageAdapter
