@@ -131,6 +131,8 @@
         android:id="@+id/homeFragment"
         android:name="com.example.deliveryapp.homepage_fragments.HomeFragment"
         android:label="HomeFragment" >
+
     </fragment>
+
 
 </navigation>
