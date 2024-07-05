@@ -10,9 +10,8 @@ import com.example.deliveryapp.Dishes.DishItems
 import com.example.deliveryapp.Dishes.ShopsFragment
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSearchBinding
-import com.example.deliveryapp.utils.ViewPagerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.tabs.TabLayout
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
@@ -45,21 +44,35 @@ class SearchFragment : Fragment() {
             bottomNavigationView.selectedItemId = R.id.bottom_home
         }
 
-        setupViewPager()
+        setupTabs()
+
+        // Load the first fragment by default
+        if (savedInstanceState == null) {
+            replaceFragment(ShopsFragment())
+        }
     }
 
-    private fun setupViewPager() {
-        val fragments = listOf(ShopsFragment(), DishItems())
-        val adapter = ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
-        binding.viewPager.adapter = adapter
+    private fun setupTabs() {
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.shops)))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.dishes)))
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> getString(R.string.shops)
-                1 -> getString(R.string.dishes)
-                else -> null
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when (tab.position) {
+                    0 -> replaceFragment(ShopsFragment())
+                    1 -> replaceFragment(DishItems())
+                }
             }
-        }.attach()
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
     }
 
     override fun onDestroyView() {

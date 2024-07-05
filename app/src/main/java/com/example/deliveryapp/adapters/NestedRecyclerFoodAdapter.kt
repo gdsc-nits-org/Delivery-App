@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.deliveryapp.models.NestedRecyclerModelFood
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FoodItemBinding
+import com.example.deliveryapp.models.NestedRecyclerModelFood
 
 class NestedRecyclerFoodAdapter(
     private val foodItems: List<NestedRecyclerModelFood>,
@@ -27,7 +27,7 @@ class NestedRecyclerFoodAdapter(
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val foodItem = foodItems[position]
         holder.binding.apply {
-            imageFoodPoster.load(foodItems[position].imageUrl)
+            imageFoodPoster.load(foodItem.imageUrl)
 
             textShopName.text = foodItem.shopName
             imageFoodPoster.setGrayscale(!foodItem.status)
