@@ -11,29 +11,27 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="28dp">
+        android:padding="16dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/backButton"
-            android:backgroundTint="#EDECEB"
-            app:cardCornerRadius="80dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
-            android:layout_marginEnd="16dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#EDECEB">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_gravity="center"
-                android:contentDescription="@string/todo111"
-                android:src="@drawable/arrow_back_24px" />
+                android:src="@drawable/arrow_back_24px"
+                android:contentDescription="@string/back_button_description" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -43,13 +41,13 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/searchIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/search"
-            android:contentDescription="@string/todo14"
-            />
+            android:contentDescription="@string/search_icon_description" />
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout
@@ -59,7 +57,9 @@
         android:background="@color/white"
         app:tabTextColor="@color/black"
         app:tabSelectedTextColor="@color/ButtonColour"
-        app:tabIndicatorColor="@color/mediumOrange">
+        app:tabIndicatorColor="@color/mediumOrange"
+        app:tabMode="fixed"
+        app:tabGravity="fill">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -72,8 +72,8 @@
             android:text="@string/dishes" />
     </com.google.android.material.tabs.TabLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

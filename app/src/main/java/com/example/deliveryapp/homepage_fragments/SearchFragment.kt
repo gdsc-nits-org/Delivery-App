@@ -2,18 +2,21 @@ package com.example.deliveryapp.homepage_fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.deliveryapp.Dishes.DishItems
-import com.example.deliveryapp.R
 import com.example.deliveryapp.Dishes.ShopsFragment
+import com.example.deliveryapp.R
+import com.example.deliveryapp.databinding.FragmentSearchBinding
+import com.example.deliveryapp.utils.ViewPagerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.card.MaterialCardView
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class SearchFragment : Fragment() {
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
     private lateinit var bottomNavigationView: BottomNavigationView
     private var fragmentNavigation: HomepageNavigation? = null
 
@@ -27,44 +30,40 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation)
 
-        val rootView = inflater.inflate(R.layout.fragment_search, container, false)
-
-        // set on click to back button
-        val backButton = rootView.findViewById<MaterialCardView>(R.id.backButton)
-        backButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             fragmentNavigation?.replaceFragment(HomeFragment())
             bottomNavigationView.selectedItemId = R.id.bottom_home
         }
 
-        // Set up TabLayout listener
-        val tabLayout = rootView.findViewById<TabLayout>(R.id.tabLayout)
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                when (tab.position) {
-                    0 -> childFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, ShopsFragment())
-                        .commit()
-                    1 -> childFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, DishItems())
-                        .commit()
-                }
+        setupViewPager()
+    }
+
+    private fun setupViewPager() {
+        val fragments = listOf(ShopsFragment(), DishItems())
+        val adapter = ViewPagerAdapter(fragments, childFragmentManager, lifecycle)
+        binding.viewPager.adapter = adapter
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = when (position) {
+                0 -> getString(R.string.shops)
+                1 -> getString(R.string.dishes)
+                else -> null
             }
+        }.attach()
+    }
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
-
-        // Set default tab
-        if (savedInstanceState == null) {
-            tabLayout.getTabAt(0)?.select()
-            childFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ShopsFragment())
-                .commit()
-        }
-
-        return rootView
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

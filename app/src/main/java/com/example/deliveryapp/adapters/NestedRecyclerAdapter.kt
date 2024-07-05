@@ -1,5 +1,6 @@
 package com.example.deliveryapp.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +35,8 @@ class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMai
 //        collections = newCollections
 //        notifyDataSetChanged()
 //    }
-    fun updateData(newCollections: List<NestedRecyclerModelMain>) {
+@SuppressLint("NotifyDataSetChanged")
+fun updateData(newCollections: List<NestedRecyclerModelMain>) {
         collections = newCollections
         notifyDataSetChanged()
     }
