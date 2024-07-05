@@ -1,11 +1,14 @@
 package com.example.deliveryapp.homepage_fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
+import com.example.addtocart.Gateway
 import com.example.deliveryapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
@@ -36,6 +39,13 @@ class CartFragment : Fragment() {
                 fragmentNavigation?.replaceFragment(HomeFragment())
                 bottomNavigationView.selectedItemId = R.id.bottom_home
             }
+        }
+
+        val btncheckout = rootView.findViewById<LinearLayout>(R.id.btncheckout)
+
+        btncheckout.setOnClickListener {
+            val intent = Intent(activity, Gateway::class.java)
+            startActivity(intent)
         }
 
         return rootView
