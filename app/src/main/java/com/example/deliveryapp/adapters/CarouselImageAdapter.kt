@@ -24,7 +24,7 @@ class CarouselImageAdapter : ListAdapter<CarouselImageItem,CarouselImageAdapter.
 
     }
     class ViewHolder(iteView: View): RecyclerView.ViewHolder(iteView){
-        private val imageView = iteView.findViewById<ImageView>(R.id.imageView)
+        private val imageView = iteView.findViewById<ImageView>(R.id.backButton)
 
 
         fun bindData(item: CarouselImageItem){

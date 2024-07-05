@@ -2,19 +2,18 @@ package com.example.deliveryapp.userprofile
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.deliveryapp.Fragments.MyOrdersFragment
 import com.example.deliveryapp.R
 import com.example.deliveryapp.activities.MainActivity
 import com.example.deliveryapp.utils.FirebaseManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
 
 
 class ProfileListFragment : Fragment() {
@@ -32,7 +31,6 @@ class ProfileListFragment : Fragment() {
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-
             fragmentTransaction.replace(R.id.frame_container, EditProfileFragment())
 //            val navBar = activity?.findViewById<BottomNavigationView>(R.id.bvNavBar)
 //            if (navBar != null) {
@@ -46,6 +44,14 @@ class ProfileListFragment : Fragment() {
 //        if (navBar != null) {
 //            navBar.visibility = View.VISIBLE
 //        }
+        val myOrders = view.findViewById<TextView>(R.id.tvOrders)
+
+        myOrders.setOnClickListener{
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction().replace(R.id.frame_container, MyOrdersFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
         tvAddress.setOnClickListener{
             val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()

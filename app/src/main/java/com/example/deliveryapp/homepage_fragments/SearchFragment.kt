@@ -33,7 +33,7 @@ class SearchFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_search, container, false)
 
         // set on click to back button
-        val backButton = rootView.findViewById<MaterialCardView>(R.id.imageView)
+        val backButton = rootView.findViewById<MaterialCardView>(R.id.backButton)
         backButton.setOnClickListener {
             fragmentNavigation?.replaceFragment(HomeFragment())
             bottomNavigationView.selectedItemId = R.id.bottom_home

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.deliveryapp.models.NestedRecyclerModelFood
@@ -30,7 +29,7 @@ class NestedRecyclerFoodAdapter(
         holder.binding.apply {
             imageFoodPoster.load(foodItems[position].imageUrl)
 
-            textShopName.text = foodItem.shopname
+            textShopName.text = foodItem.shopName
             imageFoodPoster.setGrayscale(!foodItem.status)
         }
     }

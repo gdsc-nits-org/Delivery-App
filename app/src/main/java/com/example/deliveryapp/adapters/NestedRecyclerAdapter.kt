@@ -3,11 +3,11 @@ package com.example.deliveryapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ParentItemBinding
-import android.widget.Toast
+import com.example.deliveryapp.models.NestedRecyclerModelMain
 
 class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMain>) :
     RecyclerView.Adapter<NestedRecyclerAdapter.CollectionViewHolder>() {
@@ -24,10 +24,7 @@ class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMai
         holder.binding.apply {
             Genere.text = collection.title
             rvMovieChild.adapter = NestedRecyclerFoodAdapter(collection.movieModel) { shop ->
-                val message = "Shop: ${shop.shopName}\n" +
-                        "Total Orders: ${shop.totalOrders}\n" +
-                        "Phone: ${shop.phoneNo}\n" +
-                        "Location: ${shop.location}"
+                val message = "Shop: ${shop.shopName}\n" + "Status: ${shop.status}"
                 Toast.makeText(holder.itemView.context, message, Toast.LENGTH_LONG).show()
             }
         }

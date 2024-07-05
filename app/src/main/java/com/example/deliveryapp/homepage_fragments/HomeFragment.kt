@@ -185,11 +185,9 @@ class HomeFragment : Fragment() {
                 allShops = result.documents.mapNotNull { document ->
                     val imageUrl = document.getString("ShopImg") ?: return@mapNotNull null
                     val shopName = document.getString("ShopName") ?: "Unknown Shop"
-                    val totalOrders = document.getLong("TotalOrders")?.toInt() ?: 0
-                    val phoneNo = document.getString("Phoneno") ?: "N/A"
-                    val location = document.getString("Location") ?: "N/A"
+                    val status = document.getBoolean("Status") ?: true
 
-                    NestedRecyclerModelFood(imageUrl, shopName, totalOrders, phoneNo, location)
+                    NestedRecyclerModelFood(imageUrl, status, shopName)
                 }
 
                 if (allShops.isNotEmpty()) {

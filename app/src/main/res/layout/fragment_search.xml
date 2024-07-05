@@ -16,7 +16,7 @@
         android:paddingEnd="28dp">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/imageView"
+            android:id="@+id/backButton"
             android:backgroundTint="#EDECEB"
             app:cardCornerRadius="80dp"
             android:layout_width="40dp"
@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:contentDescription="@string/todo111"
                 android:src="@drawable/arrow_back_24px" />
         </com.google.android.material.card.MaterialCardView>
 
