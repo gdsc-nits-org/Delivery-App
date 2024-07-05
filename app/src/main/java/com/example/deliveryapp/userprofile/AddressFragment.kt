@@ -1,5 +1,6 @@
 package com.example.deliveryapp.userprofile
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAddressBinding
+import com.example.deliveryapp.homepage_fragments.HomeFragment
+import com.example.deliveryapp.homepage_fragments.HomepageNavigation
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
@@ -19,6 +22,15 @@ class AddressFragment : Fragment() {
 
     private lateinit var binding: FragmentAddressBinding
     private lateinit var navController: NavController
+    private var fragmentNavigation: HomepageNavigation? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomepageNavigation) {
+            fragmentNavigation = context
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,10 +43,15 @@ class AddressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController= Navigation.findNavController(view)
-        binding.backBtnAddressPage.setOnClickListener {
-            navController.navigate(R.id.action_addressFragment_to_locationFragment)
+
+
+        // Ensure the fragment is not already being replaced
+        binding.backBtnAddressPage.setOnClickListener{
+            if (fragmentNavigation != null) {
+                fragmentNavigation?.replaceFragment(AddressFragment())
+            }
         }
+
 
         var etHostel = view.findViewById<TextInputEditText>(R.id.etHostelNameAddressPage)
         var etCity = view.findViewById<TextInputEditText>(R.id.etCityAddressPage)
