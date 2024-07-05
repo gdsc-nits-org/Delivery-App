@@ -1,7 +1,7 @@
 package com.example.deliveryapp.homepage_fragments
 
 import android.Manifest
-import com.google.android.material.textfield.TextInputEditText
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -11,7 +11,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -25,22 +24,23 @@ import com.example.deliveryapp.models.CarouselImageItem
 import com.example.deliveryapp.models.NestedRecyclerModelFood
 import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.userprofile.ProfileListFragment
+import com.example.deliveryapp.utils.FirebaseManager
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import java.util.UUID
 
 class HomeFragment : Fragment() {
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
     private lateinit var searchEditText: TextInputEditText
+    private lateinit var rootView: View
     private var allShops: List<NestedRecyclerModelFood> = emptyList()
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var imageList : ArrayList<CarouselImageItem>
     private lateinit var firestore: FirebaseFirestore
     private var fragmentNavigation: HomepageNavigation? = null
+    private lateinit var imageList: ArrayList<CarouselImageItem>
     private lateinit var nestedRecyclerAdapter: NestedRecyclerAdapter
     private lateinit var rvMain: RecyclerView
 
@@ -55,13 +55,44 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        refreshCarousel(imageList)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
         bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation)
+        imageList = arrayListOf(
+            CarouselImageItem(
+                UUID.randomUUID().toString(),
+                "https://firebasestorage.googleapis.com/v0/b/delivery-app-9324d.appspot.com/o/images%2F1717689480794.jpg?alt=media&token=ee0e2637-67e5-4a7e-9c77-070a8419cd70"
+            ),
+            CarouselImageItem(
+                UUID.randomUUID().toString(),
+                "https://firebasestorage.googleapis.com/v0/b/delivery-app-9324d.appspot.com/o/images%2F1717689480794.jpg?alt=media&token=ee0e2637-67e5-4a7e-9c77-070a8419cd70"
+            ),
+            CarouselImageItem(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
+            ),
+            CarouselImageItem(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
+            ),
+            CarouselImageItem(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
+            ),
+            CarouselImageItem(
+                UUID.randomUUID().toString(),
+                "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
+            )
+        )
         shimmerFrameLayout = rootView.findViewById(R.id.shimmerFrameLayout)
         rvMain = rootView.findViewById(R.id.rvMain)
 
@@ -118,40 +149,13 @@ class HomeFragment : Fragment() {
         )
         nestedRecyclerAdapter.updateData(collections)
     }
-
     private fun updateRecyclerView(collections: List<NestedRecyclerModelMain>) {
         nestedRecyclerAdapter.updateData(collections)
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
     private fun setupCarousel(rootView: View) {
         val imageRV = rootView.findViewById<RecyclerView>(R.id.imageRV)
-        val imageList = arrayListOf(
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/866/500/500.jpg?hmac=FOptChXpmOmfR5SpiL2pp74Yadf1T_bRhBF1wJZa9hg"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/270/500/500.jpg?hmac=MK7XNrBrZ73QsthvGaAkiNoTl65ZDlUhEO-6fnd-ZnY"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/798/500/500.jpg?hmac=Bmzk6g3m8sUiEVHfJWBscr2DUg8Vd2QhN7igHBXLLfo"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/95/500/500.jpg?hmac=0aldBQ7cQN5D_qyamlSP5j51o-Og4gRxSq4AYvnKk2U"
-            ),
-            CarouselImageItem(
-                UUID.randomUUID().toString(),
-                "https://fastly.picsum.photos/id/778/500/500.jpg?hmac=jZLZ6WV_OGRxAIIYPk7vGRabcAGAILzxVxhqSH9uLas"
-            )
-        )
         val carouselImageAdapter = CarouselImageAdapter()
         imageRV.adapter = carouselImageAdapter
         carouselImageAdapter.submitList(imageList)
@@ -161,7 +165,7 @@ class HomeFragment : Fragment() {
         rvMain = rootView.findViewById(R.id.rvMain)
         nestedRecyclerAdapter = NestedRecyclerAdapter(emptyList())
         rvMain.adapter = nestedRecyclerAdapter
-
+        fetchBanners()
         fetchShopData()
     }
 
@@ -174,7 +178,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchShopData() {
-        val db = Firebase.firestore
+        val db = FirebaseManager.getFirebaseFirestore()
         db.collection("Shops")
             .get()
             .addOnSuccessListener { result ->
@@ -207,23 +211,30 @@ class HomeFragment : Fragment() {
     }
 
     private fun fetchBanners() {
-
+        firestore = FirebaseManager.getFirebaseFirestore()
         val items = arrayListOf<CarouselImageItem>()
         firestore.collection("Banners").get().addOnSuccessListener {banners->
-
             for(banner in banners){
-                val name = banner.get("Name").toString().trim()
-                val url = banner.get("url").toString().trim()
-
+                val name = UUID.randomUUID().toString()
+                val url = banner.getString("url").toString()
+//                Log.d("Banner", "Banner: $name \n $url")
                 items.add(CarouselImageItem(name, url))
             }
-            imageList = items
+            imageList.clear()
+            imageList.addAll(items)
+            refreshCarousel(imageList)
         }
             .addOnFailureListener{
                 Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
     }
-
+    @SuppressLint("NotifyDataSetChanged")
+    private fun refreshCarousel(imageList: ArrayList<CarouselImageItem>) {
+        val imageRV = rootView.findViewById<RecyclerView>(R.id.imageRV)
+        val carouselImageAdapter = imageRV.adapter as? CarouselImageAdapter
+        carouselImageAdapter?.submitList(imageList)
+        carouselImageAdapter?.notifyDataSetChanged()
+    }
     private fun checkNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(

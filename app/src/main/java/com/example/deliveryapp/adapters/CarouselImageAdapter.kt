@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.deliveryapp.models.CarouselImageItem
 import com.example.deliveryapp.R
+import com.example.deliveryapp.models.CarouselImageItem
 
 class CarouselImageAdapter : ListAdapter<CarouselImageItem,CarouselImageAdapter.ViewHolder>(DiffCallback()){
 
