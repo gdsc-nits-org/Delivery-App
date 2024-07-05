@@ -106,4 +106,12 @@ Welcome to\nOur App
     <string name="_4_3_">4.3 *</string>
     <string name="min">45 min</string>
     <string name="todo111">TODO</string>
+    <string name="electronics_image">Electronics Image</string>
+    <string name="bakery_image">Bakery Image</string>
+    <string name="stationary_image">Stationary Image</string>
+    <string name="pharmacy_image">Pharmacy</string>
+    <string name="gift_image">Gift</string>
+    <string name="local_image">Local\n</string>
+    <string name="ice_cream_image">Ice Cream\n</string>
+    <string name="grocery_image">Grocery</string>
 </resources>
