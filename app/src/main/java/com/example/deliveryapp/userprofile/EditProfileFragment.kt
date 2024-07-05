@@ -89,7 +89,7 @@ class EditProfileFragment : Fragment() {
         val backBtn = view.findViewById<ImageButton>(R.id.btnBack)
         backBtn.setOnClickListener{
             Toast.makeText(context, "Pressed back button", Toast.LENGTH_SHORT).show()
-            findNavController().popBackStack()
+            activity?.onBackPressed()
         }
         val tvEdit = view.findViewById<TextView>(R.id.tvEdit)
 
