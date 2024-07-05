@@ -184,8 +184,9 @@ class HomeFragment : Fragment() {
                     val totalOrders = document.getLong("TotalOrders")?.toInt() ?: 0
                     val phoneNo = document.getString("Phoneno") ?: "N/A"
                     val location = document.getString("Location") ?: "N/A"
+                    val isOpen = document.getBoolean("Status") ?: true  // Default to true if not present
 
-                    NestedRecyclerModelFood(imageUrl, shopName, totalOrders, phoneNo, location)
+                    NestedRecyclerModelFood(imageUrl, shopName, totalOrders, phoneNo, location, isOpen)
                 }
 
                 if (allShops.isNotEmpty()) {
