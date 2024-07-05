@@ -18,8 +18,8 @@ import com.example.deliveryapp.R
 import com.example.deliveryapp.adapters.CarouselImageAdapter
 import com.example.deliveryapp.adapters.NestedRecyclerAdapter
 import com.example.deliveryapp.models.CarouselImageItem
-import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.models.NestedRecyclerModelFood
+import com.example.deliveryapp.models.NestedRecyclerModelMain
 import com.example.deliveryapp.userprofile.ProfileListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
