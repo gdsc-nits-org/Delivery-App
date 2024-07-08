@@ -121,4 +121,5 @@ Welcome to\nOur App
     <string name="_10_feb_2024_at_10_00_am">10 Feb 2024 at 10:00 AM</string>
     <string name="johnny_rolls">Johnny Rolls</string>
     <string name="delivered">Delivered ✔</string>
+    <string name="select_payment_option">Select Payment Option\n</string>
 </resources>

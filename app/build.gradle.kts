@@ -81,4 +81,7 @@ dependencies {
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
+    //designer togle button or filterpart
+    implementation ("nl.bryanderidder:themed-toggle-button-group:1.4.1")
+
 }
