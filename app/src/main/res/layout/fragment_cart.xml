@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,67 +7,62 @@
     android:background="@color/white"
     tools:context=".homepage_fragments.CartFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/llBottomButtons">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/button6"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#EDECEB"
+                app:cardCornerRadius="80sp">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/button6"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="16dp"
-                    android:backgroundTint="#EDECEB"
-                    app:cardCornerRadius="80sp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/arrow_back_24px" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="0dp"
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/my_cart2"
-                    android:textAlignment="center"
-                    android:textColor="#FF7F00"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center"
+                    android:src="@drawable/arrow_back_24px" />
+            </com.google.android.material.card.MaterialCardView>
 
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!-- RecyclerView content -->
-            </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/my_cart2"
+                android:textAlignment="center"
+                android:textColor="#FF7F00"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
-    </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/llBottomButtons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent">
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            android:visibility="gone">
+
+            <include layout="@layout/shimmer_content_placeholder" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout" />
 
         <Button
             android:id="@+id/button5"
@@ -78,15 +73,18 @@
             android:drawableStart="@drawable/baseline_add_24"
             android:background="@android:color/transparent"
             android:text="@string/add_more"
-            android:textColor="#FF7F00" />
+            android:textColor="#FF7F00"
+            app:layout_constraintTop_toBottomOf="@id/cartRecyclerView"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
+            android:id="@+id/promoCodeLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            >
+            app:layout_constraintTop_toBottomOf="@id/button5">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,7 +95,6 @@
                 android:gravity="center"
                 android:background="@drawable/promo"
                 android:paddingTop="10dp">
-
 
                 <EditText
                     android:id="@+id/editTextText2"
@@ -141,23 +138,14 @@
             </LinearLayout>
         </LinearLayout>
 
-
-
-
-
-
-
-
-
-
-
         <LinearLayout
+            android:id="@+id/orderDetailsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="10dp"
             android:background="@drawable/checkorder"
-            >
+            app:layout_constraintTop_toBottomOf="@id/promoCodeLayout">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -180,8 +168,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView5"
@@ -189,7 +176,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/price"
-
                     android:layout_marginStart="20dp"
                     android:textColor="#808080"
                     android:textSize="20sp"
@@ -233,17 +219,14 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/_22"
                     android:textSize="20sp"
-                    android:layout_marginEnd="20dp"
-
-                    />
+                    android:layout_marginEnd="20dp" />
 
             </LinearLayout>
 
             <View
                 android:id="@+id/view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
                 android:background="#151313"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
@@ -252,9 +235,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:orientation="horizontal">
-
 
                 <TextView
                     android:id="@+id/textView10"
@@ -266,10 +247,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="22sp"
-                    android:layout_marginStart="20dp"
-
-
-                    tools:ignore="NestedWeights" />
+                    android:layout_marginStart="20dp" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -279,8 +257,7 @@
                     android:layout_marginTop="15dp"
                     android:text="@string/_32"
                     android:textSize="20sp"
-                    android:layout_marginEnd="20dp"
-                    />
+                    android:layout_marginEnd="20dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -305,9 +282,8 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
