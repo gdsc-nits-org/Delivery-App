@@ -1,70 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:padding="8dp">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:padding="4dp"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/shopRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:background="@android:color/white"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/foodRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@android:color/white"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/shopRecyclerView" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1.05"
+            android:layout_marginTop="36dp">
 
             <TextView
                 android:id="@+id/tvForYou"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="337dp"
+                android:layout_weight="1"
                 android:text="@string/for_you"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/shopRecyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -74,355 +38,1095 @@
                 android:textColor="#FF5722"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/tvForYou"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.943"
-                app:layout_constraintStart_toEndOf="@+id/tvForYou"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
+                android:layout_weight="0.05"
                 tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/forYouRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:listitem="@layout/for_you"
+            tools:itemCount="4"
+            android:background="@android:color/white"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1.05"
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/tvDemand"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_weight="1"
                 android:text="@string/on_demand"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tvForYou"
-                app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:text="@string/see_all4"
                 android:textColor="#FF5722"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/tvDemand"
-                app:layout_constraintEnd_toEndOf="@+id/textView2"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tvDemand"
-                app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView"
+                android:layout_weight="0.05"
                 tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDemand">
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="4">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_weight="1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ImageContrastCheck"
+                        android:src="@drawable/salad"
                         android:contentDescription="@string/todo5" />
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:contentDescription="@string/todo6" />
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/todo7"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ImageContrastCheck" />
-
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/todo8"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-                        app:layout_constraintStart_toEndOf="@+id/imageView3"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ImageContrastCheck" />
 
                     <TextView
                         android:id="@+id/tvGrocery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/grocery"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvElectronics"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-                        app:layout_constraintStart_toStartOf="@+id/imageView3"
-                        app:layout_constraintTop_toTopOf="@+id/tvElectronics" />
+                        android:text="@string/grocery" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/cutlery"
+                        android:contentDescription="@string/todo5" />
 
                     <TextView
                         android:id="@+id/tvElectronics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/electronics"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvBakery"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-                        app:layout_constraintStart_toStartOf="@+id/imageView6"
-                        app:layout_constraintTop_toTopOf="@+id/tvBakery" />
+                        android:text="@string/electronics_image" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/cutlery"
+                        android:contentDescription="@string/todo5" />
 
                     <TextView
                         android:id="@+id/tvBakery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/bakery1"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvIceCream"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-                        app:layout_constraintStart_toStartOf="@+id/imageView5" />
+                        android:text="@string/bakery_image" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="80dp"
+                        android:layout_height="83dp"
+                        android:contentDescription="@string/todo5"
+                        android:src="@drawable/icecream" />
 
                     <TextView
-                        android:id="@+id/tvIceCream"
+                        android:id="@+id/tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/ice_cream"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-                        app:layout_constraintHorizontal_bias="0.454"
-                        app:layout_constraintStart_toStartOf="@+id/imageView4"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+                        android:text="@string/grocery" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="4"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
                     <ImageView
                         android:id="@+id/imageView8"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView9"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/imageView3"
-                        app:layout_constraintTop_toTopOf="@+id/imageView9"
-                        tools:ignore="ImageContrastCheck"
+                        android:src="@drawable/veganfood"
                         android:contentDescription="@string/todo9" />
-
-                    <ImageView
-                        android:id="@+id/imageView9"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView10"
-                        app:layout_constraintTop_toBottomOf="@+id/tvElectronics"
-                        tools:ignore="ImageContrastCheck"
-                        android:contentDescription="@string/todo10" />
-
-                    <ImageView
-                        android:id="@+id/imageView10"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_marginEnd="20dp"
-                        android:contentDescription="@string/todo4"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView11"
-                        app:layout_constraintTop_toTopOf="@+id/imageView9"
-                        tools:ignore="ImageContrastCheck"
-                        />
-
-                    <ImageView
-                        android:id="@+id/imageView11"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:contentDescription="@string/todo3"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toTopOf="@+id/imageView10"
-                        tools:ignore="ImageContrastCheck"
-                        />
 
                     <TextView
                         android:id="@+id/tvStationary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/stationary"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvPharmacy"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView8"
-                        app:layout_constraintHorizontal_bias="0.485"
-                        app:layout_constraintStart_toStartOf="@+id/imageView8"
-                        app:layout_constraintTop_toTopOf="@+id/tvPharmacy"
-                        app:layout_constraintVertical_bias="1.0" />
+                        android:text="@string/stationary" />
+                </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvPharmacy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pharmacy"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvGift"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-                        app:layout_constraintHorizontal_bias="0.428"
-                        app:layout_constraintStart_toStartOf="@+id/imageView9"
-                        app:layout_constraintTop_toTopOf="@+id/tvGift"
-                        app:layout_constraintVertical_bias="0.0" />
+                <!-- Repeat this structure for imageView9, imageView10, and imageView11 -->
 
-                    <TextView
-                        android:id="@+id/tvGift"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:text="@string/gift"
-                        app:layout_constraintBottom_toTopOf="@+id/tvTopOffers"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-                        app:layout_constraintHorizontal_bias="0.514"
-                        app:layout_constraintStart_toStartOf="@+id/imageView10" />
-
-                    <TextView
-                        android:id="@+id/tvLocal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/local"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvGift"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-                        app:layout_constraintHorizontal_bias="0.428"
-                        app:layout_constraintStart_toStartOf="@+id/imageView11"
-                        app:layout_constraintTop_toTopOf="@+id/tvGift"
-                        app:layout_constraintVertical_bias="0.0" />
-
-                    <TextView
-                        android:id="@+id/tvTopOffers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="44dp"
-                        android:text="@string/top_offers"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@+id/textView15"
-                        app:layout_constraintHorizontal_bias="0.063"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
-
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/see_all1"
-                        android:textColor="#FF5722"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/tvTopOffers"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView11"
-                        app:layout_constraintTop_toTopOf="@+id/tvTopOffers"
-                        app:layout_constraintVertical_bias="1.0" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/foodRecyclerView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:background="@android:color/white"
-                        android:clipToPadding="false"
-                        android:orientation="horizontal"
-                        android:padding="8dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvTopOffers" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1.05"
+                android:layout_marginTop="44dp">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tvTopOffers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/top_offers"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_all1"
+                    android:layout_weight="0.05"
+                    android:textColor="#FF5722"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/foodRecyclerView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:listitem="@layout/top_offers"
+                android:background="@android:color/white"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1.05"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/tvQuickPick"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/quick_picks"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all2"
+                android:textColor="#FF5722"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/foodRecyclerView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:clipToPadding="false"
+            tools:listitem="@layout/quick_pics"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1.05"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/tvShopOffers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/shops_with_offers"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/see_all3"
+                android:textColor="#FF5722"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            tools:itemCount="4"
+            tools:listitem="@layout/shops_offers"/>
+
+    </LinearLayout>
+</ScrollView>
 
 
-    </ScrollView>
 
-    <TextView
-        android:id="@+id/tvQuickPick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/quick_picks"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.0" />
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:padding="16dp"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android">-->
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/see_all2"
-        android:textColor="#FF5722"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
-        app:layout_constraintStart_toEndOf="@+id/tvQuickPick"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+<!--    <ScrollView-->
+<!--        android:id="@+id/scrollView2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0">-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/foodRecyclerView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvQuickPick" />
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
 
-    <TextView
-        android:id="@+id/tvShopOffers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/shops_with_offers"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView3" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/see_all3"
-        android:textColor="#FF5722"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tvShopOffers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toEndOf="@+id/tvShopOffers"
-        app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView3"
-        app:layout_constraintVertical_bias="1.0" />
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/shopRecyclerView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="80dp"-->
+<!--                android:background="@android:color/white"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="8dp"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvShopOffers" />
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/foodRecyclerView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:background="@android:color/white"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="8dp"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/shopRecyclerView" />-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/tvForYou"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="36dp"-->
+<!--                android:layout_marginEnd="337dp"-->
+<!--                android:text="@string/for_you"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/shopRecyclerView"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/see_all"-->
+<!--                android:textColor="#FF5722"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tvForYou"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.943"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/tvForYou"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="1.0"-->
+<!--                tools:ignore="TextContrastCheck" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvDemand"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="@string/on_demand"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/tvForYou"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView5"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:text="@string/see_all4"-->
+<!--                android:textColor="#FF5722"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tvDemand"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/textView2"-->
+<!--                app:layout_constraintHorizontal_bias="1.0"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/tvDemand"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView"-->
+<!--                tools:ignore="TextContrastCheck" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tvDemand">-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="5dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView3"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        tools:ignore="ImageContrastCheck"-->
+<!--                        android:contentDescription="@string/todo5" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView4"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_marginEnd="16dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        android:contentDescription="@string/todo6" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView5"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_marginEnd="20dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:contentDescription="@string/todo7"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/imageView4"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        tools:ignore="ImageContrastCheck" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView6"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:contentDescription="@string/todo8"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/imageView5"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/imageView3"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        tools:ignore="ImageContrastCheck" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvGrocery"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="@string/grocery"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/tvElectronics"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView3"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView3"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/tvElectronics" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvElectronics"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/electronics"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/tvBakery"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView6"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView6"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/tvBakery" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvBakery"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/bakery1"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/tvIceCream"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView5"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView5" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvIceCream"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:text="@string/ice_cream"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView4"-->
+<!--                        app:layout_constraintHorizontal_bias="0.454"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView4"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView4" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView8"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/imageView9"-->
+<!--                        app:layout_constraintHorizontal_bias="0.0"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView3"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/imageView9"-->
+<!--                        tools:ignore="ImageContrastCheck"-->
+<!--                        android:contentDescription="@string/todo9" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView9"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        android:layout_marginEnd="16dp"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/imageView10"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/tvElectronics"-->
+<!--                        tools:ignore="ImageContrastCheck"-->
+<!--                        android:contentDescription="@string/todo10" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView10"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_marginEnd="20dp"-->
+<!--                        android:contentDescription="@string/todo4"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/imageView11"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/imageView9"-->
+<!--                        tools:ignore="ImageContrastCheck"-->
+<!--                        />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView11"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:contentDescription="@string/todo3"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView4"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/imageView10"-->
+<!--                        tools:ignore="ImageContrastCheck"-->
+<!--                        />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvStationary"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/stationary"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/tvPharmacy"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView8"-->
+<!--                        app:layout_constraintHorizontal_bias="0.485"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView8"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/tvPharmacy"-->
+<!--                        app:layout_constraintVertical_bias="1.0" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvPharmacy"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/pharmacy"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/tvGift"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView9"-->
+<!--                        app:layout_constraintHorizontal_bias="0.428"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView9"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/tvGift"-->
+<!--                        app:layout_constraintVertical_bias="0.0" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvGift"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="16dp"-->
+<!--                        android:text="@string/gift"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/tvTopOffers"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView10"-->
+<!--                        app:layout_constraintHorizontal_bias="0.514"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView10" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvLocal"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/local"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/tvGift"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView11"-->
+<!--                        app:layout_constraintHorizontal_bias="0.428"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView11"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/tvGift"-->
+<!--                        app:layout_constraintVertical_bias="0.0" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvTopOffers"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="44dp"-->
+<!--                        android:text="@string/top_offers"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/textView15"-->
+<!--                        app:layout_constraintHorizontal_bias="0.063"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView8" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView15"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/see_all1"-->
+<!--                        android:textColor="#FF5722"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/tvTopOffers"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView11"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/tvTopOffers"-->
+<!--                        app:layout_constraintVertical_bias="1.0" />-->
+
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/foodRecyclerView2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="4dp"-->
+<!--                        android:background="@android:color/white"-->
+<!--                        android:clipToPadding="false"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:padding="8dp"-->
+<!--                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintHorizontal_bias="0.0"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/tvTopOffers" />-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--            </LinearLayout>-->
+
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--    </ScrollView>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvQuickPick"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:text="@string/quick_picks"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/textView17"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/scrollView2"-->
+<!--        app:layout_constraintVertical_bias="0.0" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView17"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="@string/see_all2"-->
+<!--        android:textColor="#FF5722"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.933"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/tvQuickPick"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/foodRecyclerView3"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@android:color/white"-->
+<!--        android:clipToPadding="false"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="8dp"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvQuickPick" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvShopOffers"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:text="@string/shops_with_offers"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView3" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView19"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/see_all3"-->
+<!--        android:textColor="#FF5722"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/tvShopOffers"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.93"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/tvShopOffers"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView3"-->
+<!--        app:layout_constraintVertical_bias="1.0" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.046"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvShopOffers" />-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:padding="16dp">-->
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:id="@+id/scrollView2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tvQuickPick"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/shopRecyclerView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="80dp"-->
+<!--                android:background="@android:color/white"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="8dp"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/foodRecyclerView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:background="@android:color/white"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:padding="8dp"-->
+<!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/shopRecyclerView" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvForYou"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="36dp"-->
+<!--                android:text="@string/for_you"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/shopRecyclerView"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/see_all"-->
+<!--                android:textColor="#FF5722"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tvForYou"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/tvForYou" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvDemand"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="@string/on_demand"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/tvForYou"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/textView5"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/see_all4"-->
+<!--                android:textColor="#FF5722"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tvDemand"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/tvDemand" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tvDemand">-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="5dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView3"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:contentDescription="@string/grocery_image"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView4"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+
+<!--                        android:layout_marginEnd="16dp"-->
+<!--                        android:contentDescription="@string/ice_cream_image"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView5"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_marginEnd="20dp"-->
+<!--                        android:contentDescription="@string/bakery_image"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/imageView4"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView6"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:contentDescription="@string/electronics_image"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/imageView5"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/imageView3"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvGrocery"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/grocery"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView3"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView3"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView3" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvElectronics"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/electronics"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView6"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView6"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView6" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvBakery"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/bakery1"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView5"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView5"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView5" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvIceCream"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/ice_cream"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView4"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView4"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView4" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView8"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        android:contentDescription="@string/stationary_image"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView3"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/tvGrocery" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView9"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:contentDescription="@string/pharmacy_image"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView6"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView6"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/imageView8" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView10"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:contentDescription="@string/gift_image"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView5"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView5"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/imageView8" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView11"-->
+<!--                        android:layout_width="80dp"-->
+<!--                        android:layout_height="80dp"-->
+<!--                        android:contentDescription="@string/local_image"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView4"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/imageView8" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvStationary"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/stationary"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView8"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView8"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView8" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvPharmacy"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/pharmacy"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView9"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView9"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView9" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvGift"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/gift"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView10"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView10"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView10" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvLocal"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/local"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/imageView11"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/imageView11"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/imageView11" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvTopOffers"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="24dp"-->
+<!--                        android:text="@string/top_offers"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/tvStationary" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView15"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/see_all1"-->
+<!--                        android:textColor="#FF5722"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/tvTopOffers"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/tvTopOffers" />-->
+
+<!--                    <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:id="@+id/foodRecyclerView2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        tools:itemCount="3"-->
+<!--                        android:background="@android:color/white"-->
+<!--                        android:clipToPadding="false"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:padding="8dp"-->
+<!--                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/tvTopOffers" />-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--            </LinearLayout>-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </androidx.core.widget.NestedScrollView-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvQuickPick"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:text="@string/quick_picks"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView17"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/see_all2"-->
+<!--        android:textColor="#FF5722"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/tvQuickPick"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/tvQuickPick" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/foodRecyclerView3"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        tools:itemCount="3"-->
+<!--        android:background="@android:color/white"-->
+<!--        android:clipToPadding="false"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="8dp"-->
+<!--        tools:listitem="@layout/quick_pics"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvQuickPick" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvShopOffers"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:text="@string/shops_with_offers"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView3" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView19"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/see_all3"-->
+<!--        android:textColor="#FF5722"-->
+<!--        android:textSize="15sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/tvShopOffers"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/tvShopOffers" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/shopsWithOffersRecyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:clipToPadding="false"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="8dp"-->
+<!--        tools:listitem="@layout/top_offers"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvShopOffers" />-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

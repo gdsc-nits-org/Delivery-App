@@ -36,6 +36,7 @@
 
     <!-- Orange Shades -->
     <color name="darkOrange">#E64A19</color>
+    <color name="orange">#FFA500</color>
     <color name="mediumOrange">#F17A2E</color>
     <color name="lightOrange">#FFB74D</color>
 

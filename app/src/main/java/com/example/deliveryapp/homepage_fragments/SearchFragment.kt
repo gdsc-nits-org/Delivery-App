@@ -2,18 +2,20 @@ package com.example.deliveryapp.homepage_fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.deliveryapp.Dishes.DishItems
+import com.example.deliveryapp.Dishes.ShopsFragment
 import com.example.deliveryapp.R
-import com.example.deliveryapp.userprofile.ProfileListFragment
+import com.example.deliveryapp.databinding.FragmentSearchBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.card.MaterialCardView
+import com.google.android.material.tabs.TabLayout
 
 class SearchFragment : Fragment() {
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
     private lateinit var bottomNavigationView: BottomNavigationView
     private var fragmentNavigation: HomepageNavigation? = null
 
@@ -27,19 +29,54 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         bottomNavigationView = requireActivity().findViewById(R.id.bottom_navigation)
 
-
-        val rootView =  inflater.inflate(R.layout.fragment_search, container, false)
-
-        // set on click to back button
-        val backButton = rootView.findViewById<MaterialCardView>(R.id.imageView)
-        backButton.setOnClickListener {
+        binding.backButton.setOnClickListener {
             fragmentNavigation?.replaceFragment(HomeFragment())
             bottomNavigationView.selectedItemId = R.id.bottom_home
         }
 
-        return rootView
+        setupTabs()
+
+        // Load the first fragment by default
+        if (savedInstanceState == null) {
+            replaceFragment(ShopsFragment())
+        }
+    }
+
+    private fun setupTabs() {
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.shops)))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.dishes)))
+
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when (tab.position) {
+                    0 -> replaceFragment(ShopsFragment())
+                    1 -> replaceFragment(DishItems())
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

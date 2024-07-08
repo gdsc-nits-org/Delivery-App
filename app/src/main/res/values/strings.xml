@@ -66,9 +66,9 @@ Welcome to\nOur App
     <string name="_4_3">4.3 *</string>
     <string name="chinese_indian_beverages_150_for_one">Chinese | Indian | Beverages | $ 150 for one</string>
     <string name="baruaz_s_cafe">Baruaz\'s Cafe</string>
-    <string name="get_upto_30_off_on">Get Upto 30% OFF on</string>
+    <string name="get_upto_30_off_on">Get Up to 30% OFF on</string>
     <string name="order_now">Order Now</string>
-    <string name="todo1">TODO1</string>
+    <string name="todo1">TODO!</string>
     <string name="deliveries">Deliveries</string>
     <string name="food">Food</string>
     <string name="barbeque">Barbeque</string>
@@ -105,4 +105,15 @@ Welcome to\nOur App
     <string name="_45_min">45 min</string>
     <string name="_4_3_">4.3 *</string>
     <string name="min">45 min</string>
+    <string name="todo111">TODO</string>
+    <string name="electronics_image">Electronics</string>
+    <string name="bakery_image">Bakery</string>
+    <string name="stationary_image">Stationary</string>
+    <string name="pharmacy_image">Pharmacy</string>
+    <string name="gift_image">Gift</string>
+    <string name="local_image">Local\n</string>
+    <string name="ice_cream_image">Ice Cream\n</string>
+    <string name="grocery_image">Grocery</string>
+    <string name="search_icon_description">Search icon</string>
+    <string name="back_button_description">Back Button\n</string>
 </resources>

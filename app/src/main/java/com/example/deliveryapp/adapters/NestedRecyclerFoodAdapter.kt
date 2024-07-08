@@ -1,19 +1,16 @@
 package com.example.deliveryapp.adapters
 
-import android.graphics.Bitmap
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.Transformation
-import com.example.deliveryapp.models.NestedRecyclerModelFood
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FoodItemBinding
-import android.graphics.Paint
-import android.graphics.Canvas
+import com.example.deliveryapp.models.NestedRecyclerModelFood
 
 class NestedRecyclerFoodAdapter(
     private val foodItems: List<NestedRecyclerModelFood>,
@@ -28,15 +25,12 @@ class NestedRecyclerFoodAdapter(
     override fun getItemCount(): Int = foodItems.size
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
-        val shop = foodItems[position]
+        val foodItem = foodItems[position]
         holder.binding.apply {
-            imageFoodPoster.load(shop.imageUrl) {
-                if (!shop.isOpen) {
-                    transformations(GrayscaleTransformation())
-                }
-            }
-            // You can add more UI elements here if needed, e.g., shop name
-            root.setOnClickListener { onItemClick(shop) }
+            imageFoodPoster.load(foodItem.imageUrl)
+
+            textShopName.text = foodItem.shopName
+            imageFoodPoster.setGrayscale(!foodItem.status)
         }
     }
 
@@ -45,17 +39,13 @@ class NestedRecyclerFoodAdapter(
     }
 }
 
-class GrayscaleTransformation : Transformation {
-    override val cacheKey: String = "grayscaleTransformation"
-
-    override suspend fun transform(input: Bitmap, size: coil.size.Size): Bitmap {
-        val output = Bitmap.createBitmap(input.width, input.height, input.config)
-        val canvas = Canvas(output)
-        val paint = Paint()
-        val colorMatrix = ColorMatrix()
-        colorMatrix.setSaturation(0f)
-        paint.colorFilter = ColorMatrixColorFilter(colorMatrix)
-        canvas.drawBitmap(input, 0f, 0f, paint)
-        return output
+private fun ImageView.setGrayscale(isGrayscale: Boolean) {
+    if (isGrayscale) {
+        val matrix = ColorMatrix()
+        matrix.setSaturation(0f)
+        val filter = ColorMatrixColorFilter(matrix)
+        this.colorFilter = filter
+    } else {
+        this.clearColorFilter()
     }
 }

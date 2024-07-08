@@ -1,5 +1,3 @@
-
-
 package com.example.deliveryapp.utils
 
 import com.example.deliveryapp.models.NestedRecyclerModelFood
@@ -7,16 +5,16 @@ import com.example.deliveryapp.models.NestedRecyclerModelMain
 
 object SampleData {
     private val foodModel = listOf(
-        NestedRecyclerModelFood(Images.imageUrl0, "Shop 1", 100, "123-456-7890", "Location 1",false),
-        NestedRecyclerModelFood(Images.imageUrl1, "Shop 2", 150, "234-567-8901", "Location 2",false),
-        NestedRecyclerModelFood(Images.imageUrl2, "Shop 3", 200, "345-678-9012", "Location 3",false),
-        NestedRecyclerModelFood(Images.imageUrl3, "Shop 4", 250, "456-789-0123", "Location 4",false),
-        NestedRecyclerModelFood(Images.imageUrl4, "Shop 5", 300, "567-890-1234", "Location 5",false),
-        NestedRecyclerModelFood(Images.imageUrl5, "Shop 6", 350, "678-901-2345", "Location 6",false),
-        NestedRecyclerModelFood(Images.imageUrl6, "Shop 7", 400, "789-012-3456", "Location 7",false),
-        NestedRecyclerModelFood(Images.imageUrl7, "Shop 8", 450, "890-123-4567", "Location 8",false),
-        NestedRecyclerModelFood(Images.imageUrl8, "Shop 9", 500, "901-234-5678", "Location 9",false),
-        NestedRecyclerModelFood(Images.imageUrl9, "Shop 10", 550, "012-345-6789", "Location 10",false)
+        NestedRecyclerModelFood(Images.imageUrl0,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl1,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl2,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl3,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl4,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl5,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl6,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl7,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl8,true,"abc"),
+        NestedRecyclerModelFood(Images.imageUrl9,true,"abc")
     )
 
     val collections = listOf(
