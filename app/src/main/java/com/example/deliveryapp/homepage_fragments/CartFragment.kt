@@ -1,19 +1,17 @@
 package com.example.deliveryapp.homepage_fragments
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.LinearLayout
-import androidx.fragment.app.Fragment
-import com.example.addtocart.Gateway
 import com.example.deliveryapp.R
 import com.example.deliveryapp.models.CartItem
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -25,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class CartFragment : Fragment() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private var fragmentNavigation: HomepageNavigation? = null
+    private lateinit var backButton : MaterialCardView
     private lateinit var cartRecyclerView: RecyclerView
     private lateinit var cartAdapter: CartAdapter
     private lateinit var totalPriceTextView: TextView
@@ -48,13 +47,6 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_cart, container, false)
-
-        initializeViews(rootView)
-        setupListeners()
-        setupRecyclerView()
-        showShimmerEffect()
-        fetchCartItems()
-
         return rootView
     }
 
@@ -68,12 +60,21 @@ class CartFragment : Fragment() {
         promoCodeEditText = rootView.findViewById(R.id.editTextText2)
         applyPromoButton = rootView.findViewById(R.id.button3)
         addMoreButton = rootView.findViewById(R.id.button5)
-        checkoutButton = rootView.findViewById(R.id.button)
+        checkoutButton = rootView.findViewById(R.id.btncheckout)
+        backButton = rootView.findViewById(R.id.button6)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initializeViews(view)
+        setupListeners()
+        setupRecyclerView()
+        showShimmerEffect()
+        fetchCartItems()
     }
 
     private fun setupListeners() {
-        val backButton = view?.findViewById<MaterialCardView>(R.id.button6)
-        backButton?.setOnClickListener {
+        backButton.setOnClickListener {
             fragmentNavigation?.replaceFragment(HomeFragment())
             bottomNavigationView.selectedItemId = R.id.bottom_home
         }

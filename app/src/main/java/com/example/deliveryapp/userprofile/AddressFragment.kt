@@ -10,11 +10,10 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.Fragments.LocationFragment
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAddressBinding
-import com.example.deliveryapp.homepage_fragments.HomeFragment
 import com.example.deliveryapp.homepage_fragments.HomepageNavigation
 import com.example.deliveryapp.utils.FirebaseManager
 import com.google.android.material.textfield.TextInputEditText
@@ -52,6 +51,7 @@ class AddressFragment : Fragment() {
         auth = FirebaseManager.getFirebaseAuth()
         firestoreDB = FirebaseManager.getFirebaseFirestore()
         userID = auth.currentUser?.email.toString()
+        navController = findNavController()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,7 +88,7 @@ class AddressFragment : Fragment() {
             }
             else {
                 Toast.makeText(requireContext(), "Please Verify Your Email", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.action_addressFragment_to_loginPage)
+                navController.navigateUp()
             }
         }
 
