@@ -59,10 +59,10 @@
                             android:layout_marginTop="8dp"/>
 
                         <TextView
-                            android:id="@+id/tv_price"
+                            android:id="@+id/tv_total_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$10"
+                            android:text="@string/_10"
                             android:textStyle="bold"
                             android:textSize="16sp"
                             android:layout_marginTop="4dp"/>
@@ -108,7 +108,7 @@
                                     android:layout_marginTop="16dp">
 
                                         <TextView
-                                            android:id="@+id/btn_Reorder"
+                                            android:id="@+id/btn_reorder"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:text="@string/reorder"
@@ -130,7 +130,7 @@
                                     android:layout_marginTop="24dp">
 
                                         <TextView
-                                            android:id="@+id/btn_Rate"
+                                            android:id="@+id/btn_rate_order"
                                             style="?android:attr/buttonBarButtonStyle"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"

@@ -36,7 +36,7 @@ class MyOrdersAdapter(private val orderList: List<Order>) : RecyclerView.Adapter
         holder.orderItemsRecyclerView.layoutManager = LinearLayoutManager(holder.itemView.context)
         holder.orderItemsRecyclerView.adapter = OrderItemsAdapter(currentOrder.items)
 
-        val totalPrice = currentOrder.items.sumByDouble { it.productPrice }
+        val totalPrice = currentOrder.items.sumOf { it.productPrice }
         holder.totalPrice.text = String.format("₹%.2f", totalPrice)
 
         holder.reorderButton.setOnClickListener {
