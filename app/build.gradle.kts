@@ -78,4 +78,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    //designer togle button or filterpart
+    implementation ("nl.bryanderidder:themed-toggle-button-group:1.4.1")
 }

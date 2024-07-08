@@ -105,4 +105,5 @@ Welcome to\nOur App
     <string name="_45_min">45 min</string>
     <string name="_4_3_">4.3 *</string>
     <string name="min">45 min</string>
+    <string name="select_payment_option">Select Payment Option\n</string>
 </resources>
