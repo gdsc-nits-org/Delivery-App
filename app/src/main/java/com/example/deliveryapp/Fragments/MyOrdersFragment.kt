@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.R
-import com.example.deliveryapp.userprofile.ProfileListFragment
-import com.example.deliveryapp.utils.MyOrdersAdapter
 import com.example.deliveryapp.models.Order
 import com.example.deliveryapp.models.OrderItem
+import com.example.deliveryapp.userprofile.ProfileListFragment
+import com.example.deliveryapp.utils.MyOrdersAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -28,7 +28,7 @@ class MyOrdersFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_my_orders, container, false)
 
-        recyclerView = view.findViewById(R.id.orders_rv)
+        recyclerView = view.findViewById(R.id.rv_order_items)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = MyOrdersAdapter(orderList)
         recyclerView.adapter = adapter
