@@ -35,7 +35,7 @@ class ShopsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rvForYou = view.findViewById<RecyclerView>(R.id.foodRecyclerView)
+        val rvForYou = view.findViewById<RecyclerView>(R.id.forYouRecyclerView)
         adapter = ShopForYouAdapter(dishes)
         rvForYou.adapter = adapter
     }
