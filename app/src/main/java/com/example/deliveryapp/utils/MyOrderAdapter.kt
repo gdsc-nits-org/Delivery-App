@@ -28,8 +28,8 @@ class MyOrdersAdapter(private val orderList: List<Order>) : RecyclerView.Adapter
         val productName: TextView = itemView.findViewById(R.id.tv_product_name)
         val dateTime: TextView = itemView.findViewById(R.id.tv_date_time)
         val deliveryStatus: TextView = itemView.findViewById(R.id.tv_delivery_status)
-        val reorderButton: Button = itemView.findViewById(R.id.btn_reorder)
-        val rateOrderButton: Button = itemView.findViewById(R.id.btn_rate_order)
+        val reorderButton: Button = itemView.findViewById(R.id.btn_Reorder)
+        val rateOrderButton: Button = itemView.findViewById(R.id.btn_Rate)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyOrdersViewHolder {

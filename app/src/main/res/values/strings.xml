@@ -116,4 +116,9 @@ Welcome to\nOur App
     <string name="grocery_image">Grocery</string>
     <string name="search_icon_description">Search icon</string>
     <string name="back_button_description">Back Button\n</string>
+    <string name="reorder">REORDER</string>
+    <string name="rate_order">RATE ORDER</string>
+    <string name="_10_feb_2024_at_10_00_am">10 Feb 2024 at 10:00 AM</string>
+    <string name="johnny_rolls">Johnny Rolls</string>
+    <string name="delivered">Delivered ✔</string>
 </resources>
