@@ -11,7 +11,6 @@ import com.google.firebase.database.FirebaseDatabase
 class ShopDetailsFragment : Fragment() {
 
     private lateinit var db: FirebaseDatabase
-//    private lateinit var firestore :
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
