@@ -1,6 +1,5 @@
 package com.example.deliveryapp.Dishes
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,22 +10,21 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.R
 
-class DishAdapter constructor(private val getActivity:DishItems,private val dishList: List<Dish>):
+class DishAdapter(private val dishList: List<Dish>):
     RecyclerView.Adapter<DishAdapter.MyViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view=LayoutInflater.from(parent.context).inflate(R.layout.dish_item,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.dish_item,parent,false)
         return MyViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.dishTitle.text=dishList[position].title
+        holder.dishTitle.text = dishList[position].title
         holder.dishImg.setImageResource(dishList[position].image)
         holder.addImg.setImageResource(R.drawable.baseline_add_circle_24)
-        holder.resName.text=dishList[position].resName
-        holder.dishPrice.text=dishList[position].price
-        holder.rupees.text="Rs"
+        holder.resName.text = dishList[position].resName
+        holder.dishPrice.text = dishList[position].price
+        holder.rupees.text = "Rs"
         holder.cardView.setOnClickListener {
             Toast.makeText(holder.itemView.context,dishList[position].title,Toast.LENGTH_SHORT).show()
         }
@@ -36,14 +34,13 @@ class DishAdapter constructor(private val getActivity:DishItems,private val dish
         return dishList.size
     }
 
-    class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val dishTitle:TextView=itemView.findViewById(R.id.dish_title)
-        val dishImg: ImageView =itemView.findViewById(R.id.ivDishImg)
-        val resName:TextView=itemView.findViewById(R.id.res_name)
-        val addImg:ImageView=itemView.findViewById(R.id.addItem)
-        val dishPrice:TextView=itemView.findViewById(R.id.dish_price)
-        var rupees:TextView=itemView.findViewById(R.id.textView13)
-        val cardView:CardView=itemView.findViewById(R.id.cardView)
-
+    inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+        val dishTitle:TextView = itemView.findViewById(R.id.dish_title)
+        val dishImg: ImageView = itemView.findViewById(R.id.ivDishImg)
+        val resName:TextView = itemView.findViewById(R.id.res_name)
+        val addImg:ImageView = itemView.findViewById(R.id.addItem)
+        val dishPrice:TextView = itemView.findViewById(R.id.dish_price)
+        val rupees:TextView = itemView.findViewById(R.id.price_currency)
+        val cardView:CardView = itemView.findViewById(R.id.cardView)
     }
 }

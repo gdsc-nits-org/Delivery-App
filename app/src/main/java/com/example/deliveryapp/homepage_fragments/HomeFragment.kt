@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.deliveryapp.Fragments.ShopDetailsFragment
 import com.example.deliveryapp.R
 import com.example.deliveryapp.adapters.CarouselImageAdapter
 import com.example.deliveryapp.adapters.NestedRecyclerAdapter
@@ -163,7 +164,9 @@ class HomeFragment : Fragment() {
 
     private fun setupNestedRecyclerView(rootView: View) {
         rvMain = rootView.findViewById(R.id.rvMain)
-        nestedRecyclerAdapter = NestedRecyclerAdapter(emptyList())
+        nestedRecyclerAdapter = NestedRecyclerAdapter(emptyList()){shopId->
+            onItemClicked(shopId)
+        }
         rvMain.adapter = nestedRecyclerAdapter
         fetchBanners()
         fetchShopData()
@@ -267,7 +270,16 @@ class HomeFragment : Fragment() {
             )
         }
     }
-
+    private fun onItemClicked(id: String){
+        Toast.makeText(context, "{$id}", Toast.LENGTH_SHORT).show()
+        val bundle = Bundle()
+        bundle.putString("ShopID", id)
+        val shopDetailsFragment = ShopDetailsFragment()
+        shopDetailsFragment.arguments = bundle
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_container, shopDetailsFragment)
+        fragmentTransaction.commitNow()
+    }
     override fun onDetach() {
         super.onDetach()
         fragmentNavigation = null

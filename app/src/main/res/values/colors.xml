@@ -50,4 +50,5 @@
     <color name="mediumBrown">#795548</color>
     <color name="lightBrown">#A1887F</color>
     <color name="silver">#C0C0C0</color>
+    <color name="shimmer_color">#585A5B</color>
 </resources>

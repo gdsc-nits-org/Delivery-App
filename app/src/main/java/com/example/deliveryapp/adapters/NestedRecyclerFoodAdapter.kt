@@ -14,7 +14,7 @@ import com.example.deliveryapp.models.NestedRecyclerModelFood
 
 class NestedRecyclerFoodAdapter(
     private val foodItems: List<NestedRecyclerModelFood>,
-    private val onItemClick: (NestedRecyclerModelFood) -> Unit
+    private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<NestedRecyclerFoodAdapter.FoodViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -26,16 +26,21 @@ class NestedRecyclerFoodAdapter(
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val foodItem = foodItems[position]
-        holder.binding.apply {
-            imageFoodPoster.load(foodItem.imageUrl)
-
-            textShopName.text = foodItem.shopName
-            imageFoodPoster.setGrayscale(!foodItem.status)
-        }
+        holder.bind(foodItem)
     }
 
     inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = FoodItemBinding.bind(itemView)
+        fun bind(foodItem: NestedRecyclerModelFood) {
+            binding.apply {
+                imageFoodPoster.load(foodItem.imageUrl)
+                textShopName.text = foodItem.shopName
+                imageFoodPoster.setGrayscale(!foodItem.status)
+            }
+            itemView.setOnClickListener {
+                onItemClick(foodItem.shopName)
+            }
+        }
     }
 }
 

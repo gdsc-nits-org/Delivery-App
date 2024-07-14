@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.ParentItemBinding
 import com.example.deliveryapp.models.NestedRecyclerModelMain
 
-class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMain>) :
+class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMain>,
+            private val onItemClick:(String)->Unit) :
     RecyclerView.Adapter<NestedRecyclerAdapter.CollectionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CollectionViewHolder {
@@ -24,10 +24,11 @@ class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMai
         val collection = collections[position]
         holder.binding.apply {
             Genere.text = collection.title
-            rvMovieChild.adapter = NestedRecyclerFoodAdapter(collection.movieModel) { shop ->
-                val message = "Shop: ${shop.shopName}\n" + "Status: ${shop.status}"
-                Toast.makeText(holder.itemView.context, message, Toast.LENGTH_LONG).show()
-            }
+            rvMovieChild.adapter = NestedRecyclerFoodAdapter(collection.movieModel, onItemClick)
+//            { shop ->
+//                val message = "Shop: ${shop.shopName}\n" + "Status: ${shop.status}"
+//                Toast.makeText(holder.itemView.context, message, Toast.LENGTH_LONG).show()
+//            }
         }
     }
 
@@ -35,6 +36,7 @@ class NestedRecyclerAdapter(private var collections: List<NestedRecyclerModelMai
 //        collections = newCollections
 //        notifyDataSetChanged()
 //    }
+
 @SuppressLint("NotifyDataSetChanged")
 fun updateData(newCollections: List<NestedRecyclerModelMain>) {
         collections = newCollections

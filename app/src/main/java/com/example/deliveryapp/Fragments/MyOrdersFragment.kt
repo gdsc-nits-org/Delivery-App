@@ -13,6 +13,7 @@ import com.example.deliveryapp.R
 import com.example.deliveryapp.models.Order
 import com.example.deliveryapp.models.OrderItem
 import com.example.deliveryapp.userprofile.ProfileListFragment
+import com.example.deliveryapp.utils.FirebaseManager
 import com.example.deliveryapp.utils.MyOrdersAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -46,7 +47,7 @@ class MyOrdersFragment : Fragment() {
     }
 
     private fun fetchOrders() {
-        val db = FirebaseFirestore.getInstance()
+        val db = FirebaseManager.getFirebaseFirestore()
         val currentUserEmail = FirebaseAuth.getInstance().currentUser?.email
 
         currentUserEmail?.let { email ->
