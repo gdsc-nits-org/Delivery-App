@@ -20,6 +20,7 @@ import com.example.deliveryapp.utils.FirebaseManager
 import com.example.deliveryapp.utils.FirestoreManager
 import com.example.deliveryapp.utils.ShopData
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -47,6 +48,7 @@ class ShopDetailsFragment : Fragment() {
     ): View {
         binding = FragmentShopDetailsBinding.inflate(inflater, container, false)
         shimmerFrameLayout = binding.shimmerFrameLayout // Assume this is in your layout
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility = View.GONE
         return binding.root
     }
 
@@ -57,6 +59,7 @@ class ShopDetailsFragment : Fragment() {
         loadData()
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility = View.VISIBLE
                 val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.frame_container, HomeFragment())
                 fragmentTransaction.commitNow()
@@ -88,11 +91,8 @@ class ShopDetailsFragment : Fragment() {
     private fun loadData() {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
-                val shopDataDeferred = fetchShopData()
-                val dishesDeferred = fetchDishData()
-
-                shopData = shopDataDeferred
-                dishes = dishesDeferred
+                shopData = fetchShopData()
+                dishes = fetchDishData()
 
                 setUpViews()
                 stopShimmer()
@@ -153,4 +153,5 @@ class ShopDetailsFragment : Fragment() {
         binding.shopName.text = shopData.shopName
         adapter.updateDishes(dishes)
     }
+
 }

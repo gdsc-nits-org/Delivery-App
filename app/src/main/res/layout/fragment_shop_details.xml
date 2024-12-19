@@ -22,62 +22,95 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/shimmer_color"/>
+                android:background="@color/lightGrey"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="24sp"
                 android:layout_marginTop="16dp"
-                android:background="@color/shimmer_color"/>
+                android:background="@color/lightGrey"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="350sp"
+                android:layout_marginTop="60dp"
+                android:background="@color/lightGrey"/>
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1.08">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <LinearLayout
+                android:id="@+id/mainContent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical">
+
+                <!-- Your existing layout content goes here -->
+                <ImageView
+                    android:id="@+id/shop_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/todo"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/shop_image" />
+
+                <TextView
+                    android:id="@+id/shop_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="FPS Shop no.3"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/orange"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:paddingTop="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:listitem="@layout/dish_item"/>
+            </LinearLayout>
+        </ScrollView>
+
 
         <LinearLayout
-            android:id="@+id/mainContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <!-- Your existing layout content goes here -->
-            <ImageView
-                android:id="@+id/shop_image"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/shop_image" />
-
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_weight="0.08">
             <TextView
-                android:id="@+id/shop_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="FPS Shop no.3"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:paddingStart="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"/>
-
-            <!-- Rest of your existing layout -->
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:paddingTop="8dp"
-                android:paddingStart="12dp"
+                android:layout_width="150sp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:paddingBottom="8dp"
-                android:clipToPadding="false"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/dish_item"/>
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_margin="6dp"
+                android:layout_marginStart="100dp"
+                android:background="@drawable/button"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/white"
+                android:text="1"/>
+
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
 </FrameLayout>
