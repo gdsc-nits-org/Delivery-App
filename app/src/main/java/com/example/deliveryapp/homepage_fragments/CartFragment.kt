@@ -1,5 +1,7 @@
 package com.example.deliveryapp.homepage_fragments
 
+import CartAdapter
+import OrderViewModel
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,15 +12,17 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import com.example.deliveryapp.Fragments.DB_NAME
 import com.example.deliveryapp.R
+import com.example.deliveryapp.RoomDatabase.ADatabase
 import com.example.deliveryapp.models.CartItem
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.card.MaterialCardView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class CartFragment : Fragment() {
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -34,6 +38,9 @@ class CartFragment : Fragment() {
     private lateinit var applyPromoButton: LinearLayout
     private lateinit var addMoreButton: Button
     private lateinit var checkoutButton: LinearLayout
+    private var cartItems : MutableList<CartItem> = arrayListOf()
+    private lateinit var orderViewModel: OrderViewModel
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -69,8 +76,7 @@ class CartFragment : Fragment() {
         initializeViews(view)
         setupListeners()
         setupRecyclerView()
-        showShimmerEffect()
-        fetchCartItems()
+        updateTotalPrice()
     }
 
     private fun setupListeners() {
@@ -93,10 +99,25 @@ class CartFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        cartAdapter = CartAdapter(emptyList())
+        val orderDao = Room.databaseBuilder(
+            requireContext(),
+            ADatabase::class.java,
+            DB_NAME
+        ).build().orderDao()
+        cartAdapter = CartAdapter(arrayListOf(), orderDao)
         cartRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = cartAdapter
+        }
+
+        orderViewModel = ViewModelProvider(this)[OrderViewModel::class.java]
+
+        orderViewModel.allOrders.observe(viewLifecycleOwner){orders->
+            for(order in orders){
+                cartItems.add(CartItem(order.id, order.title, order.imageUrl, order.quantity, order.price.toInt()))
+            }
+            cartAdapter.updateCartItems(cartItems)
+            updateTotalPrice()
         }
     }
 
@@ -112,47 +133,46 @@ class CartFragment : Fragment() {
         cartRecyclerView.visibility = View.VISIBLE
     }
 
-    private fun fetchCartItems() {
-        val db = FirebaseFirestore.getInstance()
-        val currentUser = FirebaseAuth.getInstance().currentUser
-
-        if (currentUser != null) {
-            db.collection("Users").document(currentUser.email ?: "")
-                .collection("Cart")
-                .get()
-                .addOnSuccessListener { documents ->
-                    val cartItems = documents.mapNotNull { document ->
-                        val id = document.getString("id") ?: return@mapNotNull null
-                        val quantity = document.getLong("quantity")?.toInt() ?: return@mapNotNull null
-                        val price = document.getDouble("price") ?: return@mapNotNull null
-                        CartItem(id, quantity, price)
-                    }
-                    cartAdapter.updateCartItems(cartItems)
-                    updateTotalPrice()
-                    hideShimmerEffect()
-                }
-                .addOnFailureListener { exception ->
-                    println("Failed to fetch cart items: ${exception.message}")
-                    hideShimmerEffect()
-                }
-        } else {
-            hideShimmerEffect()
-        }
-    }
+//    private fun fetchCartItems() {
+//        val db = FirebaseFirestore.getInstance()
+//        val currentUser = FirebaseAuth.getInstance().currentUser
+//
+//        if (currentUser != null) {
+//            db.collection("Users").document(currentUser.email ?: "")
+//                .collection("Cart")
+//                .get()
+//                .addOnSuccessListener { documents ->
+//                    val cartItems = documents.mapNotNull { document ->
+//                        val id = document.getString("id") ?: return@mapNotNull null
+//                        val quantity = document.getLong("quantity")?.toInt() ?: return@mapNotNull null
+//                        val price = document.getLong("price") ?: return@mapNotNull null
+//                        CartItem(id, quantity.toString(), price.toInt())
+//                    }
+//                    cartAdapter.updateCartItems(cartItems)
+//                    updateTotalPrice()
+//                    hideShimmerEffect()
+//                }
+//                .addOnFailureListener { exception ->
+//                    println("Failed to fetch cart items: ${exception.message}")
+//                    hideShimmerEffect()
+//                }
+//        } else {
+//            hideShimmerEffect()
+//        }
+//    }
 
     private fun updateTotalPrice() {
         val totalPrice = cartAdapter.getTotalPrice()
-        val deliveryCharge = 22.0 // Assuming a fixed delivery charge
+        val deliveryCharge = 22 // Assuming a fixed delivery charge
         val finalTotal = totalPrice + deliveryCharge
 
-        priceTextView.text = String.format("₹%.2f", totalPrice)
-        deliveryChargeTextView.text = String.format("₹%.2f", deliveryCharge)
-        totalPriceTextView.text = String.format("₹%.2f", finalTotal)
+        priceTextView.text = "₹${totalPrice}"
+        deliveryChargeTextView.text = "₹${deliveryCharge}"
+        totalPriceTextView.text = "₹${finalTotal}"
     }
 
     private fun applyPromoCode() {
         val promoCode = promoCodeEditText.text.toString()
-
     }
 
     private fun proceedToCheckout() {

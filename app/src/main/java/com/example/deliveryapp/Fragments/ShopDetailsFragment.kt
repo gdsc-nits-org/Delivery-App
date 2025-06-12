@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.deliveryapp.Dishes.ShopDishes
 import com.example.deliveryapp.R
+import com.example.deliveryapp.RoomDatabase.ADatabase
+import com.example.deliveryapp.RoomDatabase.Orders
 import com.example.deliveryapp.adapters.ShopDetailsAdapter
 import com.example.deliveryapp.databinding.FragmentShopDetailsBinding
 import com.example.deliveryapp.homepage_fragments.HomeFragment
@@ -25,15 +27,20 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
+const val DB_NAME = "Local_database.db"
 class ShopDetailsFragment : Fragment() {
 
     private lateinit var firestore: FirestoreManager
     private var dishes: MutableList<ShopDishes> = arrayListOf()
+    private lateinit var roomDB: ADatabase
     private lateinit var db: FirebaseDatabase
     private lateinit var binding: FragmentShopDetailsBinding
     private lateinit var shopID: String
@@ -69,9 +76,64 @@ class ShopDetailsFragment : Fragment() {
 
     private fun init() {
         firestore = FirestoreManager()
+        roomDB = ADatabase.getDatabase(requireContext())
         db = FirebaseManager.getFirebaseDatabase()
         shopName = arguments?.getString("ShopID") ?: ""
-        adapter = ShopDetailsAdapter(dishes)
+        adapter = ShopDetailsAdapter(dishes) { position ->
+            var quantity = 0
+            binding.layoutCounter.visibility = View.VISIBLE
+            binding.textCounter.text = quantity.toString()
+
+            binding.textCounter.isClickable = false
+            binding.textCounter.isFocusable = false
+
+
+            binding.plusBtn.setOnClickListener{
+                quantity++
+                binding.textCounter.text = quantity.toString()
+            }
+            binding.minusBtn.setOnClickListener{
+                if(quantity > 1)
+                    quantity--
+                else quantity = 0
+                binding.textCounter.text = quantity.toString()
+            }
+            if(quantity > 0) {
+                binding.textCounter.isClickable = true
+                binding.textCounter.isFocusable = true
+            }
+            else{
+                binding.textCounter.isClickable = false
+                binding.textCounter.isFocusable = false
+            }
+            binding.textCounter.setOnClickListener{
+                val todoDao = roomDB.orderDao()
+                if(dishes.size > 0 && quantity > 0){
+                    val dish = dishes[position]
+                    val order = Orders(
+                        dish.title,
+                        dish.imageUrl,
+                        dish.resName,
+                        dish.price,
+                        quantity,
+                        0
+                    )
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            todoDao.insertOrder(order)
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
+                            }
+                        } catch (e: Exception) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
     }

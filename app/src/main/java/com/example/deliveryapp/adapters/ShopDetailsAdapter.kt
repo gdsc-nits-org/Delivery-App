@@ -10,16 +10,20 @@ import com.example.deliveryapp.Dishes.ShopDishes
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.DishItemBinding
 
-class ShopDetailsAdapter(private val dishes: MutableList<ShopDishes>): RecyclerView.Adapter<ShopDetailsAdapter.ShopDetailsViewHolder>() {
+class ShopDetailsAdapter(private val dishes: MutableList<ShopDishes>, private val onItemSelected: (Int) -> Unit): RecyclerView.Adapter<ShopDetailsAdapter.ShopDetailsViewHolder>() {
 
     inner class ShopDetailsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val binding = DishItemBinding.bind(itemView)
-        fun bindData(dish: ShopDishes){
+        fun bindData(dish: ShopDishes) {
             binding.dishTitle.text = dish.title
             binding.dishPrice.text = dish.price
             Glide.with(itemView)
                 .load(dish.imageUrl)
                 .into(binding.ivDishImg)
+
+            itemView.setOnClickListener{
+                onItemSelected(adapterPosition)
+            }
         }
     }
     @SuppressLint("NotifyDataSetChanged")
@@ -41,4 +45,5 @@ class ShopDetailsAdapter(private val dishes: MutableList<ShopDishes>): RecyclerV
         val dish = dishes[position]
         holder.bindData(dish)
     }
+
 }

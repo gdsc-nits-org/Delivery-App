@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:padding="8dp"
     tools:context=".homepage_fragments.CartFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,6 +46,7 @@
                 android:textAlignment="center"
                 android:textColor="#FF7F00"
                 android:textSize="30sp"
+                android:layout_marginEnd="48dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -64,6 +66,8 @@
             android:id="@+id/cartRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:listitem="@layout/cart_item"
+            tools:itemCount="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/headerLayout" />
@@ -72,8 +76,9 @@
             android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
+            android:textSize="16sp"
             android:drawableStart="@drawable/baseline_add_24"
             android:background="@android:color/transparent"
             android:text="@string/add_more"
