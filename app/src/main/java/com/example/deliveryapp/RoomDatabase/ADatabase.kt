@@ -5,8 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.deliveryapp.Fragments.DB_NAME
-
-@Database(entities = [Orders::class], version = 1)
+//Make sure you make a directory schemas at ./app/schemas
+@Database(entities = [Orders::class], version = 1, exportSchema = true)
 abstract class ADatabase : RoomDatabase() {
     abstract fun orderDao(): OrderDao
 

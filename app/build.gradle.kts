@@ -1,5 +1,5 @@
 plugins {
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
@@ -18,8 +18,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
+
     kotlinOptions {
-        jvmTarget = "21"
+        jvmTarget = "1.8"
     }
 
     buildTypes {
@@ -61,21 +65,21 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("com.google.firebase:firebase-crashlytics-buildtools:3.0.2")
     implementation("androidx.room:room-ktx:2.7.1")
-    implementation("androidx.room:room-common:2.6.1")
+    implementation("androidx.room:room-common:2.7.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
 // Card View
 
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-runtime:2.7.1")
+    ksp("androidx.room:room-compiler:2.7.1")
 
     implementation("androidx.cardview:cardview:1.0.0")
 
 // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    ksp("com.github.bumptech.glide:ksp:4.16.0")
 
 // Coil
     implementation("io.coil-kt:coil:2.5.0")
