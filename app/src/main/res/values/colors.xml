@@ -51,4 +51,10 @@
     <color name="lightBrown">#A1887F</color>
     <color name="silver">#C0C0C0</color>
     <color name="shimmer_color">#585A5B</color>
+
+    <color name="chip_text_color">#333333</color>
+    <color name="chip_background_color">#F0F0F0</color>
+    <color name="chip_pressed_color">#DCDCDC</color>
+    <color name="recent_searches_title">#333333</color>
+
 </resources>
