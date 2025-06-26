@@ -42,9 +42,6 @@ class SearchFragment : Fragment() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private var fragmentNavigation: HomepageNavigation? = null
 
-
-
-
     private var currentSearchQuery: String = ""
     private var isSearchActive = false
 
@@ -75,11 +72,7 @@ class SearchFragment : Fragment() {
 
           toggleSearchActivation()
         }
-
-
-
         binding.backButton.setOnClickListener {
-
 
            if(isSearchActive){
                toggleSearchActivation(forceDeactivate= true)
@@ -149,10 +142,6 @@ class SearchFragment : Fragment() {
 //    }
 
 
-
-
-
-
     private fun toggleSearchActivation(forceDeactivate: Boolean = false) {
 
        val newActiveState= if (forceDeactivate) false else !isSearchActive
@@ -174,8 +163,6 @@ class SearchFragment : Fragment() {
             filterCurrentFragment(currentSearchQuery)
 
         } else {
-
-
             hideKeyboard()
             binding.searchEditText.clearFocus()
             if (forceDeactivate) {
@@ -187,23 +174,14 @@ class SearchFragment : Fragment() {
     }
     private fun updateSearchUIVisibility() {
 
-
-
         if (isSearchActive) {
             binding.titleTextView.visibility = View.GONE
             binding.searchInputLayout.visibility = View.VISIBLE
-
-
             bottomNavigationView.visibility = View.GONE
-
-
-
 
             binding.searchEditText.requestFocus()
             showKeyboard()
-
             bottomNavigationView.visibility = View.GONE
-
         } else {
 
             binding.titleTextView.visibility = View.VISIBLE

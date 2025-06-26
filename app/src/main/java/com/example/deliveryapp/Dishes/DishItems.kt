@@ -51,14 +51,6 @@ class DishItems : Fragment() {
         val initialQuery = arguments?.getString("initial_search_query") ?: ""
 
         filterDishes(initialQuery)
-//        dishList= ArrayList()
-//        recyclerView= view.findViewById(R.id.rvDish)
-//        recyclerDishAdapter= DishAdapter(dishList)
-//        val layoutManager:RecyclerView.LayoutManager=GridLayoutManager(context,2)
-//        recyclerView!!.layoutManager=layoutManager
-//        recyclerView!!.adapter=recyclerDishAdapter
-//
-//        prepareDishList()
     }
 
     private fun prepareDishList() {
