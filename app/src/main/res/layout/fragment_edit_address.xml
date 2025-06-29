@@ -1,116 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#FFFFFF"
-    android:gravity="center_horizontal"
-    tools:context=".userprofile.AddressFragment">
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:layout_marginEnd="20sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginStart="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/backBtnAddressPage"
-            android:backgroundTint="#EDECEB"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="80sp"
-            android:layout_width="35dp"
-            android:layout_height="35dp">
+        <!-- Keep back button as is -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="start"
+            android:background="@drawable/rounded_back_button"
+            android:contentDescription="@string/profile"
+            android:elevation="8dp"
+            android:padding="8dp"
+            android:src="@drawable/baseline_chevron_left_24"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/arrow_back_24px" />
-        </com.google.android.material.card.MaterialCardView>
-
+        <!-- Header -->
         <TextView
-            android:layout_gravity="center"
-            android:text="Edit Address"
-            android:layout_marginStart="65sp"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="#ED5D00"
+            android:id="@+id/tvEditAddressTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="Edit Address"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#FF6F00"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        app:cardCornerRadius="2dp"
-        android:layout_height="56dp">
-
+        <!-- Hostel Input Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            app:hintEnabled="false"
-            android:background="@drawable/border"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp">
+            android:layout_height="wrap_content"
+            android:hint="Hostel's Name"
+            android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etHostelNameAddressPage"
-                android:textColorHint="#000000"
-                android:textColor="#000000"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="@drawable/border"
-                android:hint="Hostel's Name"
-                android:inputType="text"
-                android:paddingLeft="16dp" />
-
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_margin="20dp"
-        android:layout_width="match_parent"
-        app:cardCornerRadius="2dp"
-        android:layout_height="56dp">
-
+        <!-- Street Input Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            app:hintEnabled="false"
-            android:background="@drawable/border"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp">
+            android:layout_height="wrap_content"
+            android:hint="Street"
+            android:layout_marginBottom="32dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etStreetNameAddressPage"
-                android:textColorHint="#000000"
-                android:textColor="#000000"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="@drawable/border"
-                android:hint="Street"
-                android:inputType="text"
-                android:paddingLeft="16dp" />
-
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-    </com.google.android.material.card.MaterialCardView>
 
 
+        <Button
+            android:id="@+id/btnSaveAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SAVE"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@android:color/holo_orange_dark" />
 
 
-
-    <Button
-        android:id="@+id/btnSaveAddress"
-        android:layout_marginTop="25dp"
-        android:backgroundTint="@color/ButtonColour"
-        android:text="SAVE"
-        android:textColor="#FFFFFF"
-        android:layout_width="336dp"
-        android:layout_height="48dp"/>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

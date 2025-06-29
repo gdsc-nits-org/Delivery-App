@@ -1,30 +1,19 @@
 package com.example.deliveryapp.userprofile
 
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.Fragment
 import com.example.deliveryapp.R
-import com.example.deliveryapp.utils.FirebaseManager
-import com.example.deliveryapp.utils.FirestoreManager
 import com.example.deliveryapp.utils.UserData
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class EditProfileFragment : Fragment() {
 
@@ -44,12 +33,14 @@ class EditProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_edit_profile, container, false)
 
+        // Bind views
         etName = view.findViewById(R.id.etName)
         etEmail = view.findViewById(R.id.etEmail)
         etContact = view.findViewById(R.id.etContact)
         etBio = view.findViewById(R.id.etBio)
         tvEdit = view.findViewById(R.id.tvEdit)
         btnSave = view.findViewById(R.id.btnSave)
+        val btnBack = view.findViewById<ImageView>(R.id.btnBack)
 
         // Firebase setup
         userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
@@ -58,13 +49,21 @@ class EditProfileFragment : Fragment() {
         // Load existing user data
         loadUserData()
 
-        // Handle edit button
+        // Back button navigation
+        btnBack.setOnClickListener {
+            val fragment = parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_container, ProfileListFragment())
+            fragment.commit()
+            parentFragmentManager.popBackStack()
+        }
+
+        // Enable fields when Edit is clicked
         tvEdit.setOnClickListener {
             setFieldsEditable(true)
             btnSave.isEnabled = true
         }
 
-        // Handle save button
+        // Save updated profile data
         btnSave.setOnClickListener {
             saveUserData()
         }
@@ -109,4 +108,3 @@ class EditProfileFragment : Fragment() {
         }
     }
 }
-
